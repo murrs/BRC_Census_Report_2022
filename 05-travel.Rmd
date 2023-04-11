@@ -1,0 +1,135 @@
+# Travel Logistics
+
+## Arrival and Departure
+
+### Arrival date
+
+
+
+
+### Point of entry
+
+
+
+
+### Departure date
+
+
+
+
+### Point of departure
+
+
+
+## Flying to Black Rock City
+
+### Did you fly in an airplane to get (at least part of the way) to Black Rock City this year?
+
+
+
+### What was your final arrival airport?
+
+
+
+
+## Vehicle Logistics
+
+### How many people were in your vehicle when you arrived at the Gate?
+
+
+
+### How many people in your vehicle were under age 13?
+
+
+
+### How many people in your vehicle were age 13 to 17?
+
+
+
+### In what type of vehicle did ou travel to Black Rock City
+
+
+
+### Was your vehicle towing a trailer
+
+
+
+### What kind of fuel did your vehicle run on?
+
+
+
+### Approximately how many miles to the gallon did your vehicle get on the way to Black Rock City??
+
+
+## Route to BRC
+
+### How many total miles did you drive to get
+
+
+
+### Route through Nevada to BRC
+
+
+
+## Burner Express Bus (BXB)
+
+### Which route(s) did you take on the Burner Express Bus?
+
+
+
+### Did you camp in Burner Express Camping?
+
+
+
+### Did you ride the satellite shuttle that operates within Black Rock City?
+
+
+
+### What were your main reasons for choosing to take a Burner Express Bus?
+
+
+
+### Value of Burner Express Bus ticket based on satisfaction
+
+
+
+### How would you rate your Burner Express Bus ticket purchase experience?
+
+
+
+### How would you rate your overall Burner Express Bus experience?
+
+
+
+## Visiting Nevada
+
+### Did you stop at any locations in Gerlach? 
+
+
+
+### Did you visit any parks and/or recreation areas this year on your way to and/or from Black Rock City?
+
+
+
+### Reasons for visiting public lands near Black Rock City going to or from the Burning Man event?
+
+
+
+### Most visited Nevada cities or communities going to or from the Burning Man Event
+
+<!-- This could maybe be a map? -->
+
+
+
+### Do you intend to come back to the Black Rock Desert outside of the Burning Man event?
+
+
+## Expenses
+
+### How much did you spend this year to travel to and from Black Rock City?
+
+
+
+### How much did you spend in Nevada?
+
+<!-- Could get creative in how to summarize this, average, total

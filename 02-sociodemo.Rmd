@@ -1,0 +1,123 @@
+# Demographics and social characteristics {#sociodemo}
+
+## Burning Man Attendence
+
+### Virgin
+
+### Number of burns attended
+
+<!-- Other ideas?  Average number of burns attended without a break? -->
+
+## Demographics
+
+### Age
+
+
+### Current gender
+
+
+### Sex assigned at birth
+
+
+### Gender identity
+
+<!--  Do you consider yourself to be any of the following (transperson etc.) -->
+
+
+### Preferred pronouns
+
+
+### Personal income in 2021
+
+
+### Household income in 2021
+
+
+### Highest level of education completed
+
+
+## Residence
+
+### Residence inside of Black Rock City
+
+
+### Residence outside of Black Rock City
+
+
+### California and Nevada County Residence
+
+<!-- ZIP Code converted to county and maybe smoothed -->
+
+### State residence
+
+<!-- ZIP code converted to state -->
+
+### Canadian province residence
+
+<!-- Postal code converted to province -->
+
+## Voting and politics
+
+### Number of times voted in last four Federal US elections 
+
+<!-- Combine with voting eligiblity -->
+
+### Political party affiliation
+
+
+
+### Political views
+
+
+
+## Ethinicity and language
+
+### Ethnoracial background
+
+
+
+### Person of Color
+
+
+
+### First language learned
+
+
+## Spirituality
+
+### Spirituality
+
+
+
+### Religion or religious denomination
+
+<!-- Something needs to be done to address the multiple religions selection, not sure what -->
+
+## Disabilities
+
+### Identify with a disability status
+
+<!-- Maybe separate into binary yes/no and categories if yes? -->
+
+
+## Sexuality
+
+### Sexual orientation
+
+
+
+### Sexuality labels
+
+
+
+## Relationships
+
+### Romantic Orientation
+
+
+
+### Partner in the default world
+
+
+
+### Relationship labels

@@ -1,0 +1,30 @@
+--- 
+title: "Black Rock City Census Survey Results 2022"
+author: "Aaron \"Murrs\" Shev"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  Annual survey results report for the Black Rock City Census
+link-citations: yes
+github-repo: murrs/BRC_Census_Report_2022
+output: 
+  bookdown::gitbook: default
+---
+
+# Preface {-}
+
+Some highlights from Murrs
+
+## About the authors {-}
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

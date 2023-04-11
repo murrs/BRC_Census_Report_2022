@@ -1,0 +1,512 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Black Rock City Census Survey Results 2022},
+  pdfauthor={Aaron ``Murrs'' Shev},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\title{Black Rock City Census Survey Results 2022}
+\author{Aaron ``Murrs'' Shev}
+\date{2023-04-10}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{preface}{%
+\chapter*{Preface}\label{preface}}
+\addcontentsline{toc}{chapter}{Preface}
+
+Some highlights from Murrs
+
+\hypertarget{about-the-authors}{%
+\section*{About the authors}\label{about-the-authors}}
+\addcontentsline{toc}{section}{About the authors}
+
+\hypertarget{intro}{%
+\chapter{Introduction}\label{intro}}
+
+\hypertarget{whoweare}{%
+\section{Who we are}\label{whoweare}}
+
+\hypertarget{survey-design-svydesign}{%
+\section{Survey Design \{svydesign\}}\label{survey-design-svydesign}}
+
+\hypertarget{random-sample-random}{%
+\subsection{Random Sample \{random\}}\label{random-sample-random}}
+
+\hypertarget{online-survey-online}{%
+\subsection{Online Survey \{online\}}\label{online-survey-online}}
+
+\hypertarget{weighting-weighting}{%
+\subsection{Weighting \{weighting\}}\label{weighting-weighting}}
+
+\hypertarget{sociodemo}{%
+\chapter{Demographics and social characteristics}\label{sociodemo}}
+
+\hypertarget{burning-man-attendence}{%
+\section{Burning Man Attendence}\label{burning-man-attendence}}
+
+\hypertarget{virgin}{%
+\subsection{Virgin}\label{virgin}}
+
+\hypertarget{number-of-burns-attended}{%
+\subsection{Number of burns attended}\label{number-of-burns-attended}}
+
+\hypertarget{demographics}{%
+\section{Demographics}\label{demographics}}
+
+\hypertarget{age}{%
+\subsection{Age}\label{age}}
+
+\hypertarget{current-gender}{%
+\subsection{Current gender}\label{current-gender}}
+
+\hypertarget{sex-assigned-at-birth}{%
+\subsection{Sex assigned at birth}\label{sex-assigned-at-birth}}
+
+\hypertarget{gender-identity}{%
+\subsection{Gender identity}\label{gender-identity}}
+
+\hypertarget{preferred-pronouns}{%
+\subsection{Preferred pronouns}\label{preferred-pronouns}}
+
+\hypertarget{personal-income-in-2021}{%
+\subsection{Personal income in 2021}\label{personal-income-in-2021}}
+
+\hypertarget{household-income-in-2021}{%
+\subsection{Household income in 2021}\label{household-income-in-2021}}
+
+\hypertarget{highest-level-of-education-completed}{%
+\subsection{Highest level of education completed}\label{highest-level-of-education-completed}}
+
+\hypertarget{residence}{%
+\section{Residence}\label{residence}}
+
+\hypertarget{residence-inside-of-black-rock-city}{%
+\subsection{Residence inside of Black Rock City}\label{residence-inside-of-black-rock-city}}
+
+\hypertarget{residence-outside-of-black-rock-city}{%
+\subsection{Residence outside of Black Rock City}\label{residence-outside-of-black-rock-city}}
+
+\hypertarget{california-and-nevada-county-residence}{%
+\subsection{California and Nevada County Residence}\label{california-and-nevada-county-residence}}
+
+\hypertarget{state-residence}{%
+\subsection{State residence}\label{state-residence}}
+
+\hypertarget{canadian-province-residence}{%
+\subsection{Canadian province residence}\label{canadian-province-residence}}
+
+\hypertarget{voting-and-politics}{%
+\section{Voting and politics}\label{voting-and-politics}}
+
+\hypertarget{number-of-times-voted-in-last-four-federal-us-elections}{%
+\subsection{Number of times voted in last four Federal US elections}\label{number-of-times-voted-in-last-four-federal-us-elections}}
+
+\hypertarget{political-party-affiliation}{%
+\subsection{Political party affiliation}\label{political-party-affiliation}}
+
+\hypertarget{political-views}{%
+\subsection{Political views}\label{political-views}}
+
+\hypertarget{ethinicity-and-language}{%
+\section{Ethinicity and language}\label{ethinicity-and-language}}
+
+\hypertarget{ethnoracial-background}{%
+\subsection{Ethnoracial background}\label{ethnoracial-background}}
+
+\hypertarget{person-of-color}{%
+\subsection{Person of Color}\label{person-of-color}}
+
+\hypertarget{first-language-learned}{%
+\subsection{First language learned}\label{first-language-learned}}
+
+\hypertarget{spirituality}{%
+\section{Spirituality}\label{spirituality}}
+
+\hypertarget{spirituality-1}{%
+\subsection{Spirituality}\label{spirituality-1}}
+
+\hypertarget{religion-or-religious-denomination}{%
+\subsection{Religion or religious denomination}\label{religion-or-religious-denomination}}
+
+\hypertarget{disabilities}{%
+\section{Disabilities}\label{disabilities}}
+
+\hypertarget{identify-with-a-disability-status}{%
+\subsection{Identify with a disability status}\label{identify-with-a-disability-status}}
+
+\hypertarget{sexuality}{%
+\section{Sexuality}\label{sexuality}}
+
+\hypertarget{sexual-orientation}{%
+\subsection{Sexual orientation}\label{sexual-orientation}}
+
+\hypertarget{sexuality-labels}{%
+\subsection{Sexuality labels}\label{sexuality-labels}}
+
+\hypertarget{relationships}{%
+\section{Relationships}\label{relationships}}
+
+\hypertarget{romantic-orientation}{%
+\subsection{Romantic Orientation}\label{romantic-orientation}}
+
+\hypertarget{partner-in-the-default-world}{%
+\subsection{Partner in the default world}\label{partner-in-the-default-world}}
+
+\hypertarget{relationship-labels}{%
+\subsection{Relationship labels}\label{relationship-labels}}
+
+\hypertarget{beyond-the-burn-regionals-media-and-volunteering}{%
+\chapter{Beyond the Burn -- Regionals, Media, and Volunteering}\label{beyond-the-burn-regionals-media-and-volunteering}}
+
+\hypertarget{regionals}{%
+\section{Regionals}\label{regionals}}
+
+\hypertarget{attended-any-regional-burning-man-eventsmixersgatherings}{%
+\subsection{Attended any regional Burning Man events/mixers/gatherings}\label{attended-any-regional-burning-man-eventsmixersgatherings}}
+
+\hypertarget{ivolvement-with-a-regional-burning-man-event}{%
+\subsection{Ivolvement with a regional Burning Man event}\label{ivolvement-with-a-regional-burning-man-event}}
+
+\hypertarget{burning-man-media}{%
+\section{Burning Man Media}\label{burning-man-media}}
+
+\hypertarget{media-managed-by-burning-man-project}{%
+\subsection{Media managed by Burning Man Project}\label{media-managed-by-burning-man-project}}
+
+\hypertarget{media-not-managed-by-burning-man-project}{%
+\subsection{Media not managed by Burning Man Project}\label{media-not-managed-by-burning-man-project}}
+
+\hypertarget{most-valuable-types-of-information-coming-from-burning-man-project}{%
+\subsection{Most valuable types of information coming from Burning Man Project}\label{most-valuable-types-of-information-coming-from-burning-man-project}}
+
+\hypertarget{listened-to-bmir-burning-man-information-radio-this-year}{%
+\subsection{Listened to BMIR (Burning Man Information Radio) this year}\label{listened-to-bmir-burning-man-information-radio-this-year}}
+
+\hypertarget{volunteerism-and-donations}{%
+\section{Volunteerism and donations}\label{volunteerism-and-donations}}
+
+\hypertarget{volunteered-in-the-last-year}{%
+\subsection{Volunteered in the last year}\label{volunteered-in-the-last-year}}
+
+\hypertarget{approximate-average-hours-per-month-spent-on-volunteer-efforts-last-year}{%
+\subsection{Approximate average hours per month spent on volunteer efforts last year}\label{approximate-average-hours-per-month-spent-on-volunteer-efforts-last-year}}
+
+\hypertarget{made-a-charitable-donation-in-the-last-year}{%
+\subsection{Made a charitable donation in the last year}\label{made-a-charitable-donation-in-the-last-year}}
+
+\hypertarget{inspiration-to-volunteer-donate-or-get-involved-after-going-to-black-rock-city}{%
+\subsection{Inspiration to volunteer, donate, or get involved after going to Black Rock City}\label{inspiration-to-volunteer-donate-or-get-involved-after-going-to-black-rock-city}}
+
+\hypertarget{new-skills}{%
+\section{New skills}\label{new-skills}}
+
+\hypertarget{inspiration-to-practice-skills-after-going-to-black-rock-city}{%
+\subsection{Inspiration to practice skills after going to Black Rock City}\label{inspiration-to-practice-skills-after-going-to-black-rock-city}}
+
+\hypertarget{skills-proved-useful-in-the-default-world}{%
+\subsection{Skills proved useful in the default world}\label{skills-proved-useful-in-the-default-world}}
+
+\hypertarget{using-skills-outside-black-rock-city}{%
+\subsection{Using skills outside Black Rock City}\label{using-skills-outside-black-rock-city}}
+
+\hypertarget{impact-of-new-skills-outside-of-black-rock-city}{%
+\subsection{Impact of new skills outside of Black Rock City}\label{impact-of-new-skills-outside-of-black-rock-city}}
+
+\hypertarget{perspectives-on-burning-man}{%
+\chapter{Perspectives on Burning Man}\label{perspectives-on-burning-man}}
+
+\hypertarget{burner-identity-and-the-10-principles}{%
+\section{Burner Identity and the 10 Principles}\label{burner-identity-and-the-10-principles}}
+
+\hypertarget{do-you-identify-as-a-burner}{%
+\subsection{Do you identify as a Burner?}\label{do-you-identify-as-a-burner}}
+
+\hypertarget{principles-most-difficult-to-practice-in-every-day-life}{%
+\subsection{Principles most difficult to practice in every day life}\label{principles-most-difficult-to-practice-in-every-day-life}}
+
+\hypertarget{importance-of-the-10-principles}{%
+\subsection{Importance of the 10 Principles}\label{importance-of-the-10-principles}}
+
+\hypertarget{ten-principles-essential-to-creating-an-authentic-burning-man-experience}{%
+\subsection{Ten principles essential to creating an authentic Burning Man experience}\label{ten-principles-essential-to-creating-an-authentic-burning-man-experience}}
+
+\hypertarget{incorporating-the-10-principles-in-the-workplace}{%
+\subsection{Incorporating the 10 principles in the workplace}\label{incorporating-the-10-principles-in-the-workplace}}
+
+\hypertarget{children-at-burning-man}{%
+\section{Children at Burning Man}\label{children-at-burning-man}}
+
+\hypertarget{have-you-ever-brought-children-under-18-to-black-rock-city}{%
+\subsection{Have you ever brought children under 18 to Black Rock City?}\label{have-you-ever-brought-children-under-18-to-black-rock-city}}
+
+\hypertarget{do-you-think-that-burning-man-event-attendance-should-be-restricted-to-participants-aged-18-or-older}{%
+\subsection{Do you think that Burning Man event attendance should be restricted to participants aged 18 or older?}\label{do-you-think-that-burning-man-event-attendance-should-be-restricted-to-participants-aged-18-or-older}}
+
+\hypertarget{burning-man-projects-nonprofit-activites}{%
+\section{Burning Man Project's Nonprofit Activites}\label{burning-man-projects-nonprofit-activites}}
+
+\hypertarget{familiarity-with-programs-annd-affiliiates-of-the-nonprofit-burning-man-project}{%
+\subsection{Familiarity with programs annd affiliiates of the nonprofit Burning Man Project}\label{familiarity-with-programs-annd-affiliiates-of-the-nonprofit-burning-man-project}}
+
+\hypertarget{should-the-burning-man-project-be-involved-in-faciliating-and-producing-year-round-activites}{%
+\subsection{Should the Burning Man Project be involved in faciliating and producing year-round activites?}\label{should-the-burning-man-project-be-involved-in-faciliating-and-producing-year-round-activites}}
+
+\hypertarget{how-would-you-distribute-1000-to-donate-to-programs-of-the-nonprofit-burning-man-project}{%
+\subsection{How would you distribute \$1,000 to donate to programs of the nonprofit Burning man Project?}\label{how-would-you-distribute-1000-to-donate-to-programs-of-the-nonprofit-burning-man-project}}
+
+\hypertarget{sustainability}{%
+\section{Sustainability}\label{sustainability}}
+
+\hypertarget{what-new-sustainability-projects-did-you-notice-while-in-brc-this-year}{%
+\subsection{What new sustainability projects did you notice while in BRC this year?}\label{what-new-sustainability-projects-did-you-notice-while-in-brc-this-year}}
+
+\hypertarget{how-did-you-and-your-camp-or-project-begin-to-address-sustainability-in-black-rock-city}{%
+\subsection{How did you (and your camp or project) begin to address sustainability in Black Rock City?}\label{how-did-you-and-your-camp-or-project-begin-to-address-sustainability-in-black-rock-city}}
+
+\hypertarget{how-important-to-you-is-it-that-the-burning-man-project-visibly-engages-in-best-practices-in-environmental-sustainability}{%
+\subsection{How important to you is it that the Burning Man Project visibly engages in best practices in environmental sustainability?}\label{how-important-to-you-is-it-that-the-burning-man-project-visibly-engages-in-best-practices-in-environmental-sustainability}}
+
+\hypertarget{radical-inclusion-diversity-and-equity-r.i.d.e.}{%
+\section{Radical Inclusion, Diversity, and Equity (R.I.D.E.)}\label{radical-inclusion-diversity-and-equity-r.i.d.e.}}
+
+\hypertarget{how-did-you-see-r.i.d.e.-in-action-while-in-brc}{%
+\subsection{How did you see R.I.D.E. in action while in BRC}\label{how-did-you-see-r.i.d.e.-in-action-while-in-brc}}
+
+\hypertarget{how-did-you-personally-work-to-create-a-more-diverse-and-welcoming-black-rock-city}{%
+\subsection{How did you personally work to create a more diverse and welcoming Black Rock City?}\label{how-did-you-personally-work-to-create-a-more-diverse-and-welcoming-black-rock-city}}
+
+\hypertarget{travel-logistics}{%
+\chapter{Travel Logistics}\label{travel-logistics}}
+
+\hypertarget{arrival-and-departure}{%
+\section{Arrival and Departure}\label{arrival-and-departure}}
+
+\hypertarget{arrival-date}{%
+\subsection{Arrival date}\label{arrival-date}}
+
+\hypertarget{point-of-entry}{%
+\subsection{Point of entry}\label{point-of-entry}}
+
+\hypertarget{departure-date}{%
+\subsection{Departure date}\label{departure-date}}
+
+\hypertarget{point-of-departure}{%
+\subsection{Point of departure}\label{point-of-departure}}
+
+\hypertarget{flying-to-black-rock-city}{%
+\section{Flying to Black Rock City}\label{flying-to-black-rock-city}}
+
+\hypertarget{did-you-fly-in-an-airplane-to-get-at-least-part-of-the-way-to-black-rock-city-this-year}{%
+\subsection{Did you fly in an airplane to get (at least part of the way) to Black Rock City this year?}\label{did-you-fly-in-an-airplane-to-get-at-least-part-of-the-way-to-black-rock-city-this-year}}
+
+\hypertarget{what-was-your-final-arrival-airport}{%
+\subsection{What was your final arrival airport?}\label{what-was-your-final-arrival-airport}}
+
+\hypertarget{vehicle-logistics}{%
+\section{Vehicle Logistics}\label{vehicle-logistics}}
+
+\hypertarget{how-many-people-were-in-your-vehicle-when-you-arrived-at-the-gate}{%
+\subsection{How many people were in your vehicle when you arrived at the Gate?}\label{how-many-people-were-in-your-vehicle-when-you-arrived-at-the-gate}}
+
+\hypertarget{how-many-people-in-your-vehicle-were-under-age-13}{%
+\subsection{How many people in your vehicle were under age 13?}\label{how-many-people-in-your-vehicle-were-under-age-13}}
+
+\hypertarget{how-many-people-in-your-vehicle-were-age-13-to-17}{%
+\subsection{How many people in your vehicle were age 13 to 17?}\label{how-many-people-in-your-vehicle-were-age-13-to-17}}
+
+\hypertarget{in-what-type-of-vehicle-did-ou-travel-to-black-rock-city}{%
+\subsection{In what type of vehicle did ou travel to Black Rock City}\label{in-what-type-of-vehicle-did-ou-travel-to-black-rock-city}}
+
+\hypertarget{was-your-vehicle-towing-a-trailer}{%
+\subsection{Was your vehicle towing a trailer}\label{was-your-vehicle-towing-a-trailer}}
+
+\hypertarget{what-kind-of-fuel-did-your-vehicle-run-on}{%
+\subsection{What kind of fuel did your vehicle run on?}\label{what-kind-of-fuel-did-your-vehicle-run-on}}
+
+\hypertarget{approximately-how-many-miles-to-the-gallon-did-your-vehicle-get-on-the-way-to-black-rock-city}{%
+\subsection{Approximately how many miles to the gallon did your vehicle get on the way to Black Rock City??}\label{approximately-how-many-miles-to-the-gallon-did-your-vehicle-get-on-the-way-to-black-rock-city}}
+
+\hypertarget{route-to-brc}{%
+\section{Route to BRC}\label{route-to-brc}}
+
+\hypertarget{how-many-total-miles-did-you-drive-to-get}{%
+\subsection{How many total miles did you drive to get}\label{how-many-total-miles-did-you-drive-to-get}}
+
+\hypertarget{route-through-nevada-to-brc}{%
+\subsection{Route through Nevada to BRC}\label{route-through-nevada-to-brc}}
+
+\hypertarget{burner-express-bus-bxb}{%
+\section{Burner Express Bus (BXB)}\label{burner-express-bus-bxb}}
+
+\hypertarget{which-routes-did-you-take-on-the-burner-express-bus}{%
+\subsection{Which route(s) did you take on the Burner Express Bus?}\label{which-routes-did-you-take-on-the-burner-express-bus}}
+
+\hypertarget{did-you-camp-in-burner-express-camping}{%
+\subsection{Did you camp in Burner Express Camping?}\label{did-you-camp-in-burner-express-camping}}
+
+\hypertarget{did-you-ride-the-satellite-shuttle-that-operates-within-black-rock-city}{%
+\subsection{Did you ride the satellite shuttle that operates within Black Rock City?}\label{did-you-ride-the-satellite-shuttle-that-operates-within-black-rock-city}}
+
+\hypertarget{what-were-your-main-reasons-for-choosing-to-take-a-burner-express-bus}{%
+\subsection{What were your main reasons for choosing to take a Burner Express Bus?}\label{what-were-your-main-reasons-for-choosing-to-take-a-burner-express-bus}}
+
+\hypertarget{value-of-burner-express-bus-ticket-based-on-satisfaction}{%
+\subsection{Value of Burner Express Bus ticket based on satisfaction}\label{value-of-burner-express-bus-ticket-based-on-satisfaction}}
+
+\hypertarget{how-would-you-rate-your-burner-express-bus-ticket-purchase-experience}{%
+\subsection{How would you rate your Burner Express Bus ticket purchase experience?}\label{how-would-you-rate-your-burner-express-bus-ticket-purchase-experience}}
+
+\hypertarget{how-would-you-rate-your-overall-burner-express-bus-experience}{%
+\subsection{How would you rate your overall Burner Express Bus experience?}\label{how-would-you-rate-your-overall-burner-express-bus-experience}}
+
+\hypertarget{visiting-nevada}{%
+\section{Visiting Nevada}\label{visiting-nevada}}
+
+\hypertarget{did-you-stop-at-any-locations-in-gerlach}{%
+\subsection{Did you stop at any locations in Gerlach?}\label{did-you-stop-at-any-locations-in-gerlach}}
+
+\hypertarget{did-you-visit-any-parks-andor-recreation-areas-this-year-on-your-way-to-andor-from-black-rock-city}{%
+\subsection{Did you visit any parks and/or recreation areas this year on your way to and/or from Black Rock City?}\label{did-you-visit-any-parks-andor-recreation-areas-this-year-on-your-way-to-andor-from-black-rock-city}}
+
+\hypertarget{reasons-for-visiting-public-lands-near-black-rock-city-going-to-or-from-the-burning-man-event}{%
+\subsection{Reasons for visiting public lands near Black Rock City going to or from the Burning Man event?}\label{reasons-for-visiting-public-lands-near-black-rock-city-going-to-or-from-the-burning-man-event}}
+
+\hypertarget{most-visited-nevada-cities-or-communities-going-to-or-from-the-burning-man-event}{%
+\subsection{Most visited Nevada cities or communities going to or from the Burning Man Event}\label{most-visited-nevada-cities-or-communities-going-to-or-from-the-burning-man-event}}
+
+\hypertarget{do-you-intend-to-come-back-to-the-black-rock-desert-outside-of-the-burning-man-event}{%
+\subsection{Do you intend to come back to the Black Rock Desert outside of the Burning Man event?}\label{do-you-intend-to-come-back-to-the-black-rock-desert-outside-of-the-burning-man-event}}
+
+\hypertarget{expenses}{%
+\section{Expenses}\label{expenses}}
+
+\hypertarget{how-much-did-you-spend-this-year-to-travel-to-and-from-black-rock-city}{%
+\subsection{How much did you spend this year to travel to and from Black Rock City?}\label{how-much-did-you-spend-this-year-to-travel-to-and-from-black-rock-city}}
+
+\hypertarget{how-much-did-you-spend-in-nevada}{%
+\subsection{How much did you spend in Nevada?}\label{how-much-did-you-spend-in-nevada}}
+
+\hypertarget{camp-logistics}{%
+\chapter{Camp Logistics}\label{camp-logistics}}
+
+\hypertarget{camp-details}{%
+\section{Camp Details}\label{camp-details}}
+
+\hypertarget{how-many-people-were-in-your-camp}{%
+\subsection{How many people were in your camp?}\label{how-many-people-were-in-your-camp}}
+
+\hypertarget{did-you-stay-in-an-rv-or-camper-trailer-in-black-rock-city-this-year-and-was-it-pumped-on-playa}{%
+\subsection{Did you stay in an RV or camper-trailer in Black Rock City this year, and was it pumped on playa?}\label{did-you-stay-in-an-rv-or-camper-trailer-in-black-rock-city-this-year-and-was-it-pumped-on-playa}}
+
+\hypertarget{how-many-adults-stayed-in-the-rvcamper-trailer-including-you}{%
+\subsection{How many adults stayed in the RV/camper-trailer including you?}\label{how-many-adults-stayed-in-the-rvcamper-trailer-including-you}}
+
+\hypertarget{how-many-of-your-family-members-were-in-black-rock-city-this-year}{%
+\subsection{How many of your family members were in Black Rock City this year?}\label{how-many-of-your-family-members-were-in-black-rock-city-this-year}}
+
+\hypertarget{camp-placement}{%
+\section{Camp Placement}\label{camp-placement}}
+
+\hypertarget{camp-location}{%
+\subsection{Camp location}\label{camp-location}}
+
+\hypertarget{was-your-camp-assigned-a-location-by-the-burning-man-placement-team-before-the-event}{%
+\subsection{Was your camp assigned a location by the Burning Man Placement Team before the event?}\label{was-your-camp-assigned-a-location-by-the-burning-man-placement-team-before-the-event}}
+
+\hypertarget{what-most-determined-where-you-chose-to-camp-in-black-rock-city-this-year}{%
+\subsection{What most determined where you chose to camp in Black Rock City this year?}\label{what-most-determined-where-you-chose-to-camp-in-black-rock-city-this-year}}
+
+\hypertarget{generators}{%
+\section{Generators}\label{generators}}
+
+\hypertarget{how-did-you-generate-electricity-in-your-camp}{%
+\subsection{How did you generate electricity in your camp?}\label{how-did-you-generate-electricity-in-your-camp}}
+
+\hypertarget{what-was-the-primary-type-of-fuel-you-used-to-run-your-vehicles-generator}{%
+\subsection{What was the primary type of fuel you used to run your vehicle's generator?}\label{what-was-the-primary-type-of-fuel-you-used-to-run-your-vehicles-generator}}
+
+\hypertarget{what-was-the-primary-type-of-fuel-you-used-to-run-your-camps-generator}{%
+\subsection{What was the primary type of fuel you used to run your camp's generator?}\label{what-was-the-primary-type-of-fuel-you-used-to-run-your-camps-generator}}
+
+\hypertarget{what-was-the-total-output-of-your-camps-generator}{%
+\subsection{What was the total output of your camp's generator?}\label{what-was-the-total-output-of-your-camps-generator}}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}
