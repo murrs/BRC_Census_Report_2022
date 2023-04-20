@@ -9,6 +9,9 @@ library(scales)
 library(knitr)
 library(kableExtra)
 source(paste0(getwd(), "/_RCode/read_census_data.R"))
+source(paste0(getwd(), "/_RCode/make_table_data.R"))
+source(paste0(getwd(), "/_RCode/make_plot_data.R"))
+source(paste0(getwd(), "/_RCode/additional_functions.R"))
 ```
 
 
@@ -18,7 +21,7 @@ source(paste0(getwd(), "/_RCode/read_census_data.R"))
 
 ### Propotion of Virgins
 ```{r, echo = FALSE}
-allVirgin <- makePlotData(varNames = "virgin", 
+virgin <- makePlotData(varName = "Virgin", varNameTable,
                           designs = list(design13, design14, design15, 
                                          design16, design17, design18, 
                                          design19, design22),
@@ -30,9 +33,8 @@ allVirgin <- makePlotData(varNames = "virgin",
                           labels = c("Not Virgin", "Virgin"),
                           labelOrder = c("Virgin", "Not Virgin"))
 
-allVirgin <- allVirgin[allVirgin$level == "Virgin",]
 
-ggplot(allVirgin, aes(x = year, y = est)) +
+ggplot(virgin[virgin$labels == "Virgin",], aes(x = year, y = est)) +
   geom_line(linewidth = 1.5, color = "#EA008B") +
   geom_point(size = 2.25, color = "black") +
   geom_errorbar(aes(ymin = lower, ymax = upper), color = "black", width = 0.2,
@@ -43,6 +45,10 @@ ggplot(allVirgin, aes(x = year, y = est)) +
   scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
   scale_y_continuous(labels = percent) +
   labs(x = "Year", y = "Percent of Burners at BRC in 2022")
+
+virginTable <- make_table_data(virgin)
+kable(virginTable[2, 1:4])
+kable(virginTable[2,5:8])
 ```
 
 
