@@ -46,11 +46,20 @@ ggplot(virgin[virgin$labels == "Virgin",], aes(x = year, y = est)) +
   scale_y_continuous(labels = percent) +
   labs(x = "Year", y = "Percent of Burners at BRC in 2022")
 
-virginTable <- make_table_data(virgin)
-kable(virginTable[2, 1:4])
-kable(virginTable[2,5:8])
+#An annoying thing happens when subsetting to one row.  The table class turns
+#  into a character vector.  Happy to take suggestions on a better way to do
+#  this.
+virginTable <- make_table_data(virgin, confInt = "plusminus")
+virginTable <- virginTable[2,] |>
+  matrix(nrow = 1) |>
+  as.table()
+rownames(virginTable) = "Virgin"
+colnames(virginTable) = c(2013:2019, 2022)
+virginTable |>
+  kbl() |>
+  kable_paper("striped", full_width = F) |>
+  kable_styling(font_size = 4)
 ```
-
 
 
 
