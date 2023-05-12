@@ -37,25 +37,25 @@ prinDif <- makePlotData(varName = "Which of the 10 Principles do you find most d
                                    "Participation", "Immediacy"),
                         labelOrder = c(3, 10, 5, 2, 8, 1, 6, 7, 9, 4))
 
-# ggplot(prinDif, aes(x = year, y = est, color = labels)) +
-#   geom_line(linewidth = 1.5) +
-#   geom_point(size = 2.25, color = "black") +
-#   geom_errorbar(aes(ymin = lower, ymax = upper), color = "black", width = 0.2,
-#                 linewidth = 1.25) +
-#   theme_bw(13) +
-#   theme(panel.grid.minor = element_blank()) +
-#   # scale_color_brewer(type = "seq", palette = 11) +
-#   scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
-#   scale_y_continuous(labels = percent) +
-#   labs(x = "Year", y = "Percent of Burners at BRC in 2022")
-
-ggplot(prinDif[prinDif$year == 2022,], aes(y = est, x = labels)) +
-  geom_bar(stat = "identity") +
+ggplot(prinDif, aes(x = year, y = est, color = labels)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.25, color = "black") +
+  geom_errorbar(aes(ymin = lower, ymax = upper), color = "black", width = 0.2,
+                linewidth = 1.25) +
   theme_bw(13) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_y_continuous(labels = percent)
+  theme(panel.grid.minor = element_blank()) +
+  # scale_color_brewer(type = "seq", palette = 11) +
+  scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
+  scale_y_continuous(labels = percent) +
+  labs(x = "", y = "Percent of Burners at BRC in 2022")
 
-prinDifTable <- make_table_data(prinDif)
+# ggplot(prinDif[prinDif$year == 2022,], aes(y = est, x = labels)) +
+#   geom_bar(stat = "identity") +
+#   theme_bw(13) +
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+#   scale_y_continuous(labels = percent)
+
+prinDifTable <- makeTableData(prinDif)
 kable(prinDifTable[,1:3])
 kable(prinDifTable[,4:5])
 ```
