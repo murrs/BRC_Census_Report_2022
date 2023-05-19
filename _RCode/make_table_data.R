@@ -1,5 +1,7 @@
-make_table_data <- function(plotDat, format = c("percent", "proportion"),
-                            digits = 3, confInt = TRUE){
+makeTableData <- function(plotDat, format = c("percent", "proportion"),
+                            digits = 3, 
+                            confInt = c("interval", "plusminus", "none")){
+  plotDat <- plotDat[order(plotDat$year, plotDat$labels),]
   nYears <- length(unique(plotDat$year))
   nLabels <- length(unique(plotDat$labels))
   cells <- apply(plotDat, 1, format_table_entry, format = format, 
