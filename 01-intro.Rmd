@@ -1,7 +1,18 @@
 # Introduction {#intro}
 
-## Who we are {#whoweare}
+The Census is a collaborative research project that started in 2002. Although 
+the Black Rock City (BRC) Census project is technically a survey and not a 
+literal census (where data is collected from every member of a population), 
+our methodology allows us to report on the entire population of Black Rock City (BRC), 
+not just on the individuals who participate actively in our data collection efforts.
 
+The results in this report are the most reliable estimates we have of the Black Rock City population. The true population values may differ slightly from the presented estimates due to random variation in the sampling process. This report contains data collected in 2019 and, when possible, comparable (weighted) data from 2013 through 2018.
+
+While BRC Census has been producing reports since 2002, it is hard to compare recent data with reports from earlier years (before 2013) because of important differences in methodology — i.e., from a convenience sample of Census Lab visitors on-playa to a weighted online survey conducted post-event.
+
+The BRC Census project is made possible through the extensive collective effort of volunteers, academic researchers, and Burning Man Project. Our thanks to everyone whose contributions went into the creation of this report!
+
+There are two ways to navigate this report. For a full review of all data collected we recommend reviewing the report page by page. The "Next" link at the bottom of each page leads to the next sequential page in the report. For information about specific data points, use the navigation menu (at the left on larger screens, and accessible on smaller screens by touching the menu icon at the top left of the screen.)
 
 ## Survey Design {svydesign}
 

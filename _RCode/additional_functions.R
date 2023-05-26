@@ -34,18 +34,22 @@ makePlotDataByYearVarLevel <- function(i, varNames, designs, years, levels){
 }
 
 format_table_entry <- function(x, format = c("percent", "proportion"),
-                               digits = 3, confInt = TRUE){
+                               digits = 3, 
+                               confInt = c("interval", "plusminus", "none")){
   x <- list(est = as.numeric(x[which(names(x) == "est")]),
             lower = as.numeric(x[which(names(x) == "lower")]),
             upper = as.numeric(x[which(names(x) == "upper")]))
+  if(is.na(x$est)){
+    return("--")
+  }
   
-  if(confInt){
+  if(confInt[1] == "interval"){
     if(any(format == "percent")){
       #floating decimal format
       fdf <- paste0("%.", digits - 2, "f")
       outEntries <- paste0(sprintf(fdf, round(x$est, digits) * 100), "%", " (", 
-                           sprintf(fdf, round(x$lower, digits) * 100), ", ", 
-                           sprintf(fdf, round(x$upper, digits) * 100), ")")
+                           sprintf(fdf, round(x$lower, digits) * 100), "%, ", 
+                           sprintf(fdf, round(x$upper, digits) * 100), "%)")
     }
     else if(format == "proportion"){
       fdf <- paste0("%.", digits, "f")
@@ -57,7 +61,25 @@ format_table_entry <- function(x, format = c("percent", "proportion"),
       stop("Invalid format")
     }
   }
-  else{
+  else if(confInt[1] == "plusminus"){
+    if(any(format == "percent")){
+      #floating decimal format
+      fdf <- paste0("%.", digits - 2, "f")
+      plusminus = round(max(c(x$est - x$lower, x$upper - x$est)), digits)
+      outEntries <- paste0(sprintf(fdf, round(x$est, digits) * 100), "%", " ± ", 
+                           sprintf(fdf, plusminus * 100), "%")
+    }
+    else if(format == "proportion"){
+      fdf <- paste0("%.", digits, "f")
+      plusminus = round(max(c(x$est - x$lower, x$upper - x$est)), digits)
+      outEntries <- paste0(sprintf(fdf, round(x$est, digits)), " ± ", 
+                           sprintf(fdf, plusminus))
+    }
+    else{
+      stop("Invalid format")
+    }
+  }
+  else if(confInt[1] == "none"){
     if(any(format == "percent")){
       fdf <- paste0("%.", digits - 2, "f")
       outEntries <- paste0(sprintf(fdf, round(x$est, digits) * 100), "%")
@@ -70,5 +92,18 @@ format_table_entry <- function(x, format = c("percent", "proportion"),
       stop("Invalid format")
     }
   }
-  return(outEntries)
+  else{stop("Invalid confInt format")}
+  
+  return(linebreak(outEntries))
+}
+
+
+customPlotDat <- function(levels, design, incomeVarName, year, label){
+  f <- as.formula(paste0("~ I(", incomeVarName, " %in% c(\"", 
+                         do.call(paste, c(as.list(levels), 
+                                          list(sep = "\",\""))),"\"))"))
+  ciout <- svyciprop(f, design = design)
+  data.frame(est = as.numeric(ciout), lower = attr(ciout, "ci")[1],
+             upper = attr(ciout, "ci")[2], level = label, 
+             year = year, labels = label)
 }

@@ -176,12 +176,13 @@ raw[, voteUS.timesVoted := ifelse(voteUS.none == "yes", 0,
                                         (voteUS.2020 == "yes") +
                                         (voteUS.2018 == "yes") +
                                         (voteUS.2016 == "yes"))]
-raw[, voteUS.timesVoted.eligible := ifelse(voteUS.none == "yes" & 
-                                             eligibleVoteUS == "yes", 0, 
-                                           (voteUS.2022 == "yes") +
-                                             (voteUS.2020 == "yes") +
-                                             (voteUS.2018 == "yes") +
-                                             (voteUS.2016 == "yes"))]
+raw[, voteUS.timesVoted.eligible := ifelse(eligibleVoteUS == "no", NA, 
+                                           ifelse(voteUS.none == "yes" &
+                                                    eligibleVoteUS == "yes", 0,
+                                                  (voteUS.2022 == "yes") +
+                                                  (voteUS.2020 == "yes") +
+                                                  (voteUS.2018 == "yes") +
+                                                  (voteUS.2016 == "yes")))]
 
 #Political party
 politicalPartySwitch <- function(x){
