@@ -3,6 +3,12 @@ makePlotData <- function(varName, varNameTable, designs, years, levels,
   #Get number of years to loop over
   nYears <- length(years)
   
+  #If a character vector is supplied for levels, repeat as a list for number
+  # of years supplied
+  if(is.character(levels)){
+    levels <- rep(list(levels), times = nYears)
+  }
+  
   #Order years, levels, and designs by decreasing years to match the 
   #  varname lookup
   yearOrder <- order(years, decreasing = TRUE)
@@ -30,12 +36,6 @@ makePlotData <- function(varName, varNameTable, designs, years, levels,
       varNames <- rep(varNames, times = nYears)
     }
     varNames <- as.list(varNames)
-  }
-  
-  #If a character vector is supplied for levels, repeat as a list for number
-  # of years supplied
-  if(is.character(levels)){
-    rep(list(levels), times = nYears)
   }
   
   outDat <- lapply(1:nYears, makePlotDataByYearVarLevel, 

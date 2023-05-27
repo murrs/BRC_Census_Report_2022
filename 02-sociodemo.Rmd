@@ -1073,12 +1073,12 @@ tdrn <- rownames(tableDat)
 tdrn[4] <- "Middle Eastern or North African^a^"
 tdrn[7] <- "Other^b^"
 rownames(tableDat) <- tdrn
-tdcn <- colnames(tableDat)
-tdcn[8] <- "2022^c^"
-colnames(tableDat) <- tdcn
+# tdcn <- colnames(tableDat)
+# tdcn[8] <- "2022^c^"
+# colnames(tableDat) <- tdcn
 
 tableDat |>
-  kbl(col.names = as.character(c(2013:2019, 2022)), row.names = TRUE) |>
+  kbl(col.names = c(as.character(2013:2019), "2022^c^"), row.names = TRUE) |>
   kable_paper("striped") |>
   kable_styling(full_width = F, wraptable_width = "100%") |>
   column_spec(column = 1:9, width_min = "9.5em") |>
@@ -1089,7 +1089,32 @@ tableDat |>
 ```
 
 ### Person of Color
+```{r}
+personOfColor <- makePlotData("Do you consider yourself to be a person of color?",
+                              varNameTable = varNameTable,
+                              designs = list(design13, design14, design15,
+                                             design16, design17, design18,
+                                             design19, design22),
+                              years = c(2013:2019, 2022),
+                              levels = c("No", "Sometimes", "Yes"),
+                              labels = c("No", "Sometimes", "Yes"),
+                              labelOrder = 3:1)
 
+ggplot(personOfColor, aes(x = year, y = est, fill = labels)) +
+  geom_area() +
+  scale_y_continuous(labels = percent) +
+  scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
+  scale_fill_manual(values = c("#EA008B", "#FF7457", "#FFCF50")) +
+  labs(x = "", y = "", fill = "Do you consider \n yourself a \n person of color?") +
+  theme_bw()
+
+makeTableData(personOfColor) |>
+  kbl(col.names = c(2013:2019, 2022), row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  column_spec(column = 1:3, width_min = "9.5em") |>
+  kable_styling() |>
+  scroll_box(width = "100%")
+```
 
 
 ### First language learned
