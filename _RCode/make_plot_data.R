@@ -1,5 +1,7 @@
 makePlotData <- function(varName, varNameTable, designs, years, levels,
-                         labels = NULL, labelOrder = NULL){
+                         labels = NULL, labelOrder = NULL, groups = NULL){
+  #TODO: check inputs for errors and create helpful error messages
+  
   #Get number of years to loop over
   nYears <- length(years)
   
@@ -7,6 +9,18 @@ makePlotData <- function(varName, varNameTable, designs, years, levels,
   # of years supplied
   if(is.character(levels)){
     levels <- rep(list(levels), times = nYears)
+  }
+  
+  #If groups is just a numeric vector identifying groups, format as a list
+  if(!is.list(groups)){
+    if(is.numeric(groups)){
+      ngroups <- max(groups)
+      groups <- lapply(1:ngroups, function(i, groups){which(groups == i)},
+                       groups = groups)
+    }
+    else{
+      stop("groups should be a list or numeric vector.")
+    }
   }
   
   #Order years, levels, and designs by decreasing years to match the 
@@ -40,10 +54,21 @@ makePlotData <- function(varName, varNameTable, designs, years, levels,
   
   outDat <- lapply(1:nYears, makePlotDataByYearVarLevel, 
                    varNames = varNames, designs = designs, 
-                   years = years, levels = levels)
+                   years = years, levels = levels, groups = groups)
   outDat <- do.call(rbind, outDat)
   rownames(outDat) <- NULL
   if(is.null(labels)){
+    if(is.null(labelOrder)){
+      outDat$labels <- factor(varNames)
+    }
+    else{
+      if(is.character(labelOrder)){
+        outDat$labels <- factor(varNames, levels = labelOrder)
+      }
+      else if(is.numeric(labelOrder)){
+        outDat$labels <- factor(varNames, levels[labelOrder])
+      }
+    }
     return(outDat)
   }
   else{

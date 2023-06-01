@@ -1,3 +1,21 @@
+formulaVarLevel <- function(level, varName){
+  if(is.character(level)){
+    out <- paste0("(", varName, " == ", "\"", level, "\"", ")")
+  }
+  else if(is.logical(level)){
+    if(level){
+      out <- varName
+    }
+    else{
+      out <- paste0("!", varName)
+    }
+  }
+  return(out)
+}
+
+#TODO: makePlotDataByLevel() and makePlotDataByGroup() can be simplified and 
+#        combined into a single function
+
 makePlotDataByLevel <- function(level, design, varName, year){
   if(is.character(level)){
     f <- as.formula(paste0("~", varName, " == ", "\"", level, "\""))
@@ -18,18 +36,44 @@ makePlotDataByLevel <- function(level, design, varName, year){
              year = year)
 }
 
-makePlotDataByVarLevel <- function(varName, design, year, levels){
-  ciDatList <- lapply(levels, makePlotDataByLevel, design = design, 
-                      varName = varName, year = year)
+makePlotDataByGroup <- function(group, design, varName, year, levels){
+  if(is.numeric(group)){
+    levelsInGroup <- levels[group]
+  }
+  else if(is.character(group)){
+    levelsInGroup <- levels[levels %in% group]
+  }
+  fpieces <- lapply(levelsInGroup, formulaVarLevel, varName = varName)
+  fpieces <- do.call(paste, c(fpieces, list(sep = " | ")))
+  f <- as.formula(paste("~", fpieces))
+  ciOut <- svyciprop(f, design = design)
+  data.frame(est = as.numeric(ciOut),
+             lower = attr(ciOut, "ci")[1],
+             upper = attr(ciOut, "ci")[2],
+             level = do.call(paste, as.list(levelsInGroup)),
+             year = year)
+}
+
+makePlotDataByVarLevel <- function(varName, design, year, levels, groups){
+  if(is.null(groups)){
+    ciDatList <- lapply(levels, makePlotDataByLevel, design = design, 
+                        varName = varName, year = year)
+  }
+  else{
+    ciDatList <- lapply(groups, makePlotDataByGroup, design = design,
+                        varName = varName, year = year, levels = levels)
+  }
+  
   do.call(rbind, ciDatList)
 }
 
 
-makePlotDataByYearVarLevel <- function(i, varNames, designs, years, levels){
+makePlotDataByYearVarLevel <- function(i, varNames, designs, years, levels,
+                                       groups){
   
   ciDatList <- lapply(varNames[[i]], makePlotDataByVarLevel, 
                       design = designs[[i]], levels = levels[[i]], 
-                      year = years[i])
+                      year = years[i], groups = groups)
   do.call(rbind, ciDatList)
 }
 
