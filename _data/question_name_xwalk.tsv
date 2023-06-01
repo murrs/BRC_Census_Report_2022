@@ -76,7 +76,7 @@ Which level of education have you completed?	Technical/vocational certification	
 Which level of education have you completed?	Other (please specify)	education.other								
 Which level of education have you completed?	None of the above	education.none								
 Which level of education have you completed?	Other (please specify)	education.other.writeIn								
-"What was the first language you learned and still use (i.e., native language)?"		firstLanguage								
+"What was the first language you learned and still use (i.e., native language)?"		firstLanguage	language	language	language	language	language	language	language	
 "What was the first language you learned and still use (i.e., native language)?"	Other (please specify)	firstLanguage.writeIn								
 Which category best describes your ethnoracial background?	Asian	ethnoracial.asian								
 Which category best describes your ethnoracial background?	Native American (please specify your tribal affiliation)	ethnoracial.nativeAmerican								
@@ -85,9 +85,10 @@ Which category best describes your ethnoracial background?	White/Caucasian (non-
 Which category best describes your ethnoracial background?	Middle Eastern or North African	ethnoracial.middleEasternNorthAfrican								
 Which category best describes your ethnoracial background?	Black or African American (non-Hispanic)	ethnoracial.black								
 Which category best describes your ethnoracial background?	Prefer to self-describe	ethnoracial.selfDescribe								
-Which category best describes your ethnoracial background?	Native American (please specify your tribal affiliation)	ethnoracial.nativeAmerican.tribe								
+Which category best describes your ethnoracial background?	Native American (please specify your tribal affiliation)	ethnoracial.nativeAmericanTribe.writeIn								
 Which category best describes your ethnoracial background?	Prefer to self-describe	ethnoracial.selfDescribe.writeIn								
-Do you consider yourself to be a person of color?		personOfColor								
+ethnoracial 2013 through 2019			ethno	ethno	ethno	ethno	ethno	ethno	ethno	
+Do you consider yourself to be a person of color?		personOfColor	color	color	color	color	color	color	color	
 What disability statuses (if any) do you identify with?	Sensory impairment (vision or hearing)	disability.sensoryImpairment								
 What disability statuses (if any) do you identify with?	"Learning disability or other diagnosis that interferes with learning or ability to concentrate (e.g., dyslexia, auditory processing disorder)"	disability.learning								
 What disability statuses (if any) do you identify with?	"Long-term medical illness (e.g., epilepsy, cystic fibrosis)"	disability.longtermMedical								
@@ -107,10 +108,10 @@ In which of the last four Federal US elections did you vote?	2016	voteUS.2016
 In which of the last four Federal US elections did you vote?	2014	voteUS.2014								
 In which of the last four Federal US elections did you vote?	2012	voteUS.2012								
 In which of the last four Federal US elections did you vote?	none	voteUS.none								
-Number of the last four Federal US elections		voteUS.timesVoted.eligible	nbvotes	nbvotes	nbvotes	nbvotes	nbvotes	nbvotes	nbvotes	
-"With which political party are you currently affiliated in the United States, if any?"		politicalParty								
+Number of the last four Federal US elections voted among eligible voters?		voteUS.timesVoted.eligible	nbvotes	nbvotes	nbvotes	nbvotes	nbvotes	nbvotes	nbvotes	
+"With which political party are you currently affiliated in the United States, if any?"		politicalParty	usparty	usparty	usparty	usparty	usparty	usparty	usparty	
 "With which political party are you currently affiliated in the United States, if any?"	Other US based Political Party (please specify)	politicalParty.writeIn								
-"Generally, in terms of political views, rather than political parties, I consider myself to be primarily"		politicalViews								
+"Generally, in terms of political views, rather than political parties, I consider myself to be primarily"		politicalViews	politicalid	politicalid	politicalid					
 "Generally, in terms of political views, rather than political parties, I consider myself to be primarily"	Other (please specify)	politicalViews.writeIn								
 Which of these expressions best describes your sexual orientation?		sexualOrientation								
 Which of these expressions best describes your sexual orientation?	Prefer to self describe	sexualOrientation.writeIn								
@@ -152,8 +153,8 @@ Some people use specific labels to describe their sexuality. Do you consider tha
 Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Open/Curious	sexuality.openCurious								
 Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Prefer to self-describe	sexuality.selfDescribe								
 Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Prefer to self-describe	sexuality.SelfDescribeWriteIn								
-How do you describe your spirituality?		spirituality								
-Do you belong to a religion or religious denomination?		religion								
+How do you describe your spirituality?		spirituality	spirituality	spirituality	spirituality	spirituality	spirituality	spirituality	spirituality	
+Do you belong to a religion or religious denomination?		religion	religion	religion	religion	religion	religion	religion	religion	
 Do you belong to a religion or religious denomination?	"Yes, I belong to a Christian religion or religious denomination not listed above (please specify)"	religion.christian.writeIn								
 Do you belong to a religion or religious denomination?	"Yes, I am (please specify)"	religion.other.writeIn								
 You previously indicated that you belong to more than one religion or religious denomination. To which religions or religious denominations do you belong?	"I am Protestant (and/or Anglican, Baptist, Methodist, etc.)"	moreReligion.protestant								
