@@ -19,7 +19,7 @@ source(paste0(getwd(), "/_RCode/make_table_data.R"))
 source(paste0(getwd(), "/_RCode/make_plot_data.R"))
 source(paste0(getwd(), "/_RCode/additional_functions.R"))
 
-#Color palette (discrete): c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", "#FFCF50", "#554149")
+#Color palette (discrete): c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", "#FFCF50", "#554149", "#F9F871")
 
 #Color palette (ordinal): c("#EA008B", "#FF416f", "#FF7457", "#FFA349", "#FFCF50", "#F9F871")
 ```
@@ -1098,13 +1098,13 @@ personOfColor <- makePlotData("Do you consider yourself to be a person of color?
                               years = c(2013:2019, 2022),
                               levels = c("No", "Sometimes", "Yes"),
                               labels = c("No", "Sometimes", "Yes"),
-                              labelOrder = 3:1)
+                              labelOrder = 1:3)
 
 ggplot(personOfColor, aes(x = year, y = est, fill = labels)) +
-  geom_area() +
+  geom_area(alpha = 0.65) +
   scale_y_continuous(labels = percent) +
   scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
-  scale_fill_manual(values = c("#EA008B", "#FF7457", "#FFCF50")) +
+  scale_fill_manual(values = c("#EA008B", "#BDA5AD", "#FF7457")) +
   labs(x = "", y = "", fill = "Do you consider \n yourself a \n person of color?") +
   theme_bw()
 
@@ -1118,17 +1118,154 @@ makeTableData(personOfColor) |>
 
 
 ### First language learned
+```{r}
+language <- makePlotData("What was the first language you learned and still use (i.e., native language)?",
+                         varNameTable = varNameTable,
+                         designs = list(design13, design14, design15,
+                                             design16, design17, design18,
+                                             design19, design22),
+                         years = c(2013:2019, 2022),
+                         levels = rep(list(c("Arabic", "Chinese", "Danish", 
+                                             "Dutch", "English", "Farsi", 
+                                             "French", "German","Hebrew", 
+                                             "Hindi", "Italian", "Japanese", 
+                                             "Norwegian", "Other", "Polish", 
+                                             "Portuguese", "Punjabi", 
+                                             "Romanian", "Russian", "Spanish", 
+                                             "Swedish", "Tagalog", "Urdu")), 
+                                      times = 8),
+                         labels = c("English", "Spanish", "French", "Russian",
+                                    "German", "Chinese", "Other"),
+                         labelOrder = 1:7,
+                         groups = c(7, 6, 7, 
+                                    7, 1, 7, 
+                                    3, 5, 7, 
+                                    7, 7, 7, 
+                                    7, 7, 7, 
+                                    7, 7, 
+                                    7, 4, 2,
+                                    7, 7, 7))
 
+ggplot(language, aes(x = year, y = est, color = labels)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.25, color = "black") +
+  theme_bw(13) +
+  theme(panel.grid.minor = element_blank()) +
+  scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
+  scale_y_continuous(labels = percent) +
+  scale_color_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", 
+                                "#FFCF50", "#554149", "#F9F871")) +
+  labs(x = "Year", y = "", color = "Language")
 
+makeTableData(language) |>
+  kbl(col.names = c(2013:2019, 2022), row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  column_spec(column = 1:3, width_min = "9.5em") |>
+  kable_styling() |>
+  scroll_box(width = "100%")
+```
 ## Spirituality
 
-### Spirituality
+### How do you describe your spirituality?
+```{r}
+spirituality <- makePlotData("How do you describe your spirituality?",
+                             varNameTable = varNameTable,
+                             designs = list(design13, design14, design15,
+                                                 design16, design17, design18,
+                                                 design19, design22),
+                             years = c(2013:2019, 2022),
+                             levels = c(rep(list(c("Agnostic", "Atheist", "Deist",
+                                                   "IDK", "Religious", 
+                                                   "Spiritual_not_relig")), 
+                                          times = 7), 
+                                        list(c("Agnostic", "Atheist", "Deist",
+                                               "Don\'t know", "Religious", 
+                                               "Spiritual, but not religious"))),
+                             labels = c("Agnostic", "Atheist", "Deist",
+                                        "I don\'t know", "Religious",
+                                        "Spiritual, but \n not religious"),
+                             labelOrder = c(6, 2, 1, 5, 3, 4))
 
+ggplot(spirituality, aes(x = year, y = est, color = labels)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.25, color = "black") +
+  theme_bw(13) +
+  theme(panel.grid.minor = element_blank()) +
+  scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
+  scale_y_continuous(labels = percent) +
+  scale_color_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", 
+                                "#FFCF50", "#554149", "#F9F871")) +
+  labs(x = "Year", y = "", color = "Language")
+
+makeTableData(spirituality) |>
+  kbl(col.names = c(2013:2019, 2022), row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  column_spec(column = 1:3, width_min = "9.5em") |>
+  kable_styling() |>
+  scroll_box(width = "100%")
+```
 
 
 ### Religion or religious denomination
 
 <!-- Something needs to be done to address the multiple religions selection, not sure what -->
+<!-- I think we have to add counts from the moreReligion questions to the -->
+<!-- religion question and treat it as a select multiple. For now I'm just -->
+<!-- going to do only the main religion question in the interest of time -->
+
+```{r}
+religion <- makePlotData("Do you belong to a religion or religious denomination?",
+                         varNameTable = varNameTable,
+                         designs = list(design14, design15,
+                                        design16, design17, design18,
+                                        design19, design22),
+                         years = c(2014:2019, 2022),
+                         levels = c(rep(list(c("Buddhist", "Catholic", 
+                                               "Christian_other", "Discordian",
+                                               "Hindu", "Jewish", 
+                                               "More_than_one", "Muslim", 
+                                               "No_religion", "Other",
+                                               "Pagan", "Pastafarian", 
+                                               "Protestant", 
+                                               "Unitarian_Universalist")), 
+                                      times = 6),
+                                    list(c("Buddhist", "Catholic", 
+                                           "Other Christian", "Discordian",
+                                           "Hindu", "Jewish", 
+                                           "Multiple religions", "Muslim", 
+                                           "No religion", "Other",
+                                           "Pagan", "Pastafarian", 
+                                           "Protestant", "Unitarian"))),
+                         labels = c("No religion", "Christian (not Catholic)",
+                                    "Jewish", "Catholic", "Buddhist", "Muslim",
+                                    "Other religion"),
+                         labelOrder = 1:7,
+                         groups = c(5, 4,
+                                    2, 7,
+                                    7, 3,
+                                    7, 6,
+                                    1, 7,
+                                    7, 7,
+                                    2, 7))
+
+ggplot(religion, aes(x = year, y = est, color = labels)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.25, color = "black") +
+  theme_bw(13) +
+  theme(panel.grid.minor = element_blank()) +
+  scale_x_continuous(breaks = c(2014:2019, 2022), labels = c(2014:2019, 2022)) +
+  scale_y_continuous(labels = percent) +
+  scale_color_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", 
+                                "#FFCF50", "#554149", "#F9F871")) +
+  labs(x = "Year", y = "", color = "Language")
+
+makeTableData(religion) |>
+  kbl(col.names = c(2014:2019, 2022), row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  column_spec(column = 1:3, width_min = "9.5em") |>
+  kable_styling() |>
+  scroll_box(width = "100%")
+```
 
 ## Disabilities
 
