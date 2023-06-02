@@ -87,6 +87,7 @@ format_table_entry <- function(x, format = c("percent", "proportion"),
     return("--")
   }
   
+  lessThanPoint1 <- x$est < 0.001
   if(confInt[1] == "interval"){
     if(any(format == "percent")){
       #floating decimal format
@@ -94,12 +95,14 @@ format_table_entry <- function(x, format = c("percent", "proportion"),
       outEntries <- paste0(sprintf(fdf, round(x$est, digits) * 100), "%", " (", 
                            sprintf(fdf, round(x$lower, digits) * 100), "%, ", 
                            sprintf(fdf, round(x$upper, digits) * 100), "%)")
+      outEntries[lessThanPoint1] <- "< 0.1% (--, --)"
     }
     else if(format == "proportion"){
       fdf <- paste0("%.", digits, "f")
       outEntries <- paste0(sprintf(fdf, round(x$est, digits)), " (", 
                            sprintf(fdf, round(x$lower, digits)), ", ", 
                            sprintf(fdf, round(x$upper, digits)), ")")
+      outEntries[lessThanPoint1] <- "< 0.001 (--, --)"
     }
     else{
       stop("Invalid format")
@@ -112,12 +115,14 @@ format_table_entry <- function(x, format = c("percent", "proportion"),
       plusminus = round(max(c(x$est - x$lower, x$upper - x$est)), digits)
       outEntries <- paste0(sprintf(fdf, round(x$est, digits) * 100), "%", " ± ", 
                            sprintf(fdf, plusminus * 100), "%")
+      outEntries[lessThanPoint1] <- "< 0.1%"
     }
     else if(format == "proportion"){
       fdf <- paste0("%.", digits, "f")
       plusminus = round(max(c(x$est - x$lower, x$upper - x$est)), digits)
       outEntries <- paste0(sprintf(fdf, round(x$est, digits)), " ± ", 
                            sprintf(fdf, plusminus))
+      outEntries[lessThanPoint1] <- "< 0.001"
     }
     else{
       stop("Invalid format")
@@ -127,10 +132,12 @@ format_table_entry <- function(x, format = c("percent", "proportion"),
     if(any(format == "percent")){
       fdf <- paste0("%.", digits - 2, "f")
       outEntries <- paste0(sprintf(fdf, round(x$est, digits) * 100), "%")
+      outEntries[lessThanPoint1] <- "< 0.1%"
     }
     else if(format == "proportion"){
       fdf <- paste0("%.", digits, "f")
       outEntries <- sprintf(fdf, round(x$est, digits))
+      outEntries[lessThanPoint1] <- "< 0.001"
     }
     else{
       stop("Invalid format")

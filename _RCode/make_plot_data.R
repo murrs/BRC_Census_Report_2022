@@ -12,7 +12,7 @@ makePlotData <- function(varName, varNameTable, designs, years, levels,
   }
   
   #If groups is just a numeric vector identifying groups, format as a list
-  if(!is.list(groups)){
+  if((!is.list(groups)) & (!is.null(groups))){
     if(is.numeric(groups)){
       ngroups <- max(groups)
       groups <- lapply(1:ngroups, function(i, groups){which(groups == i)},
@@ -45,45 +45,65 @@ makePlotData <- function(varName, varNameTable, designs, years, levels,
   
   #For questions where only one answer may be selected
   #Check if varNames is not a list and convert to list
+  singleSelection <- length(varNames[[1]]) == 1
   if(!is.list(varNames)){
-    if(length(varNames == 1)){
+    if(singleSelection){
       varNames <- rep(varNames, times = nYears)
     }
     varNames <- as.list(varNames)
   }
-  
+  #Get all estimates
   outDat <- lapply(1:nYears, makePlotDataByYearVarLevel, 
                    varNames = varNames, designs = designs, 
                    years = years, levels = levels, groups = groups)
+  #Rbind into a single data.table
   outDat <- do.call(rbind, outDat)
+  #Remove row names
   rownames(outDat) <- NULL
-  if(is.null(labels)){
-    if(is.null(labelOrder)){
-      outDat$labels <- factor(varNames)
+  
+  #If label order is not provided just use 1:numberOfLevels
+  if(is.null(labelOrder)){
+    if(singleSelection){
+      labelOrder <- 1:length(levels[[1]]) 
     }
     else{
-      if(is.character(labelOrder)){
+      labelOrder <- 1:length(varNames)
+    }
+  }
+  
+  
+  #If labels are not provided create labels based on varnames for 
+  #  multi-selection questions or based on the most recent year of levels
+  #  for single-selection questions
+  if(is.null(labels)){
+    #Assign labels apppropriately depending on if label order is numeric or
+    #  character.
+    if(is.character(labelOrder)){
+      if(singleSelection){
+        outDat$labels <- factor(levels[[1]], levels = labelOrder)
+      }
+      else{
         outDat$labels <- factor(varNames, levels = labelOrder)
       }
-      else if(is.numeric(labelOrder)){
-        outDat$labels <- factor(varNames, levels[labelOrder])
+    }
+    else if(is.numeric(labelOrder)){
+      if(singleSelection){
+        outDat$labels <- factor(levels[[1]], levels = levels[[1]][labelOrder])
+      }
+      else{
+        outDat$labels <- factor(varNames, levels = varNames[labelOrder])
       }
     }
     return(outDat)
   }
   else{
-    if(!is.null(labelOrder)){
-      if(is.character(labelOrder)){
-        outDat$labels <- factor(rep(labels, nYears), levels = labelOrder)
-      }
-      else if(is.numeric(labelOrder)){
-        outDat$labels <- factor(rep(labels, nYears), 
-                                levels = labels[labelOrder])
-      }
-      
+    #If everything is given assign labels appropriately with the given ordering
+    if(is.character(labelOrder)){
+      outDat$labels <- factor(rep(labels, nYears), levels = labelOrder)
     }
-    else{
-      outDat$labels <- factor(rep(labels, nYears))
+    else if(is.numeric(labelOrder)){
+      outDat$labels <- factor(rep(labels, nYears), 
+                              levels = labels[labelOrder])
     }
   }
   return(outDat)

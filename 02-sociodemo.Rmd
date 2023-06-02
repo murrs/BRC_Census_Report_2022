@@ -1119,48 +1119,105 @@ makeTableData(personOfColor) |>
 
 ### First language learned
 ```{r}
+# language <- makePlotData("What was the first language you learned and still use (i.e., native language)?",
+#                          varNameTable = varNameTable,
+#                          designs = list(design13, design14, design15,
+#                                              design16, design17, design18,
+#                                              design19, design22),
+#                          years = c(2013:2019, 2022),
+#                          levels = rep(list(c("Arabic", "Chinese", "Danish",
+#                                              "Dutch", "English", "Farsi",
+#                                              "French", "German","Hebrew",
+#                                              "Hindi", "Italian", "Japanese",
+#                                              "Norwegian", "Other", "Polish",
+#                                              "Portuguese", "Punjabi",
+#                                              "Romanian", "Russian", "Spanish",
+#                                              "Swedish", "Tagalog", "Urdu")),
+#                                       times = 8),
+#                          labels = c("English", "Spanish", "French", "Russian",
+#                                     "German", "Chinese", "Other"),
+#                          labelOrder = 1:7,
+#                          groups = c(7, 6, 7,
+#                                     7, 1, 7,
+#                                     3, 5, 7,
+#                                     7, 7, 7,
+#                                     7, 7, 7,
+#                                     7, 7,
+#                                     7, 4, 2,
+#                                     7, 7, 7))
+
 language <- makePlotData("What was the first language you learned and still use (i.e., native language)?",
                          varNameTable = varNameTable,
                          designs = list(design13, design14, design15,
                                              design16, design17, design18,
                                              design19, design22),
                          years = c(2013:2019, 2022),
-                         levels = rep(list(c("Arabic", "Chinese", "Danish", 
-                                             "Dutch", "English", "Farsi", 
-                                             "French", "German","Hebrew", 
-                                             "Hindi", "Italian", "Japanese", 
-                                             "Norwegian", "Other", "Polish", 
-                                             "Portuguese", "Punjabi", 
-                                             "Romanian", "Russian", "Spanish", 
-                                             "Swedish", "Tagalog", "Urdu")), 
+                         levels = rep(list(c("Arabic", "Chinese", "Danish",
+                                             "Dutch", "English", "Farsi",
+                                             "French", "German","Hebrew",
+                                             "Hindi", "Italian", "Japanese",
+                                             "Norwegian", "Other", "Polish",
+                                             "Portuguese", "Punjabi",
+                                             "Romanian", "Russian", "Spanish",
+                                             "Swedish", "Tagalog", "Urdu")),
                                       times = 8),
-                         labels = c("English", "Spanish", "French", "Russian",
-                                    "German", "Chinese", "Other"),
-                         labelOrder = 1:7,
-                         groups = c(7, 6, 7, 
-                                    7, 1, 7, 
-                                    3, 5, 7, 
-                                    7, 7, 7, 
-                                    7, 7, 7, 
-                                    7, 7, 
-                                    7, 4, 2,
-                                    7, 7, 7))
+                         labels = NULL,
+                         labelOrder = c(9, 17, 7, 15, 22, 11, 19, 20, 14, 8, 13, 
+                                        5, 2, 23, 10, 16, 3, 5, 18, 21, 12, 
+                                        5, 1))
 
-ggplot(language, aes(x = year, y = est, color = labels)) +
-  geom_line(linewidth = 1.5) +
-  geom_point(size = 2.25, color = "black") +
+language2 <- makePlotData("What was the first language you learned and still use (i.e., native language)?",
+                         varNameTable = varNameTable,
+                         designs = list(design13, design14, design15,
+                                             design16, design17, design18,
+                                             design19, design22),
+                         years = c(2013:2019, 2022),
+                         levels = rep(list(c("Arabic", "Chinese", "Danish",
+                                             "Dutch", "English", "Farsi",
+                                             "French", "German","Hebrew",
+                                             "Hindi", "Italian", "Japanese",
+                                             "Norwegian", "Other", "Polish",
+                                             "Portuguese", "Punjabi",
+                                             "Romanian", "Russian", "Spanish",
+                                             "Swedish", "Tagalog", "Urdu")),
+                                      times = 8),
+                         labels = c("English", "Other language"),
+                         labelOrder = 2:1,
+                         groups = c(2, 2, 2,
+                                    2, 1, 2,
+                                    2, 2, 2,
+                                    2, 2, 2,
+                                    2, 2, 2,
+                                    2, 2,
+                                    2, 2, 2,
+                                    2, 2, 2))
+
+
+# ggplot(language[language$year == 2022,], aes(x = labels, y = est)) +
+#   geom_bar(stat = "identity", fill = "#EA008B") +
+#   scale_y_continuous(labels = percent) +
+#   labs(x = "Language", y = "") +
+#   theme_bw() +
+#   coord_flip()
+
+
+
+ggplot(language2, aes(x = year, y = est, fill = labels)) +
+  # geom_line(linewidth = 1.5) +
+  # geom_point(size = 2.25, color = "black") +
+  geom_area(alpha = 0.65) +
   theme_bw(13) +
   theme(panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
   scale_y_continuous(labels = percent) +
-  scale_color_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", 
-                                "#FFCF50", "#554149", "#F9F871")) +
-  labs(x = "Year", y = "", color = "Language")
+  scale_fill_manual(values = c("#EA008B", "#BDA5AD")[2:1]) +
+  labs(x = "Year", y = "", fill = "Language")
+
 
 makeTableData(language) |>
   kbl(col.names = c(2013:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:3, width_min = "9.5em") |>
+  column_spec(column = 1:9, width_min = "9.5em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
