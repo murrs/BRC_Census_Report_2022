@@ -1271,6 +1271,31 @@ makeTableData(spirituality) |>
 <!-- going to do only the main religion question in the interest of time -->
 
 ```{r}
+religion22 <- makePlotData("Do you belong to a religion or religious denomination?",
+                         varNameTable = varNameTable,
+                         designs = list(design22),
+                         years = c(2022),
+                         levels = list(c("Buddhist", "Catholic", 
+                                           "Other Christian", "Discordian",
+                                           "Hindu", "Jewish", 
+                                           "Multiple religions", "Muslim", 
+                                           "No religion", "Other",
+                                           "Pagan", "Pastafarian", 
+                                           "Protestant", "Unitarian")),
+                         labels = c("Buddhist", "Catholic", 
+                                           "Other Christian", "Discordian",
+                                           "Hindu", "Jewish", "Other", 
+                                           "Muslim", 
+                                           "No religion",
+                                           "Pagan", "Pastafarian", 
+                                           "Protestant", "Unitarian"),
+                         labelOrder = c("No religion", "Jewish", "Catholic",
+                                        "Protestant", "Other Christian", 
+                                        "Unitarian", "Buddhist", "Pagan", 
+                                        "Discordian", "Pastafarian",
+                                        "Hindu", "Muslim", "Other"),
+                         groups = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 7, 10, 11, 12, 13))
+
 religion <- makePlotData("Do you belong to a religion or religious denomination?",
                          varNameTable = varNameTable,
                          designs = list(design14, design15,
@@ -1293,33 +1318,42 @@ religion <- makePlotData("Do you belong to a religion or religious denomination?
                                            "No religion", "Other",
                                            "Pagan", "Pastafarian", 
                                            "Protestant", "Unitarian"))),
-                         labels = c("No religion", "Christian (not Catholic)",
-                                    "Jewish", "Catholic", "Buddhist", "Muslim",
-                                    "Other religion"),
-                         labelOrder = 1:7,
-                         groups = c(5, 4,
-                                    2, 7,
-                                    7, 3,
-                                    7, 6,
-                                    1, 7,
-                                    7, 7,
-                                    2, 7))
+                         labels = c("Buddhist", "Catholic", 
+                                           "Other Christian", "Other",
+                                           "Hindu", "Jewish", 
+                                           "Muslim", 
+                                           "No religion",
+                                           "Pagan", "Pastafarian", 
+                                           "Protestant"),
+                         labelOrder = c("No religion", "Jewish", "Catholic",
+                                        "Protestant", "Other Christian", 
+                                        "Buddhist", "Pagan", 
+                                        "Pastafarian",
+                                        "Hindu", "Muslim", "Other"),
+                         groups = c(1, 2, 3, 4, 5, 6, 4, 7, 8, 4, 9, 10, 11, 4))
 
-ggplot(religion, aes(x = year, y = est, color = labels)) +
-  geom_line(linewidth = 1.5) +
-  geom_point(size = 2.25, color = "black") +
-  theme_bw(13) +
-  theme(panel.grid.minor = element_blank()) +
-  scale_x_continuous(breaks = c(2014:2019, 2022), labels = c(2014:2019, 2022)) +
+# ggplot(religion22, aes(x = year, y = est, color = labels)) +
+#   geom_line(linewidth = 1.5) +
+#   geom_point(size = 2.25, color = "black") +
+#   theme_bw(13) +
+#   theme(panel.grid.minor = element_blank()) +
+#   scale_x_continuous(breaks = c(2014:2019, 2022), labels = c(2014:2019, 2022)) +
+#   scale_y_continuous(labels = percent) +
+#   scale_color_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", 
+#                                 "#FFCF50", "#554149", "#F9F871")) +
+#   labs(x = "Year", y = "", color = "Language")
+
+ggplot(religion22, aes(x = labels, y = est)) +
+  geom_bar(stat = "identity", position = "dodge", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  scale_color_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", 
-                                "#FFCF50", "#554149", "#F9F871")) +
-  labs(x = "Year", y = "", color = "Language")
+  labs(x = "Religion", y = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 
 makeTableData(religion) |>
   kbl(col.names = c(2014:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:3, width_min = "9.5em") |>
+  column_spec(column = 1:8, width_min = "9.5em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -1329,7 +1363,38 @@ makeTableData(religion) |>
 ### Identify with a disability status
 
 <!-- Maybe separate into binary yes/no and categories if yes? -->
+```{r}
+disability <- makePlotData("What disability statuses (if any) do you identify with?",
+                           varNameTable = varNameTable,
+                           designs = list(design22),
+                           years = 2022,
+                           levels = list(TRUE),
+                           labels = c("Sensory impairment",
+                                      "Learning disability",
+                                      "Long-term medical \n illness",
+                                      "Long-term mental health \n condition",
+                                      "Mobility impairment",
+                                      "Sensory processing or \n integration disorder",
+                                      "Temporary impairment resulting \n from illness or injury",
+                                      "Disability not listed",
+                                      "Prefer to self-describe",
+                                      "Do not identify with a \n disability or impairment"))
 
+ggplot(disability[-9,], aes(x = labels, y = est)) +
+  geom_bar(stat = "identity", position = "dodge", fill = "#EA008B") +
+  scale_y_continuous(labels = percent) +
+  labs(x = "Disability", y = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+
+
+makeTableData(disability[-9,]) |>
+  kbl(col.names = c(2022), row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  column_spec(column = 1:2, width_min = "9.5em") |>
+  kable_styling() |>
+  scroll_box(width = "100%")
+```
 
 ## Sexuality
 
