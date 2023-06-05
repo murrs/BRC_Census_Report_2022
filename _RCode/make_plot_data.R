@@ -67,7 +67,7 @@ makePlotData <- function(varName, varNameTable, designs, years, levels,
       labelOrder <- 1:length(levels[[1]]) 
     }
     else{
-      labelOrder <- 1:length(varNames)
+      labelOrder <- 1:length(varNames[[1]])
     }
   }
   

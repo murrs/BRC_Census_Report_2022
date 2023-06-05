@@ -16,6 +16,9 @@ formulaVarLevel <- function(level, varName){
 #TODO: makePlotDataByLevel() and makePlotDataByGroup() can be simplified and 
 #        combined into a single function
 
+#TODO: check to make sure level is a level of the variable.  If not give an
+#        error informing user to check data cleaning script for an error
+
 makePlotDataByLevel <- function(level, design, varName, year){
   if(is.character(level)){
     f <- as.formula(paste0("~", varName, " == ", "\"", level, "\""))
@@ -35,6 +38,8 @@ makePlotDataByLevel <- function(level, design, varName, year){
              level = level,
              year = year)
 }
+
+#TODO: The grouping currently does not work for multiple selection questions
 
 makePlotDataByGroup <- function(group, design, varName, year, levels){
   if(is.numeric(group)){
