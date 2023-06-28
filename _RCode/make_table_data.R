@@ -9,6 +9,8 @@ makeTableData <- function(plotDat, format = c("percent", "proportion"),
   outTable <- as.table(matrix(cells, nrow = nLabels, ncol = nYears))
   rownames(outTable) <- unique(plotDat$labels)
   colnames(outTable) <- unique(plotDat$year)
-  outTable <- outTable[,order(unique(plotDat$year))]
+  if(dim(outTable)[2] > 1){
+    outTable <- outTable[,order(unique(plotDat$year))]
+  }
   return(outTable)
 }

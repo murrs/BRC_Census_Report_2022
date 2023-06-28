@@ -1,32 +1,296 @@
+```{r}
+library(data.table)
+library(survey)
+library(ggplot2)
+library(scales)
+library(knitr)
+library(kableExtra)
+library(weights)
+source(paste0(getwd(), "/_RCode/read_census_data.R"))
+source(paste0(getwd(), "/_RCode/make_table_data.R"))
+source(paste0(getwd(), "/_RCode/make_plot_data.R"))
+source(paste0(getwd(), "/_RCode/additional_functions.R"))
+```
+
 # Beyond the Burn -- Regionals, Media, and Volunteering
 
 ## Regionals
 
 ### Attended any regional Burning Man events/mixers/gatherings
+```{r}
+attendRegional <- makePlotData("Have you ever attended any regional Burning Man events/mixers/gatherings?",
+                               varNameTable = varNameTable,
+                               designs = list(design13, design14, design15,
+                                              design16, design17, design18,
+                                              design19, design22),
+                               years = c(2013:2019, 2022),
+                               levels = c(rep(list(c(c("Yes_attended",
+                                                       "No_but_email_list",
+                                                       "No",
+                                                       "Yes_volunteered"))), times = 7),
+                                          list(c("Attended at least one regional",
+                                                 "Not attended, on e-mail list",
+                                                 "Not connected to regional",
+                                                 "Volunteered with a regional"))),
+                               labels = c("Attended at least \n one regional",
+                                          "Not attended, \n on e-mail list",
+                                          "Not connected \n to regional",
+                                          "Volunteered with \n a regional"),
+                               labelOrder = c(1,4,2,3))
 
 
+ggplot(attendRegional, aes(x = year, y = est, color = labels)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.25, color = "black") +
+  # geom_errorbar(aes(ymin = lower, ymax = upper), color = "black", width = 0.2,
+  #               linewidth = 1) +
+  theme_bw(13) +
+  theme(panel.grid.minor = element_blank()) +
+  scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
+  scale_y_continuous(labels = percent) +
+  scale_color_manual(values = c("#EA008B", "#FF416f", "#FF7457", "#FFA349", 
+                                "#FFCF50", "#694200")) +
+  labs(x = "Year", y = "", color = "Regional or Burning Man \n event connection")
 
-### Ivolvement with a regional Burning Man event
+makeTableData(attendRegional) |>
+  kbl(col.names = c(2013:2019, 2022),
+      row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  kable_styling() |>
+  column_spec(column = 1:9, width_min = "9.5em") |>
+  scroll_box(width = "100%")
 
+```
+
+### Involvement with a regional Burning Man event
+```{r}
+#Creating not involve variables to match 2022 not involve level
+design19$variables$bminvolve_not <- ifelse(design19$variables$bminvolve_prod == "no" &
+                                             design19$variables$bminvolve_staf == "no" &
+                                             design19$variables$bminvolve_medic == "no" &
+                                             design19$variables$bminvolve_art == "no" &
+                                             design19$variables$bminvolve_camp == "no" &
+                                             design19$variables$bminvolve_vendor == "no" &
+                                             design19$variables$bminvolve_perfo == "no" &
+                                             design19$variables$bminvolve_other == "no",
+                                           "yes", "no")
+design18$variables$bminvolve_not <- ifelse(design18$variables$bminvolve_prod == "no" &
+                                             design18$variables$bminvolve_art == "no" &
+                                             design18$variables$bminvolve_camp == "no" &
+                                             design18$variables$bminvolve_vendor == "no" &
+                                             design18$variables$bminvolve_perfo == "no" &
+                                             design18$variables$bminvolve_other == "no",
+                                           "yes", "no")
+design17$variables$bminvolve_not <- ifelse(design17$variables$bminvolve_prod == "no" &
+                                             design17$variables$bminvolve_art == "no" &
+                                             design17$variables$bminvolve_camp == "no" &
+                                             design17$variables$bminvolve_vendor == "no" &
+                                             design17$variables$bminvolve_perfo == "no" &
+                                             design17$variables$bminvolve_other == "no",
+                                           "yes", "no")
+design16$variables$bminvolve_not <- ifelse(design16$variables$bminvolve_prod == "no" &
+                                             design16$variables$bminvolve_art == "no" &
+                                             design16$variables$bminvolve_camp == "no" &
+                                             design16$variables$bminvolve_vendor == "no" &
+                                             design16$variables$bminvolve_perfo == "no" &
+                                             design16$variables$bminvolve_other == "no",
+                                           "yes", "no")
+design15$variables$bminvolve_not <- ifelse(design15$variables$bminvolve_prod == "no" &
+                                             design15$variables$bminvolve_art == "no" &
+                                             design15$variables$bminvolve_camp == "no" &
+                                             design15$variables$bminvolve_vendor == "no" &
+                                             design15$variables$bminvolve_perfo == "no" &
+                                             design15$variables$bminvolve_other == "no",
+                                           "yes", "no")
+
+regionalInvolve <- makePlotData("In what ways have you been involved with a regional Burning Man event?",
+                                varNameTable = varNameTable,
+                                designs = list(design15, design16, design17,
+                                               design18, design19, design22),
+                                years = c(2015:2019, 2022),
+                                levels = c(as.list(rep("yes", times = 5)), 
+                                           list(TRUE)),
+                                labels = c("Production",
+                                           "Staff/volunteer",
+                                           "Medical services",
+                                           "Art project",
+                                           "Theme camp",
+                                           "Vendor",
+                                           "Performance",
+                                           "Other",
+                                           "Not involved"))
+
+#2022 results are all false for Not involved, dropping from analysis
+regionalInvolve <- regionalInvolve[regionalInvolve$labels != "Not involved",]
+regionalInvolve$labels <- factor(regionalInvolve$labels,
+                                 levels = c("Staff/volunteer",
+                                            "Theme camp",
+                                            "Art project",
+                                            "Production",
+                                            "Performance",
+                                            "Medical services",
+                                            "Vendor",
+                                            "Other"))
+
+ggplot(regionalInvolve[regionalInvolve$year == 2022,], aes(x = labels, y = est)) +
+  geom_bar(stat = "identity", fill = "#EA008B") +
+  scale_y_continuous(labels = percent) +
+  labs(x = "Involvement with a Burning Man Regional", y = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+
+makeTableData(regionalInvolve) |>
+  kbl(col.names = c(2015:2019, 2022),
+      row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  kable_styling() |>
+  column_spec(column = 1:7, width_min = "9.5em") |>
+  scroll_box(width = "100%")
+```
 
 
 ## Burning Man Media
 
-### Media managed by Burning Man Project
+<!-- There is something wrong with the responses in 2022, no way 93% of Burners used Hive-->
+
+<!-- ### Which of the following media managed by Burning Man Project do you use to receive news, information, and events related to Burning Man, and to engage in discussion on Burning Man topics? -->
+<!-- ```{r} -->
+<!-- BMMedia <- makePlotData("Which of the following media managed by Burning Man Project do you use to receive news, information, and events related to Burning Man, and to engage in discussion on Burning Man topics?", -->
+<!--                         varNameTable = varNameTable, -->
+<!--                         designs = list(design15, design16, design17, -->
+<!--                                        design18, design19, design22), -->
+<!--                         years = c(2015:2019, 2022), -->
+<!--                         levels = c(as.list(rep("Never", times = 5)),  -->
+<!--                                            list(FALSE)), -->
+<!--                         labels = c("Jack Rabbit Speaks \n e-newsletter", -->
+<!--                                    "Burning Man Website", -->
+<!--                                    "Burning Man Journal", -->
+<!--                                    "Burning Man Hive", -->
+<!--                                    "Social Media managed by \n Burning Man", -->
+<!--                                    "Eplaya message board")) -->
+<!-- #Used "never" and "FALSE" to combine Often and rarely categories in pre-2022  -->
+<!-- #  versions.  Taking 1-X to transform them back to positive responses -->
+<!-- BMMedia$est <- 1 - BMMedia$est -->
+<!-- BMMedia$lower <- 1 - BMMedia$upper -->
+<!-- BMMedia$upper <- 1 - BMMedia$lower -->
+
+<!-- ggplot(BMMedia[BMMedia$year == 2022,], aes(x = labels, y = est)) + -->
+<!--   geom_bar(stat = "identity", fill = "#EA008B") + -->
+<!--   scale_y_continuous(labels = percent) + -->
+<!--   labs(x = "Involvement with a Burning Man Regional", y = "") + -->
+<!--   theme_bw() + -->
+<!--   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) -->
+
+<!-- makeTableData(BMMedia) |> -->
+<!--   kbl(col.names = c(2015:2019, 2022), -->
+<!--       row.names = TRUE) |> -->
+<!--   kable_paper("striped", full_width = F) |> -->
+<!--   kable_styling() |> -->
+<!--   column_spec(column = 1:7, width_min = "9.5em") |> -->
+<!--   scroll_box(width = "100%") -->
+<!-- ``` -->
 
 
-
-### Media not managed by Burning Man Project
-
-
+<!-- ### Media not managed by Burning Man Project -->
+<!-- <!-- 2019 question is missing, need to ask Hunter --> -->
+<!-- ```{r} -->
+<!-- NotBMMedia <- makePlotData("Which of the following media managed by Burning Man Project do you use to receive news, information, and events related to Burning Man, and to engage in discussion on Burning Man topics?", -->
+<!--                            varNameTable = varNameTable, -->
+<!--                            designs = list(design15, design16, design17, design18,  -->
+<!--                                           design22), -->
+<!--                            years = c(2015:2018, 2022), -->
+<!--                            levels = c(as.list(rep("yes", times = 5)),  -->
+<!--                                               list(TRUE)), -->
+<!--                            labels = c("Jack Rabbit Speaks \n e-newsletter", -->
+<!--                                       "Burning Man Website", -->
+<!--                                       "Burning Man Journal", -->
+<!--                                       "Burning Man Hive", -->
+<!--                                       "Social Media managed by \n Burning Man", -->
+<!--                                       "Eplaya message board")) -->
+<!-- ``` -->
 
 ### Most valuable types of information coming from Burning Man Project
+```{r}
+valuableInfo <- makePlotData("What types of information do you find most valuable coming from Burning Man Project?",
+                                varNameTable = varNameTable,
+                                designs = list(design14, design15, design16, 
+                                               design17, design18, design19, 
+                                               design22),
+                                years = c(2014:2019, 2022),
+                                levels = c(as.list(rep("yes", times = 6)), 
+                                           list(TRUE)),
+                                labels = c("Black Rock City events",
+                                           "Bay Area events",
+                                           "Events around the world",
+                                           "Burning Man Regional events",
+                                           "Volunteer opportunits with \n teams or departments",
+                                           "Opportunities to create \n or assist with art",
+                                           "Black Rock City preparation \n information",
+                                           "Information about camps",
+                                           "Photos and videos from \n Black Rock City",
+                                           "Stories about Burners from \n around the world",
+                                           "Information about non-profit \n activities",
+                                           "Information supporting R.I.D.E.",
+                                           "Resources about sustainability \n at Burning Man",
+                                           "Other"))
 
+ggplot(valuableInfo[valuableInfo$year == 2022,], aes(x = labels, y = est)) +
+  geom_bar(stat = "identity", fill = "#EA008B") +
+  scale_y_continuous(labels = percent) +
+  labs(x = "Involvement with a Burning Man Regional", y = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+
+makeTableData(valuableInfo) |>
+  kbl(col.names = c(2014:2019, 2022),
+      row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  kable_styling() |>
+  column_spec(column = 1:8, width_min = "9.5em") |>
+  scroll_box(width = "100%")
+```
 
 
 ### Listened to BMIR (Burning Man Information Radio) this year
 
+<!-- Need to check what happened to bmir_online in 2016 -->
 
+```{r}
+bmir <- makePlotData("Have you listened to BMIR (Burning Man Information Radio) 94.5 FM this year?",
+                     varNameTable = varNameTable,
+                     designs = list(design14, design15, design16, design17,
+                                    design18, design19, design22),
+                     years = c(2014:2019, 2022),
+                     levels = c(as.list(rep("yes", times = 6)), 
+                                           list(TRUE)),
+                     labels = c("Listened online",
+                                "Listened while traveled",
+                                "Listened over the air at \n Black Rock City",
+                                "Listened over speakers at \n BMIR or Center Camp",
+                                "Did not know about BMIR",
+                                "Knew about BMIR, but \n did not listen to it"))
+
+ggplot(bmir, aes(x = year, y = est, color = labels)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.25, color = "black") +
+  # geom_errorbar(aes(ymin = lower, ymax = upper), color = "black", width = 0.2,
+  #               linewidth = 1) +
+  theme_bw(13) +
+  theme(panel.grid.minor = element_blank()) +
+  scale_x_continuous(breaks = c(2014:2019, 2022), labels = c(2014:2019, 2022)) +
+  scale_y_continuous(labels = percent) +
+  scale_color_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", 
+                                "#FFCF50", "#554149")) +
+  labs(x = "Year", y = "", color = "Burning Man Information \n Radio (BMIR) Source")
+
+makeTableData(valuableInfo) |>
+  kbl(col.names = c(2014:2019, 2022),
+      row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  kable_styling() |>
+  column_spec(column = 1:8, width_min = "9.5em") |>
+  scroll_box(width = "100%")
+```
 
 ## Volunteerism and donations
 
