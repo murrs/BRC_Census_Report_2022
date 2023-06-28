@@ -41,7 +41,12 @@ makePlotData <- function(varName, varNameTable, designs, years, levels,
   #Grab names.
   varNames <- as.vector(varNameTable[question == varName, ..yearsToUse])
   #Remove any write-in questions
-  varNames <- lapply(varNames, function(x){x[!grepl("writeIn", x) & (x != "")]})
+  writeInIndex <- unique(unlist(lapply(varNames, function(x){
+    which(grepl("writeIn", x))})))
+  if(any(writeInIndex > 0)){
+    varNames <- lapply(varNames, function(x, indx){x[-indx]}, indx = writeInIndex)
+  }
+  
   
   #For questions where only one answer may be selected
   #Check if varNames is not a list and convert to list

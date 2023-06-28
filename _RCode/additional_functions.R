@@ -20,8 +20,21 @@ formulaVarLevel <- function(level, varName){
 #        error informing user to check data cleaning script for an error
 
 makePlotDataByLevel <- function(level, design, varName, year){
+  if(varName == ""){
+    out <- data.frame(est = NA,
+                      lower = NA,
+                      upper = NA,
+                      level = level,
+                      year = year)
+    return(out)
+  }
   if(is.character(level)){
-    f <- as.formula(paste0("~", varName, " == ", "\"", level, "\""))
+    if(grepl("_qual", varName)){
+      f <- as.formula(paste0("~", varName, "!=", "\"\""))
+    }
+    else{
+      f <- as.formula(paste0("~", varName, " == ", "\"", level, "\""))
+    }
   }
   else if(is.logical(level)){
     if(level){
@@ -31,12 +44,16 @@ makePlotDataByLevel <- function(level, design, varName, year){
       f <- as.formula(paste0("~", "!", varName))
     }
   }
+  else if(level == ".+"){
+    f <- as.formula(paste0("~", varName, "!=", "\"\""))
+  }
   ciOut <- svyciprop(f, design = design)
-  data.frame(est = as.numeric(ciOut),
-             lower = attr(ciOut, "ci")[1],
-             upper = attr(ciOut, "ci")[2],
-             level = level,
-             year = year)
+  out <- data.frame(est = as.numeric(ciOut),
+                    lower = attr(ciOut, "ci")[1],
+                    upper = attr(ciOut, "ci")[2],
+                    level = level,
+                    year = year)
+  return(out)
 }
 
 #TODO: The grouping currently does not work for multiple selection questions
