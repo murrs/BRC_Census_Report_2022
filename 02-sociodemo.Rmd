@@ -1103,7 +1103,7 @@ ggplot(personOfColor, aes(x = year, y = est, fill = labels)) +
 makeTableData(personOfColor) |>
   kbl(col.names = c(2013:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:3, width_min = "9.5em") |>
+  column_spec(column = 1:9, width_min = "9.5em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
