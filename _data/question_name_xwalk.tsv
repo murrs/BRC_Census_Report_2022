@@ -87,7 +87,6 @@ Which category best describes your ethnoracial background?	Black or African Amer
 Which category best describes your ethnoracial background?	Prefer to self-describe	ethnoracial.selfDescribe								
 Which category best describes your ethnoracial background?	Native American (please specify your tribal affiliation)	ethnoracial.nativeAmericanTribe.writeIn								
 Which category best describes your ethnoracial background?	Prefer to self-describe	ethnoracial.selfDescribe.writeIn								
-ethnoracial 2013 through 2019			ethno	ethno	ethno	ethno	ethno	ethno	ethno	
 Do you consider yourself to be a person of color?		personOfColor	color	color	color	color	color	color	color	
 What disability statuses (if any) do you identify with?	Sensory impairment (vision or hearing)	disability.sensoryImpairment								
 What disability statuses (if any) do you identify with?	"Learning disability or other diagnosis that interferes with learning or ability to concentrate (e.g., dyslexia, auditory processing disorder)"	disability.learning								
@@ -108,12 +107,11 @@ In which of the last four Federal US elections did you vote?	2016	voteUS.2016
 In which of the last four Federal US elections did you vote?	2014	voteUS.2014								
 In which of the last four Federal US elections did you vote?	2012	voteUS.2012								
 In which of the last four Federal US elections did you vote?	none	voteUS.none								
-Number of the last four Federal US elections voted among eligible voters?		voteUS.timesVoted.eligible	nbvotes	nbvotes	nbvotes	nbvotes	nbvotes	nbvotes	nbvotes	
 "With which political party are you currently affiliated in the United States, if any?"		politicalParty	usparty	usparty	usparty	usparty	usparty	usparty	usparty	
 "With which political party are you currently affiliated in the United States, if any?"	Other US based Political Party (please specify)	politicalParty.writeIn								
 "Generally, in terms of political views, rather than political parties, I consider myself to be primarily"		politicalViews	politicalid	politicalid	politicalid					
 "Generally, in terms of political views, rather than political parties, I consider myself to be primarily"	Other (please specify)	politicalViews.writeIn								
-Which of these expressions best describes your sexual orientation?		sexualOrientation								
+Which of these expressions best describes your sexual orientation?		sexualOrientation	sexorientation	sexorientation	sexorientation	sexorientation	sexorientation	sexorientation	sexorientation	
 Which of these expressions best describes your sexual orientation?	Prefer to self describe	sexualOrientation.writeIn								
 Which of these expressions best describes your romantic orientation?		romanticOrientation								
 Which of these expressions best describes your romantic orientation?	Prefer to self-describe	romanticOrientation.writeIn								
@@ -123,36 +121,36 @@ Do you consider yourself to be any of the following?	Gender non-conforming	gende
 Do you consider yourself to be any of the following?	Gender questioning	gender.questioning								
 Do you consider yourself to be any of the following?	Two-spirit	gender.twoSpirit								
 Do you consider yourself to be any of the following?	My gender does not match my sex assigned at birth	gender.notMatchBirth								
-"In the default world, do you have a partner or partners?"		romanticPartners								
-Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Monogamous	relationship.monogamous								
-Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Monogamish	relationship.monogamish								
-Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Polyamorous	relationship.polyamourous								
-Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Non-consensual Non-monogamy	relationship.nonConsensualNonMonogomous								
+"In the default world, do you have a partner or partners?"		romanticPartners	married	married	married	married	married	married	married	
+Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Monogamous	relationship.monogamous	mono	mono	mono	mono	mono			
+Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Monogamish	relationship.monogamish	monoish							
+Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Polyamorous	relationship.polyamourous	poly	poly	poly	poly	poly			
+Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Non-consensual non-monogamy	relationship.nonConsensualNonMonogomous								
 Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Serial monogamous	relationship.serialMonogomous								
 Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Polyfidelity	relationship.polyfidelity								
 Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Polygamy	relationship.polygamous								
 Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Unicorn polyamorous	relationship.unicornPoly								
 Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Solo polyamorous	relationship.soloPoly								
 Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Power dynamic relationship	relationship.powerDynamic								
-Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Open	relationship.open								
+Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Open	relationship.open	open_curious	open_curious	open_curious	open_curious	open_curious			
 Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Ethical non-monogamous	relationship.ethicalNonMonogomous								
 Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Don't Ask/Don't tell	relationship.dontAskDontTell								
-Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Relationship anarchy	relationship.anarchy								
+Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Relationship anarchy	relationship.anarchy	relanarch							
 Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Prefer to self-describe	relationship.other								
-Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Prefer to self-describe	relationship.otherWriteIn								
+Some people use specific labels to describe their relationship style. Do you consider that one or more of these labels describe your relationships?	Prefer to self-describe	relationship.other.writeIn								
 Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Monogamous	sexuality.monogamous								
 Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Mostly monogamous and/or monogamish	sexuality.mostlyMonogamous								
 Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Polyamorous and/or ethically/consensually non-monogamous	sexuality.polyamorous								
 Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Relational anarchist	sexuality.anarchist								
-Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Kinkster and/or BDSM participant	sexuality.kinkster								
-Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Swinger	sexuality.swinger								
+Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Kinkster and/or BDSM participant	sexuality.kinkster	kink	kink	kink	kink	kink			
+Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Swinger	sexuality.swinger	swinger	swinger	swinger	swinger	swinger			
 Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Sex worker	sexuality.sexWorker								
-Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Gray-sexual and/or demisexual	sexuality.grayDemiSexual								
-Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Queer	sexuality.queer								
-Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Sex/Love addict	sexuality.sexLoveAddict								
+Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Gray-sexual and/or demisexual	sexuality.grayDemiSexual	graysex							
+Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Queer	sexuality.queer	queer	queer	queer	queer	queer			
+Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Sex/Love addict	sexuality.sexLoveAddict	loveaddict	loveaddict	loveaddict	loveaddict	loveaddict			
 Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Open/Curious	sexuality.openCurious								
-Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Prefer to self-describe	sexuality.selfDescribe								
-Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Prefer to self-describe	sexuality.SelfDescribeWriteIn								
+Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Prefer to self-describe	sexuality.other	othersexlabel_qual	othersexlabel_qual	othersexlabel_qual	othersexlabel_qual	othersexlabel_qual			
+Some people use specific labels to describe their sexuality. Do you consider that one or more of these labels describe your sexuality?	Prefer to self-describe	sexuality.other.writeIn	othersexlabel_qual	othersexlabel_qual	othersexlabel_qual	othersexlabel_qual	othersexlabel_qual			
 How do you describe your spirituality?		spirituality	spirituality	spirituality	spirituality	spirituality	spirituality	spirituality	spirituality	
 Do you belong to a religion or religious denomination?		religion	religion	religion	religion	religion	religion	religion	religion	
 Do you belong to a religion or religious denomination?	"Yes, I belong to a Christian religion or religious denomination not listed above (please specify)"	religion.christian.writeIn								
@@ -171,23 +169,23 @@ You previously indicated that you belong to more than one religion or religious 
 You previously indicated that you belong to more than one religion or religious denomination. To which religions or religious denominations do you belong?	I belong to one or more religions or religious denominations not listed above (please specify)	moreReligion.other								
 You previously indicated that you belong to more than one religion or religious denomination. To which religions or religious denominations do you belong?	I belong to a Christian religion or religious denomination not listed above (please specify)	moreReligion.christianOther.writeIn								
 You previously indicated that you belong to more than one religion or religious denomination. To which religions or religious denominations do you belong?	I belong to one or more religions or religious denominations not listed above (please specify)	moreReligion.other.writeIn								
-Have you ever attended any regional Burning Man events/mixers/gatherings?		regionalAttend								
-In what ways have you been involved with a regional Burning Man event?	"Production (organization, preparation, coordination, etc.)"	regionalInvolved.production								
-In what ways have you been involved with a regional Burning Man event?	"Staff/Volunteer (Ranger, Greeter, Gate, DPW, Resto, etc.)"	regionalInvolved.staffVolunteer								
-In what ways have you been involved with a regional Burning Man event?	Medical services provider	regionalInvolved.medical								
-In what ways have you been involved with a regional Burning Man event?	Art project	regionalInvolved.art								
-In what ways have you been involved with a regional Burning Man event?	Theme camp	regionalInvolved.themeCamp								
-In what ways have you been involved with a regional Burning Man event?	Vendor	regionalInvolved.vendor								
-In what ways have you been involved with a regional Burning Man event?	Performance	regionalInvolved.performance								
-In what ways have you been involved with a regional Burning Man event?	Other (please specify)	regionalInvolved.other								
-In what ways have you been involved with a regional Burning Man event?	Not involved in a regional Burning Man event	regionalInvolved.notInvolved								
-In what ways have you been involved with a regional Burning Man event?	Other (please specify)	regionalInovlved.other.writeIn								
-"Which of the following media managed by Burning Man Project do you use to receive news, information, and events related to Burning Man, and to engage in discussion on Burning Man topics?"	Jack Rabbit Speaks (JRS) e-newsletter	mediaInfoBM.JRS								
-"Which of the following media managed by Burning Man Project do you use to receive news, information, and events related to Burning Man, and to engage in discussion on Burning Man topics?"	Burning Man website	mediaInfoBM.website								
-"Which of the following media managed by Burning Man Project do you use to receive news, information, and events related to Burning Man, and to engage in discussion on Burning Man topics?"	Burning Man Journal	mediaInfoBM.journal								
-"Which of the following media managed by Burning Man Project do you use to receive news, information, and events related to Burning Man, and to engage in discussion on Burning Man topics?"	Burning Man Hive	mediaInfoBM.hive								
-"Which of the following media managed by Burning Man Project do you use to receive news, information, and events related to Burning Man, and to engage in discussion on Burning Man topics?"	"Social media managed by Burning Man Project (Facebook, Instagram, Twitter, YouTube, etc.) "	mediaInfoBM.ePlaya								
-"Which of the following media managed by Burning Man Project do you use to receive news, information, and events related to Burning Man, and to engage in discussion on Burning Man topics?"	Eplaya	mediaInfoBM.socialMedia								
+Have you ever attended any regional Burning Man events/mixers/gatherings?		regionalAttend	bmevents	bmevents	bmevents	bmevents	bmevents	bmevents	bmevents	
+In what ways have you been involved with a regional Burning Man event?	"Production (organization, preparation, coordination, etc.)"	regionalInvolved.production	bminvolve_prod	bminvolve_prod	bminvolve_prod	bminvolve_prod	bminvolve_prod			
+In what ways have you been involved with a regional Burning Man event?	"Staff/Volunteer (Ranger, Greeter, Gate, DPW, Resto, etc.)"	regionalInvolved.staffVolunteer	bminvolve_staf							
+In what ways have you been involved with a regional Burning Man event?	Medical services provider	regionalInvolved.medical	bminvolve_medic							
+In what ways have you been involved with a regional Burning Man event?	Art project	regionalInvolved.art	bminvolve_art	bminvolve_art	bminvolve_art	bminvolve_art	bminvolve_art			
+In what ways have you been involved with a regional Burning Man event?	Theme camp	regionalInvolved.themeCamp	bminvolve_camp	bminvolve_camp	bminvolve_camp	bminvolve_camp	bminvolve_camp			
+In what ways have you been involved with a regional Burning Man event?	Vendor	regionalInvolved.vendor	bminvolve_vendor	bminvolve_vendor	bminvolve_vendor	bminvolve_vendor	bminvolve_vendor			
+In what ways have you been involved with a regional Burning Man event?	Performance	regionalInvolved.performance	bminvolve_perfo	bminvolve_perfo	bminvolve_perfo	bminvolve_perfo	bminvolve_perfo			
+In what ways have you been involved with a regional Burning Man event?	Other (please specify)	regionalInvolved.other	bminvolve_other	bminvolve_other	bminvolve_other	bminvolve_other	bminvolve_other			
+In what ways have you been involved with a regional Burning Man event?	Not involved in a regional Burning Man event	regionalInvolved.notInvolved	bminvolve_not	bminvolve_not	bminvolve_not	bminvolve_not	bminvolve_not			
+In what ways have you been involved with a regional Burning Man event?	Other (please specify)	regionalInovlved.other.writeIn	bminvolve_other_qual	bminvolve_other_qual	bminvolve_other_qual	bminvolve_other_qual	bminvolve_other_qual			
+"Which of the following media managed by Burning Man Project do you use to receive news, information, and events related to Burning Man, and to engage in discussion on Burning Man topics?"	Jack Rabbit Speaks (JRS) e-newsletter	mediaInfoBM.JRS	bminfojrs	bminfojrs	bminfojrs	bminfojrs	bminfojrs			
+"Which of the following media managed by Burning Man Project do you use to receive news, information, and events related to Burning Man, and to engage in discussion on Burning Man topics?"	Burning Man website	mediaInfoBM.website	bminfobmweb	bminfobmweb	bminfobmweb	bminfobmweb	bminfobmweb			
+"Which of the following media managed by Burning Man Project do you use to receive news, information, and events related to Burning Man, and to engage in discussion on Burning Man topics?"	Burning Man Journal	mediaInfoBM.journal	bminfobmjournal	bminfobmjournal	bminfobmjournal					
+"Which of the following media managed by Burning Man Project do you use to receive news, information, and events related to Burning Man, and to engage in discussion on Burning Man topics?"	Burning Man Hive	mediaInfoBM.hive								
+"Which of the following media managed by Burning Man Project do you use to receive news, information, and events related to Burning Man, and to engage in discussion on Burning Man topics?"	"Social media managed by Burning Man Project (Facebook, Instagram, Twitter, YouTube, etc.) "	mediaInfoBM.ePlaya	bminfoeplaya	bminfoeplaya	bminfoeplaya	bminfoeplaya	bminfoeplaya			
+"Which of the following media managed by Burning Man Project do you use to receive news, information, and events related to Burning Man, and to engage in discussion on Burning Man topics?"	Eplaya	mediaInfoBM.socialMedia	bminfosmbm	bminfosmbm	bminfosmbm	bminfosmbm	bminfosmbm			
 Which of the following media NOT managed by Burning Man Project do you use to receive news and information concerning Burning Man?	Social media and/or discussion lists from established Burning Man camps	mediaInfoNotBM.campsSocialMedia								
 Which of the following media NOT managed by Burning Man Project do you use to receive news and information concerning Burning Man?	Regional newsletter and/or social media managed by Regional event organizers	mediaInfoNotBM.regionalNewsletter								
 Which of the following media NOT managed by Burning Man Project do you use to receive news and information concerning Burning Man?	Regional website	mediaInfoNotBM.regionalWebsite								
@@ -197,27 +195,27 @@ Which of the following media NOT managed by Burning Man Project do you use to re
 Which of the following media NOT managed by Burning Man Project do you use to receive news and information concerning Burning Man?	Other discussion lists	mediaInfoNotBM.otherDiscussionList								
 Which of the following media NOT managed by Burning Man Project do you use to receive news and information concerning Burning Man?	"Word of mouth (e.g., friends)"	mediaInfoNotBM.wordOfMouth								
 "If you receive Burning Man-related news or information from a source not listed above, what is that other source?"		mediaInfoOther.writeIn								
-What types of information do you find most valuable coming from Burning Man Project?	Black Rock City events	mostValuableInfo.BRCEvents								
-What types of information do you find most valuable coming from Burning Man Project?	Bay Area events	mostValuableInfo.bayAreaEvents								
-What types of information do you find most valuable coming from Burning Man Project?	Events in cities around the country and around the world	mostValuableInfo.citiesWorldEvents								
-What types of information do you find most valuable coming from Burning Man Project?	Burning Man Regional events	mostValuableInfo.regionals								
-What types of information do you find most valuable coming from Burning Man Project?	"Volunteer opportunities with established teams/departments (Rangers, Gate, Greeters, etc.)"	mostValuableInfo.volunteer								
+What types of information do you find most valuable coming from Burning Man Project?	Black Rock City events	mostValuableInfo.BRCEvents	valued_brcevents	valued_brcevents	valued_brcevents	valued_brcevents	valued_brcevents	valuedbrcevents		
+What types of information do you find most valuable coming from Burning Man Project?	Bay Area events	mostValuableInfo.bayAreaEvents	valued_sfevents	valued_sfevents	valued_sfevents	valued_sfevents	valued_sfevents	valuedsfevents		
+What types of information do you find most valuable coming from Burning Man Project?	Events in cities around the country and around the world	mostValuableInfo.citiesWorldEvents	valued_worldevents	valued_worldevents	valued_worldevents	valued_worldevents	valued_worldevents	valuedworldevents		
+What types of information do you find most valuable coming from Burning Man Project?	Burning Man Regional events	mostValuableInfo.regionals	valued_regevents	valued_regevents	valued_regevents	valued_regevents	valued_regevents	valuedregevents		
+What types of information do you find most valuable coming from Burning Man Project?	"Volunteer opportunities with established teams/departments (Rangers, Gate, Greeters, etc.)"	mostValuableInfo.volunteer	valued_volunteer	valued_volunteer	valued_volunteer	valued_volunteer	valued_volunteer	valuedvolunteer		
 What types of information do you find most valuable coming from Burning Man Project?	Opportunities to create and/or assist with art (or other artistic endeavours)	mostValuableInfo.art								
-What types of information do you find most valuable coming from Burning Man Project?	Black Rock City event preparation information	mostValuableInfo.BRCPreparation								
-What types of information do you find most valuable coming from Burning Man Project?	Information about camps offering activities and/or seeking members	mostValuableInfo.camps								
-What types of information do you find most valuable coming from Burning Man Project?	Photos/videos from Black Rock City	mostValuableInfo.photos								
-What types of information do you find most valuable coming from Burning Man Project?	Stories about Burners around the world doing awesome things	mostValuableInfo.storiesAboutBurners								
-What types of information do you find most valuable coming from Burning Man Project?	Information about Burning Man Project's nonprofit programs	mostValuableInfo.burningManNonProfit								
+What types of information do you find most valuable coming from Burning Man Project?	Black Rock City event preparation information	mostValuableInfo.BRCPreparation	valued_brcprep	valued_brcprep	valued_brcprep	valued_brcprep	valued_brcprep	valuedbrcprep		
+What types of information do you find most valuable coming from Burning Man Project?	Information about camps offering activities and/or seeking members	mostValuableInfo.camps	valued_camps							
+What types of information do you find most valuable coming from Burning Man Project?	Photos/videos from Black Rock City	mostValuableInfo.photos	valued_pics	valued_pics	valued_pics	valued_pics	valued_pics	valuedphotovideo		
+What types of information do you find most valuable coming from Burning Man Project?	Stories about Burners around the world doing awesome things	mostValuableInfo.storiesAboutBurners	valued_stories	valued_stories	valued_stories	valued_stories	valued_stories	valuedstories		
+What types of information do you find most valuable coming from Burning Man Project?	Information about Burning Man Project's nonprofit programs	mostValuableInfo.burningManNonProfit	valued_nonprofit	valued_nonprofit	valued_nonprofit	valued_nonprofit	valued_nonprofit			
 What types of information do you find most valuable coming from Burning Man Project?	"Information about supporting Radical Inclusion, Diversity, and Equity in the Burning Man community"	mostValuableInfo.RIDE								
 What types of information do you find most valuable coming from Burning Man Project?	Resources about environmental sustainability as it relates to Burning Man	mostValuableInfo.sustainability								
-What types of information do you find most valuable coming from Burning Man Project?	Other (please specify)	mostValuableInfo.other								
-What types of information do you find most valuable coming from Burning Man Project?	Other (please specify)	mostValuableInfo.other.writeIn								
-Have you listened to BMIR (Burning Man Information Radio) 94.5 FM this year?	I listened online	BMIR.listenedOnline								
-Have you listened to BMIR (Burning Man Information Radio) 94.5 FM this year?	I listened on my mobile device as I traveled to/from Black Rock City	BMIR.listenedMobile								
-Have you listened to BMIR (Burning Man Information Radio) 94.5 FM this year?	I listened over the air on an FM radio in Black Rock City	BMIR.listenedRadio								
-Have you listened to BMIR (Burning Man Information Radio) 94.5 FM this year?	I listened to the loudspeakers at their campsite near Center Camp	BMIR.loudspeakers								
-Have you listened to BMIR (Burning Man Information Radio) 94.5 FM this year?	I had no idea that there was a radio station in Black Rock City	BMIR.dontKnowBMIR								
-Have you listened to BMIR (Burning Man Information Radio) 94.5 FM this year?	"I know about BMIR, but have never listened"	BMIR.didntListen								
+What types of information do you find most valuable coming from Burning Man Project?	Other (please specify)	mostValuableInfo.other	valued_other	valued_other	valued_other	valued_other	valued_other	valuedother		
+What types of information do you find most valuable coming from Burning Man Project?	Other (please specify)	mostValuableInfo.other.writeIn	valued_other_qual	valued_other_qual	valued_other_qual	valued_other_qual	valued_other_qual	valuedother_qual		
+Have you listened to BMIR (Burning Man Information Radio) 94.5 FM this year?	I listened online	BMIR.listenedOnline	bmir_online	bmir_online	bmir_online		bmir_online	bmir_online		
+Have you listened to BMIR (Burning Man Information Radio) 94.5 FM this year?	I listened on my mobile device as I traveled to/from Black Rock City	BMIR.listenedMobile	bmir_travelmobile	bmir_travelmobile	bmir_travelmobile	bmir_travelmobile	bmir_travelmobile	bmir_travelmobile		
+Have you listened to BMIR (Burning Man Information Radio) 94.5 FM this year?	I listened over the air on an FM radio in Black Rock City	BMIR.listenedRadio	bmir_brcair	bmir_brcair	bmir_brcair	bmir_brcair	bmir_brcair	bmir_brcair		
+Have you listened to BMIR (Burning Man Information Radio) 94.5 FM this year?	I listened to the loudspeakers at their campsite near Center Camp	BMIR.loudspeakers	bmir_centercamp	bmir_centercamp	bmir_centercamp	bmir_centercamp	bmir_centercamp	bmir_centercamp		
+Have you listened to BMIR (Burning Man Information Radio) 94.5 FM this year?	I had no idea that there was a radio station in Black Rock City	BMIR.dontKnowBMIR	bmir_didntknow	bmir_didntknow	bmir_didntknow	bmir_didntknow	bmir_didntknow	bmir_didntknow		
+Have you listened to BMIR (Burning Man Information Radio) 94.5 FM this year?	"I know about BMIR, but have never listened"	BMIR.didntListen	bmir_no	bmir_no	bmir_no	bmir_no	bmir_no	bmir_no		
 Are you familiar with the following programs and affiliates of the nonprofit Burning Man Project?	Burners Without Borders	nonProfitPrograms.BWB								
 Are you familiar with the following programs and affiliates of the nonprofit Burning Man Project?	Burning Man Arts	nonProfitPrograms.BMArts								
 Are you familiar with the following programs and affiliates of the nonprofit Burning Man Project?	Black Rock Labs (formerly Black Rock Solar)	nonProfitPrograms.blackRockLabs								
@@ -247,63 +245,63 @@ Which of the 10 Principles do you find most difficult to practice in your everyd
 How important are the 10 Principles to you?		tenPrinciplesImportant								
 How essential are the 10 Principles to creating an authentic Burning Man experience?		tenPrinciplesEssential								
 Are you incorporating any of the 10 Principles in your workplace?		tenPrinciplesWorkplace								
-Have you volunteered for any of the following in the last year?	Burning Man Project - Black Rock City	volunteerLastYear.BRC								
-Have you volunteered for any of the following in the last year?	Burning Man Project - Regionals	volunteerLastYear.regionals								
-Have you volunteered for any of the following in the last year?	Burners Without Borders	volunteerLastYear.BWB								
-Have you volunteered for any of the following in the last year?	Fly Ranch Project	volunteerLastYear.flyRanch								
-Have you volunteered for any of the following in the last year?	Art projects	volunteerLastYear.art								
-Have you volunteered for any of the following in the last year?	Political campaigns / voter registration	volunteerLastYear.political								
-Have you volunteered for any of the following in the last year?	Schools / universities	volunteerLastYear.schools								
-Have you volunteered for any of the following in the last year?	Animals / environmental initiatives	volunteerLastYear.environment								
-Have you volunteered for any of the following in the last year?	"Health-related initiatives (e.g., cancer, mental health, etc.)"	volunteerLastYear.health								
-Have you volunteered for any of the following in the last year?	"Human rights and/or poverty-related initiatives (e.g., homelessness, LGBTQ, etc.)"	volunteerLastYear.rights								
-Have you volunteered for any of the following in the last year?	Religious or faith-based initiatives	volunteerLastYear.religious								
-Have you volunteered for any of the following in the last year?	Community groups / clubs	volunteerLastYear.community								
-Have you volunteered for any of the following in the last year?	Self-initiated good deeds	volunteerLastYear.deeds								
-Have you volunteered for any of the following in the last year?	Other nonprofits and charities (please specify)	volunteerLastYear.other								
-Have you volunteered for any of the following in the last year?	Other nonprofits and charities (please specify)	volunteerLastYear.other.writeIn								
-Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Burning Man Project - Black Rock City	donation.BRC								
-Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Burning Man Project - Regionals	donation.regionals								
-Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Burners Without Borders	donation.BWB								
-Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Fly Ranch Project	donation.flyRanch								
-Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Art projects	donation.art								
-Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Political campaigns / voter registration	donation.political								
-Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Schools / universities	donation.schools								
-Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Animals / environmental initiatives	donation.environment								
-Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	"Health-related initiatives (e.g., cancer, mental health, etc.)"	donation.health								
-Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	"Human rights and/or poverty-related initiatives (e.g., homelessness, LGBTQ, etc.)"	donation.rights								
-Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Religious or faith-based initiatives	donation.religious								
-Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Community groups / clubs	donation.community								
-Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Self-initiated good deeds	donation.deeds								
-Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Other nonprofits and charities (please specify)	donation.other								
-Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Other nonprofits and charities (please specify)	donation.writeIn								
-Approximately how many hours per month did you spend on these volunteer efforts in the last year?		volunteerHours								
-"After going to Black Rock City, were you inspired to do more volunteering, donate more goods and/or money, or get more involved in your local community in general?"		inspiredVolunteer								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Art creation/crafting	inspiredSkill.artCreation								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	"Performance art (e.g. dance, fire spinning, etc.)"	inspiredSkill.performance								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	"Physical training (e.g. martial arts, yoga, running, etc.)"	inspiredSkill.physical								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Leadership/interpersonal skills	inspiredSkill.leadership								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Project management	inspiredSkill.projectManagment								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Community organizing/civic engagement	inspiredSkill.community								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Construction/heavy machinery/mechanical work	inspiredSkill.construction								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Electrical engineering/electronics design	inspiredSkill.electrical								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Carpentry/metalwork	inspiredSkill.carpentryMetal								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Graphic design	inspiredSkill.graphicDesign								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Mediation skills	inspiredSkill.mediation								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Self-awareness/emotional skills	inspiredSkill.emotional								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Self-care strategies	inspiredSkill.selfCare								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Survival skills	inspiredSkill.survival								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Other (please specify)	inspiredSkill.other								
-"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Other (please specify)	inspiredSkill.other.writeIn								
-Have any of these skills proved useful in the default world?		skillsUsefulDefaultWorld								
-How are you using these skills outside of Black Rock City?	I am creating things for myself or my family	skillsUsing.creatingForMyself								
-How are you using these skills outside of Black Rock City?	I am creating things for my home community	skillsUsing.creatingForHome								
-How are you using these skills outside of Black Rock City?	I am teaching those skills to members of my home community	skillsUsing.teaching								
-How are you using these skills outside of Black Rock City?	I am using my time at home to create things that I will bring to Black Rock City	skillsUsing.creatingToBringToBRC								
-How are you using these skills outside of Black Rock City?	I am not using these skills outside of Black Rock City	skillsUsing.notUsing								
-How are these new skills impacting your life outside of Black Rock City?	I am developing new and fulfilling relationships in my home community	skillsImpacting.newRelationships								
-How are these new skills impacting your life outside of Black Rock City?	I feel more fulfilled as an individual	skillsImpacting.moreFulfilled								
-How are these new skills impacting your life outside of Black Rock City?	These skills are not impacting my life outside of Black Rock City	skillsImpacting.notImpacting								
+Have you volunteered for any of the following in the last year?	Burning Man Project - Black Rock City	volunteerLastYear.BRC	volunteerbrc	volunteerbrc	volunteerbrc	volunteerbrc				
+Have you volunteered for any of the following in the last year?	Burning Man Project - Regionals	volunteerLastYear.regionals	volunteerbmreg	volunteerbmreg	volunteerbmreg	volunteerbmreg				
+Have you volunteered for any of the following in the last year?	Burners Without Borders	volunteerLastYear.BWB	volunteerbwb	volunteerbwb	volunteerbwb	volunteerbwb				
+Have you volunteered for any of the following in the last year?	Fly Ranch Project	volunteerLastYear.flyRanch	volunteerfly							
+Have you volunteered for any of the following in the last year?	Art projects	volunteerLastYear.art	volunteerart	volunteerart	volunteerart	volunteerart				
+Have you volunteered for any of the following in the last year?	Political campaigns / voter registration	volunteerLastYear.political	volunteerpolit	volunteerpolit	volunteerpolit	volunteerpolit				
+Have you volunteered for any of the following in the last year?	Schools / universities	volunteerLastYear.schools	volunteerschool	volunteerschool	volunteerschool	volunteerschool				
+Have you volunteered for any of the following in the last year?	Animals / environmental initiatives	volunteerLastYear.environment	volunteerenv	volunteerenv	volunteerenv	volunteerenv				
+Have you volunteered for any of the following in the last year?	"Health-related initiatives (e.g., cancer, mental health, etc.)"	volunteerLastYear.health	volunteerhealth							
+Have you volunteered for any of the following in the last year?	"Human rights and/or poverty-related initiatives (e.g., homelessness, LGBTQ, etc.)"	volunteerLastYear.rights	volunteerrights							
+Have you volunteered for any of the following in the last year?	Religious or faith-based initiatives	volunteerLastYear.religious	volunteerrelig							
+Have you volunteered for any of the following in the last year?	Community groups / clubs	volunteerLastYear.community	volunteercommun	volunteercommun	volunteercommun	volunteercommun				
+Have you volunteered for any of the following in the last year?	Self-initiated good deeds	volunteerLastYear.deeds	volunteerself	volunteerself	volunteerself	volunteerself				
+Have you volunteered for any of the following in the last year?	Other nonprofits and charities (please specify)	volunteerLastYear.other	volunteerother	volunteerother	volunteerother	volunteerother				
+Have you volunteered for any of the following in the last year?	Other nonprofits and charities (please specify)	volunteerLastYear.other.writeIn	volunteerother_qual	volunteerother_qual	volunteerother_qual	volunteerother_qual				
+Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Burning Man Project - Black Rock City	donation.BRC	donationbrc							
+Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Burning Man Project - Regionals	donation.regionals	donationbmreg							
+Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Burners Without Borders	donation.BWB	donationbwb							
+Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Fly Ranch Project	donation.flyRanch	donationfly							
+Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Art projects	donation.art	donationart							
+Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Political campaigns / voter registration	donation.political	donationpolit							
+Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Schools / universities	donation.schools	donationschool							
+Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Animals / environmental initiatives	donation.environment	donationenv							
+Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	"Health-related initiatives (e.g., cancer, mental health, etc.)"	donation.health	donationhealth							
+Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	"Human rights and/or poverty-related initiatives (e.g., homelessness, LGBTQ, etc.)"	donation.rights	donationrights							
+Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Religious or faith-based initiatives	donation.religious	donationrelig							
+Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Community groups / clubs	donation.community	donationcommun							
+Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Self-initiated good deeds	donation.deeds	donationself							
+Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Other nonprofits and charities (please specify)	donation.other	donationother							
+Have you made a charitable donation (of goods and/or money) toward any of the following in the last year?	Other nonprofits and charities (please specify)	donation.writeIn	donationother_qual							
+Approximately how many hours per month did you spend on these volunteer efforts in the last year?		volunteerHours	volunteerhours	volunteerhours						
+"After going to Black Rock City, were you inspired to do more volunteering, donate more goods and/or money, or get more involved in your local community in general?"		inspiredVolunteer	volunteerinspired	volunteerinspired	volunteerinspired	volunteerinspired				
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Art creation/crafting	inspiredSkill.artCreation	skillcreation	skillcreation	skillcreation	skillcreation				
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	"Performance art (e.g. dance, fire spinning, etc.)"	inspiredSkill.performance	skillperf	skillperf	skillperf	skillperf				
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	"Physical training (e.g. martial arts, yoga, running, etc.)"	inspiredSkill.physical	skillphys							
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Leadership/interpersonal skills	inspiredSkill.leadership	skilllead	skilllead	skilllead	skilllead				
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Project management	inspiredSkill.projectManagment	skillmanag	skillmanag	skillmanag	skillmanag				
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Community organizing/civic engagement	inspiredSkill.community	skillcommun	skillcommun						
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Construction/heavy machinery/mechanical work	inspiredSkill.construction	skillconstruct	skillconstruct	skillconstruct	skillconstruct				
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Electrical engineering/electronics design	inspiredSkill.electrical	skillelectric							
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Carpentry/metalwork	inspiredSkill.carpentryMetal	skillcarpmetal	skillcarpmetal	skillcarpmetal	skillcarpmetal				
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Graphic design	inspiredSkill.graphicDesign	skillgraph	skillgraph	skillgraph	skillgraph				
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Mediation skills	inspiredSkill.mediation	skillmedit	skillmedit	skillmedit	skillmedit				
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Self-awareness/emotional skills	inspiredSkill.emotional	skillemotion	skillemotion	skillemotion	skillemotion				
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Self-care strategies	inspiredSkill.selfCare	skillcare	skillcare						
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Survival skills	inspiredSkill.survival	skillsurv	skillsurv						
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Other (please specify)	inspiredSkill.other	skillother	skillother	skillother	skillother				
+"After visiting Black Rock City, were you inspired to learn or practice any of the following skills?"	Other (please specify)	inspiredSkill.other.writeIn	skillother_qual	skillother_qual	skillother_qual	skillother_qual				
+Have any of these skills proved useful in the default world?		skillsUsefulDefaultWorld	skilluseful	skilluseful	skilluseful	skilluseful				
+How are you using these skills outside of Black Rock City?	I am creating things for myself or my family	skillsUsing.creatingForMyself	skillusefam	skillusefam	skillusefam					
+How are you using these skills outside of Black Rock City?	I am creating things for my home community	skillsUsing.creatingForHome	skillusecomm	skillusecomm	skillusecomm					
+How are you using these skills outside of Black Rock City?	I am teaching those skills to members of my home community	skillsUsing.teaching	skilluseteach	skilluseteach	skilluseteach					
+How are you using these skills outside of Black Rock City?	I am using my time at home to create things that I will bring to Black Rock City	skillsUsing.creatingToBringToBRC	skillusebrc	skillusebrc	skillusebrc					
+How are you using these skills outside of Black Rock City?	I am not using these skills outside of Black Rock City	skillsUsing.notUsing	skillusenot	skillusenot						
+How are these new skills impacting your life outside of Black Rock City?	I am developing new and fulfilling relationships in my home community	skillsImpacting.newRelationships	skilluserel	skilluserel						
+How are these new skills impacting your life outside of Black Rock City?	I feel more fulfilled as an individual	skillsImpacting.moreFulfilled	skillusefulfilled	skillusefulfilled						
+How are these new skills impacting your life outside of Black Rock City?	These skills are not impacting my life outside of Black Rock City	skillsImpacting.notImpacting	skillusenolifeimpact	skillusenolifeimpact						
 Do you identify as a Burner?		identifyAsBurner								
 "Do you think Burning Man Project should be involved in facilitating and producing year-round activities, and not just the event in Black Rock City?"		yearRoundActivities								
 "If you were given $1,000 to donate to programs of the nonprofit Burning Man Project, how would you want it to be distributed among the following?"	Placing large interactive art in public places in the U.S.	donate1k.publicArtUS								
@@ -527,3 +525,5 @@ How did you hear about the BRC Census online survey (the form you are currently 
 How did you hear about the BRC Census online survey (the form you are currently filling out)?	Other - Please specify	census.other								
 How did you hear about the BRC Census online survey (the form you are currently filling out)?	Other - Please specify	census.other.writeIn								
 Virgin		virgin	virgin	virgin	virgin	virgin	virgin	virgin	virgin	
+ethnoracial 2013 through 2019			ethno	ethno	ethno	ethno	ethno	ethno	ethno	
+Number of the last four Federal US elections voted among eligible voters?		voteUS.timesVoted.eligible	nbvotes	nbvotes	nbvotes	nbvotes	nbvotes	nbvotes	nbvotes	
