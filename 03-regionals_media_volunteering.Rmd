@@ -497,7 +497,7 @@ skillsInspire <- makePlotData("After visiting Black Rock City, were you inspired
                                          "Other"),
                               labelOrder = c(15,10,7,8,11,9,5,6,2,14,4,3,13,12,1))
 
-ggplot(skillsInspire[skillsInspire$year == 2022], aes(x = labels, y = est)) +
+ggplot(skillsInspire[skillsInspire$year == 2022,], aes(x = labels, y = est)) +
   geom_bar(stat = "identity", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
   labs(x = "Non-profit or charity", y = "", fill = "Year") +
@@ -538,7 +538,7 @@ ggplot(skillsUseful, aes(x = year, y = est, color = labels)) +
   geom_point(size = 2.25, color = "black") +
   theme_bw(13) +
   theme(panel.grid.minor = element_blank()) +
-  scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
+  scale_x_continuous(breaks = c(2016:2019, 2022), labels = c(2016:2019, 2022)) +
   scale_y_continuous(labels = percent) +
   scale_color_manual(values = c("#EA008B", "#FF416f", "#FF7457", "#FFA349")) +
   labs(x = "Year", y = "", color = "Skills useful in the \n default world")
@@ -603,7 +603,7 @@ ggplot(skillsImpact, aes(x = factor(year, levels = c("2022", "2019", "2018")),
                           y = est, fill = labels)) +
   geom_bar(stat = "identity", position = "dodge") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Non-profit or charity", y = "", fill = "Year") +
+  labs(x = "Non-profit or charity", y = "", fill = "Impact of these skills") +
   theme_bw() +
   scale_fill_manual(values = c("#EA008B", "#BDA5AD", "#FF7457"))
 
