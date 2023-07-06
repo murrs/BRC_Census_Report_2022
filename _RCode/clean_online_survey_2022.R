@@ -3,7 +3,7 @@ library(data.table)
 raw <- fread("20230103235454-SurveyExport.csv")
 raw <- do.call(data.table, lapply(raw, function(x) {ifelse(x == "", NA, x)}))
 varxwalk <- fread("question_name_xwalk.tsv", sep = "\t")
-names(raw) = varxwalk$varname2022
+names(raw) = varxwalk$varname2022[1:ncol(raw)]
 
 #Eligibility: first time filling out census/did not go in 2022/Complete status
 raw <- raw[raw$virgin != 3 & raw$status == "Complete" & !is.na(attended.2022)]
@@ -158,6 +158,7 @@ raw[, disability.mobility := !is.na(disability.mobility)]
 raw[, disability.sensoryProcessing := !is.na(disability.sensoryProcessing)]
 raw[, disability.temporary := !is.na(disability.temporary)]
 raw[, disability.notListed := !is.na(disability.notListed)]
+raw[, disability.selfDescribe := !is.na(disability.selfDescribe)]
 raw[, disability.noDisability := !is.na(disability.noDisability)]
 
 #Eligible to vote in the US
@@ -291,7 +292,7 @@ raw[, sexuality.grayDemiSexual := !is.na(sexuality.grayDemiSexual)]
 raw[, sexuality.queer := !is.na(sexuality.queer)]
 raw[, sexuality.sexLoveAddict := !is.na(sexuality.sexLoveAddict)]
 raw[, sexuality.openCurious := !is.na(sexuality.openCurious)]
-raw[, sexuality.selfDescribe := !is.na(sexuality.selfDescribe)]
+raw[, sexuality.other := !is.na(sexuality.other)]
 
 #Spirituality
 spiritualitySwitch <- function(x){
@@ -408,12 +409,24 @@ raw[, BMIR.dontKnowBMIR := !is.na(BMIR.dontKnowBMIR)]
 raw[, BMIR.didntListen := !is.na(BMIR.didntListen)]
 
 #Non-profit programs
-raw[, nonProfitPrograms.BWB := !is.na(nonProfitPrograms.BWB)]
-raw[, nonProfitPrograms.BMArts := !is.na(nonProfitPrograms.BMArts)]
-raw[, nonProfitPrograms.blackRockLabs := !is.na(nonProfitPrograms.blackRockLabs)]
-raw[, nonProfitPrograms.regionalNetwork := !is.na(nonProfitPrograms.regionalNetwork)]
-raw[, nonProfitPrograms.flyRanch := !is.na(nonProfitPrograms.flyRanch)]
-raw[, nonProfitPrograms.philosophicalCenter := !is.na(nonProfitPrograms.philosophicalCenter)]
+raw[, nonProfitPrograms.BWB := ifelse(nonProfitPrograms.BWB == 1, "Yes",
+             ifelse(nonProfitPrograms.BWB == 2, "Heard of it",
+                    ifelse(nonProfitPrograms.BWB == 3, "No", NA)))]
+raw[, nonProfitPrograms.BMArts := ifelse(nonProfitPrograms.BMArts == 1, "Yes",
+             ifelse(nonProfitPrograms.BMArts == 2, "Heard of it",
+                    ifelse(nonProfitPrograms.BMArts == 3, "No", NA)))]
+raw[, nonProfitPrograms.blackRockLabs := ifelse(nonProfitPrograms.blackRockLabs == 1, "Yes",
+             ifelse(nonProfitPrograms.blackRockLabs == 2, "Heard of it",
+                    ifelse(nonProfitPrograms.blackRockLabs == 3, "No", NA)))]
+raw[, nonProfitPrograms.regionalNetwork := ifelse(nonProfitPrograms.regionalNetwork == 1, "Yes",
+             ifelse(nonProfitPrograms.regionalNetwork == 2, "Heard of it",
+                    ifelse(nonProfitPrograms.regionalNetwork == 3, "No", NA)))]
+raw[, nonProfitPrograms.flyRanch := ifelse(nonProfitPrograms.flyRanch == 1, "Yes",
+             ifelse(nonProfitPrograms.flyRanch == 2, "Heard of it",
+                    ifelse(nonProfitPrograms.flyRanch == 3, "No", NA)))]
+raw[, nonProfitPrograms.philosophicalCenter := ifelse(nonProfitPrograms.philosophicalCenter == 1, "Yes",
+             ifelse(nonProfitPrograms.philosophicalCenter == 2, "Heard of it",
+                    ifelse(nonProfitPrograms.philosophicalCenter == 3, "No", NA)))]
 
 #Ten principles
 #TODO Identify people who skipped this question
@@ -599,6 +612,87 @@ raw[, donate1k.regionals := sapply(donate1k.regionals, cleanDonate1k)]
 raw[, donate1k.RIDE := sapply(donate1k.RIDE, cleanDonate1k)]
 raw[, donate1k.sustainability := sapply(donate1k.sustainability, cleanDonate1k)]
 raw[, donate1k.other := sapply(donate1k.other, cleanDonate1k)]
+
+donate1k.allMissing <- is.na(raw$donate1k.publicArtUS) &
+  is.na(raw$donate1k.publicArtAbroad) &
+  is.na(raw$donate1k.disasterRelief) & 
+  is.na(raw$donate1k.planInfrastructureBRC) &
+  is.na(raw$donate1k.lowIncomeTickets) &
+  is.na(raw$donate1k.artBRC) &
+  is.na(raw$donate1k.multimediaBRC) &
+  is.na(raw$donate1k.regionals) &
+  is.na(raw$donate1k.RIDE) &
+  is.na(raw$donate1k.sustainability) &
+  is.na(raw$donate1k.other)
+
+donate1k.sums <- rowSums(cbind(raw$donate1k.publicArtUS,
+                               raw$donate1k.publicArtAbroad,
+                               raw$donate1k.disasterRelief,
+                               raw$donate1k.planInfrastructureBRC,
+                               raw$donate1k.lowIncomeTickets,
+                               raw$donate1k.artBRC,
+                               raw$donate1k.multimediaBRC,
+                               raw$donate1k.regionals,
+                               raw$donate1k.RIDE,
+                               raw$donate1k.sustainability,
+                               raw$donate1k.other), na.rm = TRUE)
+
+raw$donate1k.publicArtUS <- ifelse(donate1k.allMissing | 
+                                     (donate1k.sums < 100), NA,
+                                   ifelse(is.na(raw$donate1k.publicArtUS), 0,
+                                          (raw$donate1k.publicArtUS / 
+                                             donate1k.sums) * 1000))
+raw$donate1k.publicArtAbroad <- ifelse(donate1k.allMissing | 
+                                     (donate1k.sums < 100), NA,
+                                   ifelse(is.na(raw$donate1k.publicArtAbroad), 0,
+                                          (raw$donate1k.publicArtAbroad / 
+                                             donate1k.sums) * 1000))
+raw$donate1k.disasterRelief <- ifelse(donate1k.allMissing | 
+                                         (donate1k.sums < 100), NA,
+                                       ifelse(is.na(raw$donate1k.disasterRelief), 0,
+                                              (raw$donate1k.disasterRelief / 
+                                                 donate1k.sums) * 1000))
+raw$donate1k.planInfrastructureBRC <- ifelse(donate1k.allMissing | 
+                                        (donate1k.sums < 100), NA,
+                                      ifelse(is.na(raw$donate1k.planInfrastructureBRC), 0,
+                                             (raw$donate1k.planInfrastructureBRC / 
+                                                donate1k.sums) * 1000))
+raw$donate1k.lowIncomeTickets <- ifelse(donate1k.allMissing | 
+                                          (donate1k.sums < 100), NA,
+                                        ifelse(is.na(raw$donate1k.lowIncomeTickets), 0,
+                                               (raw$donate1k.lowIncomeTickets / 
+                                                  donate1k.sums) * 1000))
+raw$donate1k.artBRC <- ifelse(donate1k.allMissing | 
+                                          (donate1k.sums < 100), NA,
+                                        ifelse(is.na(raw$donate1k.artBRC), 0,
+                                               (raw$donate1k.artBRC / 
+                                                  donate1k.sums) * 1000))
+raw$donate1k.multimediaBRC <- ifelse(donate1k.allMissing | 
+                                (donate1k.sums < 100), NA,
+                              ifelse(is.na(raw$donate1k.multimediaBRC), 0,
+                                     (raw$donate1k.multimediaBRC / 
+                                        donate1k.sums) * 1000))
+raw$donate1k.regionals <- ifelse(donate1k.allMissing | 
+                                       (donate1k.sums < 100), NA,
+                                     ifelse(is.na(raw$donate1k.regionals), 0,
+                                            (raw$donate1k.regionals / 
+                                               donate1k.sums) * 1000))
+raw$donate1k.RIDE <- ifelse(donate1k.allMissing | 
+                                   (donate1k.sums < 100), NA,
+                                 ifelse(is.na(raw$donate1k.RIDE), 0,
+                                        (raw$donate1k.RIDE / 
+                                           donate1k.sums) * 1000))
+raw$donate1k.sustainability <- ifelse(donate1k.allMissing | 
+                              (donate1k.sums < 100), NA,
+                            ifelse(is.na(raw$donate1k.sustainability), 0,
+                                   (raw$donate1k.sustainability / 
+                                      donate1k.sums) * 1000))
+raw$donate1k.other <- ifelse(donate1k.allMissing | 
+                                        (donate1k.sums < 100), NA,
+                                      ifelse(is.na(raw$donate1k.other), 0,
+                                             (raw$donate1k.other / 
+                                                donate1k.sums) * 1000))
+
 
 #First arrived at BRC
 firstArrivedBRCSwitch <- function(x){
@@ -1204,6 +1298,7 @@ raw[, sustainabilityAddress.container := !is.na(sustainabilityAddress.container)
 raw[, sustainabilityAddress.createContent := !is.na(sustainabilityAddress.createContent)]
 raw[, sustainabilityAddress.greenCamp := !is.na(sustainabilityAddress.greenCamp)]
 raw[, sustainabilityAddress.carpool := !is.na(sustainabilityAddress.carpool)]
+raw[, sustainabilityAddress.BXB := !is.na(sustainabilityAddress.BXB)]
 raw[, sustainabilityAddress.pooledResources := !is.na(sustainabilityAddress.pooledResources)]
 raw[, sustainabilityAddress.HUBS := !is.na(sustainabilityAddress.HUBS)]
 raw[, sustainabilityAddress.renewableEnergy := !is.na(sustainabilityAddress.renewableEnergy)]
