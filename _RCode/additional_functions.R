@@ -126,6 +126,12 @@ format_table_entry <- function(x, format = c("percent", "proportion"),
                            sprintf(fdf, round(x$upper, digits)), ")")
       outEntries[lessThanPoint1] <- "< 0.001 (--, --)"
     }
+    else if(format == "dollar"){
+      fdf <- paste0("%.", digits, "f")
+      outEntries <- paste0("$", sprintf(fdf, round(x$est, digits)), " (", 
+                           "$", sprintf(fdf, round(x$lower, digits)), ", ", 
+                           "$", sprintf(fdf, round(x$upper, digits)), ")")
+    }
     else{
       stop("Invalid format")
     }
@@ -146,6 +152,12 @@ format_table_entry <- function(x, format = c("percent", "proportion"),
                            sprintf(fdf, plusminus))
       outEntries[lessThanPoint1] <- "< 0.001"
     }
+    else if(format == "dollar"){
+      fdf <- paste0("%.", digits, "f")
+      plusminus = round(max(c(x$est - x$lower, x$upper - x$est)), digits)
+      outEntries <- paste0("$", sprintf(fdf, round(x$est, digits)), " ± ", 
+                           "$", sprintf(fdf, plusminus))
+    }
     else{
       stop("Invalid format")
     }
@@ -160,6 +172,10 @@ format_table_entry <- function(x, format = c("percent", "proportion"),
       fdf <- paste0("%.", digits, "f")
       outEntries <- sprintf(fdf, round(x$est, digits))
       outEntries[lessThanPoint1] <- "< 0.001"
+    }
+    else if(format == "dollar"){
+      fdf <- paste0("%.", digits, "f")
+      outEntries <- paste0("$", sprintf(fdf, round(x$est, digits)))
     }
     else{
       stop("Invalid format")
