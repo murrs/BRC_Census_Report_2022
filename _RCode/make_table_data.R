@@ -1,4 +1,4 @@
-makeTableData <- function(plotDat, format = c("percent", "proportion"),
+makeTableData <- function(plotDat, format = c("percent", "proportion", "dollar"),
                             digits = 3, 
                             confInt = c("interval", "plusminus", "none")){
   plotDat <- plotDat[order(plotDat$year, plotDat$labels),]

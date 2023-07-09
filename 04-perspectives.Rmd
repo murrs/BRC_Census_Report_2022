@@ -850,7 +850,7 @@ ggplot(donate[donate$year == 2022,], aes(x = labels, y = dollars, weight = weigh
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-```{r results="as.is}
+```{r results="as.is"}
 makeTableData(donateMean, format = "dollar", digits = 0) |>
   kbl(col.names = c(2015:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
