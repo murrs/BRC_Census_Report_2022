@@ -45,8 +45,8 @@ virgin <- makePlotData(varName = "Virgin", varNameTable,
 
 
 ggplot(virgin[virgin$labels == "Virgin",], aes(x = year, y = est)) +
-  geom_line(linewidth = 1.5, color = "#EA008B") +
-  geom_point(size = 2.25, color = "black") +
+  geom_line(linewidth = 1.5, color = "#EA008B", alpha = 0.7) +
+  geom_point(size = 2.25) +
   # geom_errorbar(aes(ymin = lower, ymax = upper), color = "black", width = 0.2,
   #               linewidth = 1.25) +
   theme_bw(13) +
@@ -54,7 +54,7 @@ ggplot(virgin[virgin$labels == "Virgin",], aes(x = year, y = est)) +
   # scale_color_brewer(type = "seq", palette = 11) +
   scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
   scale_y_continuous(labels = percent) +
-  labs(x = "Year", y = "Percent of Burners at BRC in 2022")
+  labs(x = "", y = "Percent of Burners at BRC in 2022")
 
 #An annoying thing happens when subsetting to one row.  The table class turns
 #  into a character vector.  Happy to take suggestions on a better way to do
@@ -188,8 +188,8 @@ gender <- makePlotData(varName = "What is your current gender?", varNameTable,
 gender <- rbind(gender, gender22)
 
 ggplot(gender, aes(x = year, y = est, color = labels)) +
-  geom_line(linewidth = 1.5) +
-  geom_point(size = 2.25, color = "black") +
+  geom_line(linewidth = 1.5, alpha = 0.7) +
+  geom_point(size = 2.25) +
   # geom_errorbar(aes(ymin = lower, ymax = upper), color = "black", width = 0.2,
   #               linewidth = 1) +
   theme_bw(13) +
@@ -197,7 +197,7 @@ ggplot(gender, aes(x = year, y = est, color = labels)) +
   scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
   scale_y_continuous(labels = percent) +
   scale_color_manual(values = c("#EA008B", "#554149", "#BDA5AD")) +
-  labs(x = "Year", y = "", 
+  labs(x = "", y = "", 
        color = "Current gender")
 
 makeTableData(gender) |>
@@ -732,12 +732,19 @@ makeTableData(education) |>
   scroll_box(width = "100%")
 ```
 
-<!-- ## Residence -->
+## Residence
 
-<!-- ### Residence inside of Black Rock City -->
+### Residence inside of Black Rock City
+```{r}
+library(ggmap)
+library(RColorBrewer)
 
+BRCMap <- get_map(location = "Black Rock City, NV", 
+                  source = "stamen", maptype = "toner-lite", 
+                  crop = TRUE, zoom = 2)
+```
 
-<!-- ### Residence outside of Black Rock City -->
+### Residence outside of Black Rock City
 
 
 <!-- ### California and Nevada County Residence -->

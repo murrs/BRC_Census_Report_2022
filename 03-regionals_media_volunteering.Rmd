@@ -407,7 +407,7 @@ donation <- makePlotData("Have you made a charitable donation (of goods and/or m
                           varNameTable = varNameTable,
                           designs = list(design19, design22),
                           years = c(2019, 2022),
-                          levels = c(as.list(rep("yes", times = 4)), 
+                          levels = c(as.list(rep("yes", times = 1)), 
                                            list(TRUE)),
                           labels = c("Black Rock City",
                                      "Burning Man Regionals",
@@ -423,7 +423,7 @@ donation <- makePlotData("Have you made a charitable donation (of goods and/or m
                                      "Community groups or clubs",
                                      "Self-initiated good deeds",
                                      "Other non-profits and \n charities"),
-                          labelOrder = c(14,3,4,11,6,2,9,7,8,10,1,5,12,13))
+                          labelOrder = c(14,4,3,2,11,7,6,12,13,9,8,1,5,10))
 
 ggplot(donation, aes(x = labels, y = est, fill = as.factor(year))) +
   geom_bar(stat = "identity", fill = "#EA008B", position = "dodge") +

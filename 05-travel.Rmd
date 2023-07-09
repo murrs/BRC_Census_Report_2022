@@ -1,65 +1,599 @@
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+# Preparation
+
+# Read in all years of data
+library(data.table)
+library(survey)
+library(ggplot2)
+library(scales)
+library(knitr)
+library(kableExtra)
+source(paste0(getwd(), "/_RCode/read_census_data.R"))
+source(paste0(getwd(), "/_RCode/make_table_data.R"))
+source(paste0(getwd(), "/_RCode/make_plot_data.R"))
+source(paste0(getwd(), "/_RCode/additional_functions.R"))
+```
+
 # Travel Logistics
 
 ## Arrival and Departure
 
 ### Arrival date
+<!-- TODO: bargraphs for each year comparing arrival date -->
 
+```{r}
+arrival <- makePlotData("I arrived in BRC the first time in 2022",
+                        varNameTable = varNameTable,
+                        designs = list(design22),
+                        years = 2022,
+                        levels = c("Before Wed 8/24", "Fri 8/26 (pre-event)",
+                                   "Fri 9/02", "Mon 8/29", "Mon 9/05", 
+                                   "Sat 8/27 (pre-event)", "Sat 9/03",
+                                   "Sun 8/28", "Sun 9/04", "Thu 8/25 (pre-event)",
+                                   "Thu 9/01", "Tue 8/30", "Tue 9/06",
+                                   "Wed 8/24 (pre-event)", "Wed 8/31"),
+                        labelOrder = c("Before Wed 8/24", "Wed 8/24 (pre-event)",
+                                   "Thu 8/25 (pre-event)", "Fri 8/26 (pre-event)",
+                                   "Sat 8/27 (pre-event)", "Sun 8/28",
+                                   "Mon 8/29", "Tue 8/30", "Wed 8/31",
+                                   "Thu 9/01", "Fri 9/02", "Sat 9/03",
+                                   "Sun 9/04", "Mon 9/05", "Tue 9/06"))
+
+ggplot(arrival, aes(x = labels, y = est)) +
+  geom_bar(stat = "identity", fill = "#EA008B") +
+  scale_y_continuous(labels = percent) +
+  labs(x = "Arrival date", y = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+
+makeTableData(arrival) |>
+  kbl(col.names = c(2022),
+      row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  kable_styling() |>
+  column_spec(column = 1:2, width_min = "9.5em") |>
+  scroll_box(width = "100%")
+```
 
 
 
 ### Point of entry
+```{r}
+pointOfEntry <- makePlotData("How did you arrive at Black Rock City? Select the best answer.",
+                             varNameTable = varNameTable,
+                             designs = list(design15, design16, design17,
+                                            design18, design19, design22),
+                             years = c(2015:2019),
+                             levels = c(rep(list(c("Airport", "Burner_Express",
+                                                   "Gate", "Other", 
+                                                   "Other_shuttle",
+                                                   "Point_1")), times = 5),
+                                        list(c("BRC airport",
+                                        "Gate in a Burner Express Bus",
+                                        "Gate in a vehicle",
+                                        "Gate with another shuttle service",
+                                        "Other", "Point 1"))),
+                             labels = c("BRC airport",
+                                        "Gate in a Burner Express Bus",
+                                        "Gate in a vehicle",
+                                        "Gate with another shuttle service",
+                                        "Other", "Point 1"),
+                             labelOrder = c(3,2,5,1,4,5))
 
+ggplot(pointOfEntry, aes(x = labels, y = est)) +
+  geom_bar(stat = "identity", fill = "#EA008B") +
+  scale_y_continuous(labels = percent) +
+  labs(x = "Point of entry", y = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+
+makeTableData(pointOfEntry) |>
+  kbl(col.names = c(2015:2019, 2022),
+      row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  kable_styling() |>
+  column_spec(column = 1:7, width_min = "9.5em") |>
+  scroll_box(width = "100%")
+```
 
 
 
 ### Departure date
+<!-- TODO: bargraphs for each year comparing departure date -->
 
+```{r}
+departure <- makePlotData("I left BRC",
+                          varNameTable = varNameTable,
+                          designs = list(design22),
+                          years = 2022,
+                          levels = c("After Tue 9/06 (post-event)",
+                                     "Before Sun 8/28", "Fri 9/02", "Mon 8/29", 
+                                     "Mon 9/05", "Sat 9/03", "Sun 8/28", 
+                                     "Sun 9/04", "Thu 9/01", "Tue 8/30", 
+                                     "Tue 9/06", "Wed 8/31"),
+                          labelOrder = c("Before Sun 8/28", "Sun 8/28",
+                                         "Mon 8/29", "Tue 8/30", "Wed 8/31",
+                                         "Thu 9/01", "Fri 9/02", "Sat 9/03",
+                                         "Sun 9/04", "Mon 9/05", "Tue 9/06",
+                                         "After Tue 9/06 (post-event)"))
+
+ggplot(departure, aes(x = labels, y = est)) +
+  geom_bar(stat = "identity", fill = "#EA008B") +
+  scale_y_continuous(labels = percent) +
+  labs(x = "Departure date", y = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+
+makeTableData(departure) |>
+  kbl(col.names = c(2022),
+      row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  kable_styling() |>
+  column_spec(column = 1:2, width_min = "9.5em") |>
+  scroll_box(width = "100%")
+```
 
 
 
 ### Point of departure
+```{r}
+pointOfDeparture <- makePlotData("How did you depart from Black Rock City? Select the best answer.",
+                                 varNameTable = varNameTable,
+                                 designs = list(design15, design16, design17,
+                                                design18, design19, design22),
+                                 years = c(2015:2019, 2022),
+                                 levels = c(rep(list(c("Airport",
+                                                       "Burner_Express",
+                                                       "Gate_diffvehicle",
+                                                       "Gate_samevehicle",
+                                                       "Other",
+                                                       "Other_shuttle",
+                                                       "Point_1")), times = 5),
+                                            list(c("BRC airport", 
+                                            "Gate in a Burner Express Bus",
+                                            "Gate in a different vehicle",
+                                            "Gate in the same vehicle",
+                                            "Gate with another shuttle service",
+                                            "Other", "Point 1"))),
+                                 labels = c("BRC airport", 
+                                            "Gate in a Burner Express Bus",
+                                            "Gate in a different vehicle",
+                                            "Gate in the same vehicle",
+                                            "Gate with another shuttle service",
+                                            "Other", "Point 1"),
+                                 labelOrder = c(4, 3, 2, 7, 1, 5, 6))
 
+ggplot(pointOfDeparture, aes(x = labels, y = est)) +
+  geom_bar(stat = "identity", fill = "#EA008B") +
+  scale_y_continuous(labels = percent) +
+  labs(x = "Point of departure", y = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 
+makeTableData(pointOfDeparture) |>
+  kbl(col.names = c(2015:2019, 2022),
+      row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  kable_styling() |>
+  column_spec(column = 1:7, width_min = "9.5em") |>
+  scroll_box(width = "100%")
+```
 
 ## Flying to Black Rock City
 
 ### Did you fly in an airplane to get (at least part of the way) to Black Rock City this year?
+```{r}
+# The flyyn variable was not created in the data sets from Hunter in 2014-2017.
+
+design14$variables$flyyn <- ifelse(design14$variables$fly == "No", "no", "yes")
+design15$variables$flyyn <- ifelse(design15$variables$fly == "No", "no", "yes")
+design16$variables$flyyn <- ifelse(design16$variables$fly == "No", "no", "yes")
+design17$variables$flyyn <- ifelse(design17$variables$fly == "No", "no", "yes")
+
+flyyn <- makePlotData("Did you fly in an airplane to get (at least part of the way) to Black Rock City this year?",
+                      varNameTable = varNameTable,
+                      designs = list(design14, design15, design16, design17, 
+                                     design18, design19, design22),
+                      years = c(2014:2019, 2022),
+                      levels = list("yes", "yes", "Yes"),
+                      labels = "Flew (at least partway) \n to Black Rock City")
+
+ggplot(flyyn, aes(x = year, y = est, color = labels)) +
+  geom_line(linewidth = 1.5, alpha = 0.7) +
+  geom_point(size = 2.25) +
+  theme_bw(13) +
+  theme(panel.grid.minor = element_blank()) +
+  scale_x_continuous(breaks = c(2014:2019, 2022), labels = c(2014:2019, 2022)) +
+  scale_y_continuous(labels = percent) +
+  scale_color_manual(values = c("#EA008B")) +
+  guides(color = "none") +
+  labs(x = "", y = "", color = "")
+
+makeTableData(flyyn) |>
+  kbl(col.names = c(2014:2019, 2022),
+      row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  kable_styling() |>
+  column_spec(column = 1:8, width_min = "9.5em") |>
+  scroll_box(width = "100%")
+```
+
+### If you flew, What was your final arrival airport?
+```{r}
+#In previous years the airport variables was processed afterwards
+# to add the "no" and "BRC" options pulled from flyyn and travelbrc questions.
+# I am just modifying it here post-hoc.  Additionally, 2015 has an error in
+# the creation of this variable.
+
+# Salt Lake City wasn't added as an option until 2019.  I am adding results from
+#   previous years using qaulitative response.  TODO: make footnote
+
+# I am also making the No category NA since the population of interest here is
+#   people who flew.
+
+design22$variables$arrivalAirport <- ifelse(design22$variables$howArriveBRC == "BRC airport",
+                                            "BRC", design22$variables$arrivalAirport)
+design15$variables$fly <- ifelse(design15$variables$travelbrc == "Airport",
+                                 "BRC", design15$variables$fly)
+
+design14$variables$fly <- ifelse(grepl("([Ss][Ll][Cc])|([Ss]alt)", 
+                                       design14$variables$fly_TEXT), 
+                                 "Salt_Lake_City", design14$variables$fly)
+design15$variables$fly <- ifelse(grepl("([Ss][Ll][Cc])|([Ss]alt)", 
+                                       design15$variables$fly_TEXT), 
+                                 "Salt_Lake_City", design15$variables$fly)
+design16$variables$fly <- ifelse(grepl("([Ss][Ll][Cc])|([Ss]alt)", 
+                                       design16$variables$flyother), 
+                                 "Salt_Lake_City", design16$variables$fly)
+design17$variables$fly <- ifelse(grepl("([Ss][Ll][Cc])|([Ss]alt)", 
+                                       design17$variables$flyother), 
+                                 "Salt_Lake_City", design17$variables$fly)
+design18$variables$fly <- ifelse(grepl("([Ss][Ll][Cc])|([Ss]alt)", 
+                                       design18$variables$flyother), 
+                                 "Salt_Lake_City", design18$variables$fly)
+
+design14$variables$fly <- ifelse(design14$variables$fly == "No", NA, 
+                                 design14$variables$fly)
+design15$variables$fly <- ifelse(design15$variables$fly == "No", NA, 
+                                 design15$variables$fly)
+design16$variables$fly <- ifelse(design16$variables$fly == "No", NA, 
+                                 design16$variables$fly)
+design17$variables$fly <- ifelse(design17$variables$fly == "No", NA, 
+                                 design17$variables$fly)
+design18$variables$fly <- ifelse(design18$variables$fly == "No", NA, 
+                                 design18$variables$fly)
+design19$variables$fly <- ifelse(design19$variables$fly == "No", NA, 
+                                 design19$variables$fly)
+
+airport <- makePlotData("What was your final arrival airport?",
+                        varNameTable = varNameTable,
+                        designs = list(design14, design15, design16,
+                                       design17, design18, design19,
+                                       design22),
+                        years = c(2014:2019, 2022),
+                        levels = c(rep(list(c("BRC", "Las_Vegas", "LA",
+                                              "Oakland", "Other", "Reno",
+                                              "Sacramento", "Salt_Lake_City", 
+                                              "SF")), times = 6),
+                                   list(c("BRC","Las Vegas", "Los Angeles",
+                                          "Oakland", "Other", "Reno",
+                                          "Sacramento", "Salt Lake City", 
+                                          "San Francisco"))),
+                        labels = c("BRC (88NV)","Las Vegas", "Los Angeles",
+                                   "Oakland", "Other", "Reno",
+                                   "Sacramento", "Salt Lake City", 
+                                   "San Francisco"),
+                        labelOrder = c(6, 9, 8, 3, 7, 2, 1, 4, 5))
+
+airport2 <- makePlotData("What was your final arrival airport?",
+                        varNameTable = varNameTable,
+                        designs = list(design14, design15, design16,
+                                       design17, design18, design19,
+                                       design22),
+                        years = c(2014:2019, 2022),
+                        levels = c(rep(list(c("BRC", "Las_Vegas", "LA",
+                                              "Oakland", "Other", "Reno",
+                                              "Sacramento", "Salt_Lake_City", 
+                                              "SF")), times = 6),
+                                   list(c("BRC","Las Vegas", "Los Angeles",
+                                          "Oakland", "Other", "Reno",
+                                          "Sacramento", "Salt Lake City", 
+                                          "San Francisco"))),
+                        groups = c(1, 2, 3, 2, 2, 4, 5, 6, 7),
+                        labels = c("BRC (88NV)","Other", "Los Angeles",
+                                   "Reno", "Sacramento", "Salt Lake City", 
+                                   "San Francisco"),
+                        labelOrder = c(4, 7, 6, 3, 5, 1, 2))
 
 
+ggplot(airport2, aes(x = year, y = est, color = labels)) +
+  geom_line(linewidth = 1.5, alpha = 0.7) +
+  geom_point(size = 2.25) +
+  theme_bw(13) +
+  theme(panel.grid.minor = element_blank()) +
+  scale_x_continuous(breaks = c(2014:2019, 2022), labels = c(2014:2019, 2022)) +
+  scale_y_continuous(labels = percent) +
+  scale_color_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", 
+                                "#FFCF50", "#554149", "#F9F871")) +
+  labs(x = "", y = "Burning Man Partcipants that flew (%)", color = "")
 
-### What was your final arrival airport?
 
+makeTableData(airport2) |>
+  kbl(col.names = c(2014:2019, 2022),
+      row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  kable_styling() |>
+  column_spec(column = 1:8, width_min = "9.5em") |>
+  scroll_box(width = "100%")
+```
 
 
 
 ## Vehicle Logistics
 
 ### How many people were in your vehicle when you arrived at the Gate?
+<!-- Need to get original raw data from Hunter for this question -->
+<!-- Need to make an answer of 0 NA on the cleaning script -->
+
+```{r}
+nbvehicle22 <- makePlotData("How many people were in your vehicle when you arrived at the Gate (including you)?",
+                            varNameTable = varNameTable,
+                            years = 2022,
+                            designs = list(design22),
+                            levels = as.character(c(0:13, 21, 22)),
+                            groups = c(1,1,2,3,4,5,6,6,7,7,8,8,8,8,9,9),
+                            labels = c("1", "2", "3", "4", "5", "6-7", "8-9", 
+                                       "10-19", "20 or more"))
+nbvehicle13to19 <- makePlotData("How many people were in your vehicle when you arrived at the Gate (including you)?",
+                            varNameTable = varNameTable,
+                            years = 2013:2019,
+                            designs = list(design13, design14, design15,
+                                           design16, design17, design18,
+                                           design19),
+                            levels = as.character(c("1", "2", "3", "4", "5", 
+                                                    "6-7", "8-9", "10-19", 
+                                                    "20 or more")),
+                            labels = c("1", "2", "3", "4", "5", "6-7", "8-9", 
+                                       "10-19", "20 or more"))
+nbvehicle <- rbind(nbvehicle13to19, nbvehicle22)
+
+ggplot(nbvehicle[nbvehicle$year == 2022,], aes(x = labels, y = est)) +
+  geom_bar(stat = "identity", fill = "#EA008B") +
+  scale_y_continuous(labels = percent) +
+  labs(x = "Number of people", y = "") +
+  theme_bw() 
+
+makeTableData(nbvehicle) |>
+  kbl(col.names = c(2013:2019, 2022), row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  column_spec(column = 1:9, width_min = "9.5em") |>
+  kable_styling() |>
+  scroll_box(width = "100%")
+```
 
 
+### Were any people in your vehicle under age 18?
+```{r}
+nb0to12 <- rbind(c(as.numeric(svyciprop(~nb012vehicle > 0, design13)),
+                   attr(svyciprop(~nb012vehicle > 0, design13), "ci")),
+                 c(as.numeric(svyciprop(~nb012vehicle > 0, design14)),
+                   attr(svyciprop(~nb012vehicle > 0, design14), "ci")),
+                 c(as.numeric(svyciprop(~nb012vehicle > 0, design15)),
+                   attr(svyciprop(~nb012vehicle > 0, design15), "ci")),
+                 c(as.numeric(svyciprop(~nb012vehicle > 0, design16)),
+                   attr(svyciprop(~nb012vehicle > 0, design16), "ci")),
+                 c(as.numeric(svyciprop(~nb012vehicle > 0, design17)),
+                   attr(svyciprop(~nb012vehicle > 0, design17), "ci")),
+                 c(as.numeric(svyciprop(~nb012vehicle > 0, design18)),
+                   attr(svyciprop(~nb012vehicle > 0, design18), "ci")),
+                 c(as.numeric(svyciprop(~nb012vehicle > 0, design19)),
+                   attr(svyciprop(~nb012vehicle > 0, design19), "ci")),
+                 c(as.numeric(svyciprop(~vehicleUnder13 > 0, design22)),
+                   attr(svyciprop(~vehicleUnder13 > 0, design22), "ci")))
+nb0to12 <- as.data.frame(nb0to12)
+names(nb0to12) <- c("est", "lower", "upper")
+nb0to12$year <- c(2013:2019, 2022)
+nb0to12$labels <- "Under 13 years old"
 
-### How many people in your vehicle were under age 13?
+
+nb13to17 <- rbind(c(as.numeric(svyciprop(~nb1317vehicle > 0, design13)),
+                   attr(svyciprop(~nb1317vehicle > 0, design13), "ci")),
+                 c(as.numeric(svyciprop(~nb1317vehicle > 0, design14)),
+                   attr(svyciprop(~nb1317vehicle > 0, design14), "ci")),
+                 c(as.numeric(svyciprop(~nb1317vehicle > 0, design15)),
+                   attr(svyciprop(~nb1317vehicle > 0, design15), "ci")),
+                 c(as.numeric(svyciprop(~nb1317vehicle > 0, design16)),
+                   attr(svyciprop(~nb1317vehicle > 0, design16), "ci")),
+                 c(as.numeric(svyciprop(~nb1317vehicle > 0, design17)),
+                   attr(svyciprop(~nb1317vehicle > 0, design17), "ci")),
+                 c(as.numeric(svyciprop(~nb1317vehicle > 0, design18)),
+                   attr(svyciprop(~nb1317vehicle > 0, design18), "ci")),
+                 c(as.numeric(svyciprop(~nb1317vehicle > 0, design19)),
+                   attr(svyciprop(~nb1317vehicle > 0, design19), "ci")),
+                 c(as.numeric(svyciprop(~vehicle13to17 > 0, design22)),
+                   attr(svyciprop(~vehicle13to17 > 0, design22), "ci")))
+
+nb13to17 <- as.data.frame(nb13to17)
+names(nb13to17) <- c("est", "lower", "upper")
+nb13to17$year <- c(2013:2019, 2022)
+nb13to17$labels <- "13 to 17 years old"
+
+nb0to17 <- rbind(c(as.numeric(svyciprop(~((nb1317vehicle > 0) | (nb012vehicle > 0)), design13)),
+                   attr(svyciprop(~((nb1317vehicle > 0) | (nb012vehicle > 0)), design13), "ci")),
+                 c(as.numeric(svyciprop(~((nb1317vehicle > 0) | (nb012vehicle > 0)), design14)),
+                   attr(svyciprop(~((nb1317vehicle > 0) | (nb012vehicle > 0)), design14), "ci")),
+                 c(as.numeric(svyciprop(~((nb1317vehicle > 0) | (nb012vehicle > 0)), design15)),
+                   attr(svyciprop(~((nb1317vehicle > 0) | (nb012vehicle > 0)), design15), "ci")),
+                 c(as.numeric(svyciprop(~((nb1317vehicle > 0) | (nb012vehicle > 0)), design16)),
+                   attr(svyciprop(~((nb1317vehicle > 0) | (nb012vehicle > 0)), design16), "ci")),
+                 c(as.numeric(svyciprop(~((nb1317vehicle > 0) | (nb012vehicle > 0)), design17)),
+                   attr(svyciprop(~((nb1317vehicle > 0) | (nb012vehicle > 0)), design17), "ci")),
+                 c(as.numeric(svyciprop(~((nb1317vehicle > 0) | (nb012vehicle > 0)), design18)),
+                   attr(svyciprop(~((nb1317vehicle > 0) | (nb012vehicle > 0)), design18), "ci")),
+                 c(as.numeric(svyciprop(~((nb1317vehicle > 0) | (nb012vehicle > 0)), design19)),
+                   attr(svyciprop(~((nb1317vehicle > 0) | (nb012vehicle > 0)), design19), "ci")),
+                 c(as.numeric(svyciprop(~((vehicle13to17 > 0) | (vehicleUnder13 > 0)), design22)),
+                   attr(svyciprop(~((vehicle13to17 > 0) | (vehicleUnder13 > 0)) > 0, design22), "ci")))
+
+nb0to17 <- as.data.frame(nb0to17)
+names(nb0to17) <- c("est", "lower", "upper")
+nb0to17$year <- c(2013:2019, 2022)
+nb0to17$labels <- "Under 18 years old"
+
+minorInVehicle <- rbind(nb0to12, nb13to17, nb0to17)
+minorInVehicle$labels <- factor(minorInVehicle$labels, 
+                                levels = c("Under 13 years old",
+                                           "13 to 17 years old",
+                                           "Under 18 years old"))
+
+ggplot(minorInVehicle, aes(x = year, y = est, color = labels)) +
+  geom_line(linewidth = 1.5, alpha = 0.7) +
+  geom_point(size = 2.25) +
+  theme_bw(13) +
+  theme(panel.grid.minor = element_blank()) +
+  scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
+  scale_y_continuous(labels = percent) +
+  scale_color_manual(values = c("#EA008B", "#FF416f", "#FF7457")) +
+  labs(x = "", y = "Percentage of participants with at least one \n minor in their vehicle", color = "")
+
+makeTableData(minorInVehicle) |>
+  kbl(col.names = c(2013:2019, 2022), row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  column_spec(column = 1:9, width_min = "9.5em") |>
+  kable_styling() |>
+  scroll_box(width = "100%")
+```
 
 
+### In what type of vehicle did you travel to Black Rock City
+<!-- Only doing 2022 to save time, the question format is a bit fudgey -->
+<!-- across years and will take some care -->
+```{r}
+vehicleType <- makePlotData("What kind of vehicle did you travel in to Black Rock City this year?",
+                            varNameTable = varNameTable,
+                            designs = list(design22),
+                            years = 2022,
+                            levels = c("Bus", "Car", "Full-size van",
+                                       "Mini-van", "Motorcycle",
+                                       "Moving truck or box truck", "Other",
+                                       "Pick-up truck", "RV",
+                                       "Semi-truck towing trailer", "SUV"),
+                            labelOrder = c(7,5,4,3,10,9,1,2,11,6,8))
 
-### How many people in your vehicle were age 13 to 17?
+ggplot(vehicleType[vehicleType$year == 2022,], aes(x = labels, y = est)) +
+  geom_bar(stat = "identity", fill = "#EA008B") +
+  scale_y_continuous(labels = percent) +
+  labs(x = "Vehicle type", y = "") +
+  theme_bw() +
+  coord_flip()
 
-
-
-### In what type of vehicle did ou travel to Black Rock City
-
+makeTableData(vehicleType)[11:1,] |>
+  kbl(col.names = c(2022), row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  column_spec(column = 1:2, width_min = "9.5em") |>
+  kable_styling() |>
+  scroll_box(width = "100%")
+```
 
 
 ### Was your vehicle towing a trailer
+<!-- Something odd is going on here with the very large category -->
+<!-- In 2019 353 very large, in 2022 6 very large -->
+<!-- Only reporting 2022 until this is resolved -->
 
+```{r}
+towing <- makePlotData("Was your vehicle towing a trailer?",
+                       varNameTable = varNameTable,
+                       designs = list(design22),
+                       years = 2022,
+                       levels = c("Don\'t remember", "Large", "Medium",
+                                  "No trailer", "Small", "Very large"),
+                       labels = c("I don\'t remember", "Large", "Medium",
+                                  "No trailer", "Small", "Very large"),
+                       labelOrder = rev(c(4, 5, 3, 2, 6, 1)))
+
+ggplot(towing[towing$year == 2022,], aes(x = labels, y = est)) +
+  geom_bar(stat = "identity", fill = "#EA008B") +
+  scale_y_continuous(labels = percent) +
+  labs(x = "Vehicle type", y = "") +
+  theme_bw() +
+  coord_flip()
+
+makeTableData(towing)[6:1,] |>
+  kbl(col.names = c(2022), row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  column_spec(column = 1:2, width_min = "9.5em") |>
+  kable_styling() |>
+  scroll_box(width = "100%")
+```
 
 
 ### What kind of fuel did your vehicle run on?
+<!-- Responses channged in 2022.  Could show previous years, but maybe -->
+<!--  it's better to not. -->
+
+```{r}
+vehicleFuelType <- makePlotData("What kind of fuel did your vehicle run on?",
+                                varNameTable = varNameTable,
+                                designs = list(design22),
+                                years = 2022,
+                                levels = c("Battery powered",
+                                           "Bio-diesel or other bio-fuel",
+                                           "Diesel", "I don't know",
+                                           "Premium gasoline",
+                                           "Regular gasoline"),
+                                labelOrder = rev(c(6, 5, 3, 2, 1, 4)))
+
+ggplot(vehicleFuelType[vehicleFuelType$year == 2022,], aes(x = labels, y = est)) +
+  geom_bar(stat = "identity", fill = "#EA008B") +
+  scale_y_continuous(labels = percent) +
+  labs(x = "Vehicle type", y = "") +
+  theme_bw() +
+  coord_flip()
+
+makeTableData(vehicleFuelType)[6:1,] |>
+  kbl(col.names = c(2022), row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  column_spec(column = 1:2, width_min = "9.5em") |>
+  kable_styling() |>
+  scroll_box(width = "100%")
+```
 
 
+### Approximately how many miles to the gallon did your vehicle get on the way to Black Rock City?
+<!-- TODO:clean mpg variable in cleaning script -->
+```{r}
+design22$variables$mpg2 <- ifelse(design22$variables$vehicleMPG > 100, NA,
+                                  design22$variables$vehicleMPG)
+design19$variables$mpg2 <- ifelse(design19$variables$mpgtobrc > 100, NA,
+                                  design19$variables$mpgtobrc)
+mpg <- data.frame(mpg = c(design22$variables$mpg2, design19$variables$mpg2),
+                  weights = c(design22$variables$weights, 
+                              design19$variables$weightbfpublic),
+                  year = c(rep(2022, times = nrow(census22)),
+                           rep(2019, times = nrow(census19))))
+mpg.mean.22 <- svymean(~mpg2, design22, na.rm = TRUE)
+mpg.se.22 <- sqrt(attr(mpg.mean.22, "var"))
+mpg.mean.19 <- svymean(~mpg2, design19, na.rm = TRUE)
+mpg.se.19 <- sqrt(attr(mpg.mean.19, "var"))
+mpg.means <- data.frame(mpg = c(as.numeric(mpg.mean.22), 
+                                as.numeric(mpg.mean.19)),
+                        lower = c(as.numeric(mpg.mean.22) - 1.965 * mpg.se.22,
+                                  as.numeric(mpg.mean.19) - 1.965 * mpg.se.19),
+                        upper = c(as.numeric(mpg.mean.22) + 1.965 * mpg.se.22,
+                                  as.numeric(mpg.mean.19) + 1.965 * mpg.se.19),
+                        year = c(2022, 2019))
 
-### Approximately how many miles to the gallon did your vehicle get on the way to Black Rock City??
-
+ggplot(mpg, aes(x = as.factor(year), y = mpg, weight = weights,
+                group = as.factor(year), fill = as.factor(year))) +
+  geom_boxplot(width=0.6,  fill = "#EA008B", color = "black",
+               alpha = 0.7) +
+  geom_point(data = mpg.means, aes(x = as.factor(year), y = mpg), shape = 23, 
+             size = 3, fill = "grey", inherit.aes = FALSE) +
+  theme_bw() +
+  labs(x = "Miles Per Gallon", y = "", caption = "Diamond indicates weighted mean") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
 ## Route to BRC
 
