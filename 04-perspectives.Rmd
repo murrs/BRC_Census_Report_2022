@@ -38,7 +38,7 @@ ggplot(burnerID, aes(x = year, y = est, fill = labels)) +
   labs(x = "", y = "", fill = "Do you identify as a Burner?") +
   theme_bw()
 
-makeTableData(attendRegional) |>
+makeTableData(burnerID) |>
   kbl(col.names = c(2016:2019, 2022),
       row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
@@ -63,7 +63,7 @@ prinFreq <- makePlotData(varName = "Which of the 10 Principles do you find most 
                                    "Participation", "Immediacy"),
                         labelOrder = c(4,9,7,6,1,8,2,5,10,3))
 
-ggplot(prinFreq[prinDif$year == 2022,], aes(x = labels, y = est)) +
+ggplot(prinFreq[prinFreq$year == 2022,], aes(x = labels, y = est)) +
   geom_bar(stat = "identity", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
   labs(x = "Ten Principles", y = "") +
@@ -232,7 +232,7 @@ workplace10p.1$labels <- factor(workplace10p.1$labels,
                                            "No, I am not",
                                            "Not applicable"))
 workplace10p <- rbind(workplace10p.1, workplace10p.2)
-makeTableData(essential10p) |>
+makeTableData(workplace10p) |>
   kbl(col.names = c(2016:2019, 2022),
       row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
@@ -247,9 +247,10 @@ makeTableData(essential10p) |>
 ### Have you ever brought children under 18 to Black Rock City?
 ```{r}
 broughtChildren <- makePlotData("Have you ever brought children under 18 to Black Rock City?",
-                                designs = list(designs14, designs15, designs16,
-                                               designs17, designs18, designs19,
-                                               designs22),
+                                varNameTable = varNameTable,
+                                designs = list(design14, design15, design16,
+                                               design17, design18, design19,
+                                               design22),
                                 years = c(2014:2019, 2022),
                                 levels = c(rep(list(c("No_but_I_would",
                                                       "No_I_would_not",
@@ -401,15 +402,16 @@ makeTableData(familiarity) |>
 ### Should the Burning Man Project be involved in faciliating and producing year-round activites?
 ```{r}
 yearRound <- makePlotData("Do you think Burning Man Project should be involved in facilitating and producing year-round activities, and not just the event in Black Rock City?",
-                                designs = list(designs15, designs16, designs17, 
-                                               designs18, designs19, designs22),
-                                years = c(2015:2019, 2022),
-                                levels = c(rep(list(c("I_dont_care",
-                                                      "No", "Yes")), times = 5),
-                                           list(c("I don\'t care",
-                                                  "No", "Yes"))),
-                                labels = c("I don\'t care", "No", "Yes"),
-                                labelOrder = c(3,2,1))
+                          varNameTable = varNameTable,
+                          designs = list(designs15, designs16, designs17, 
+                                         designs18, designs19, designs22),
+                          years = c(2015:2019, 2022),
+                          levels = c(rep(list(c("I_dont_care",
+                                                "No", "Yes")), times = 5),
+                                     list(c("I don\'t care",
+                                            "No", "Yes"))),
+                          labels = c("I don\'t care", "No", "Yes"),
+                          labelOrder = c(3,2,1))
 
 ggplot(yearRound, aes(x = year, y = est, color = labels)) +
   geom_line(linewidth = 1.5, alpha = 0.7) +

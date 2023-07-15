@@ -500,12 +500,12 @@ skillsInspire <- makePlotData("After visiting Black Rock City, were you inspired
 ggplot(skillsInspire[skillsInspire$year == 2022,], aes(x = labels, y = est)) +
   geom_bar(stat = "identity", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Non-profit or charity", y = "", fill = "Year") +
+  labs(x = "Skill learned or practiced", y = "", fill = "Year") +
   theme_bw() +
   coord_flip()
 
-makeTableData(donation)[15:1,] |>
-  kbl(col.names = c(2016, 2022), row.names = TRUE) |>
+makeTableData(skillsInspire)[15:1,] |>
+  kbl(col.names = c(2016:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   column_spec(column = 1:6, width_min = "9.5em") |>
   kable_styling() |>
@@ -578,7 +578,7 @@ ggplot(skillsOutside, aes(x = factor(year, levels = c("2022", "2019", "2018", "2
   scale_fill_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", "#FFCF50"))
 
 makeTableData(skillsOutside) |>
-  kbl(col.names = c(2017, 2022), row.names = TRUE) |>
+  kbl(col.names = c(2017:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   column_spec(column = 1:5, width_min = "9.5em") |>
   kable_styling() |>
@@ -608,7 +608,7 @@ ggplot(skillsImpact, aes(x = factor(year, levels = c("2022", "2019", "2018")),
   scale_fill_manual(values = c("#EA008B", "#BDA5AD", "#FF7457"))
 
 makeTableData(skillsImpact) |>
-  kbl(col.names = c(2018, 2022), row.names = TRUE) |>
+  kbl(col.names = c(2018, 2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   column_spec(column = 1:4, width_min = "9.5em") |>
   kable_styling() |>

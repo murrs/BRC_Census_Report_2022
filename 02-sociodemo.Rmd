@@ -14,6 +14,7 @@ library(scales)
 library(knitr)
 library(kableExtra)
 library(weights)
+library(zipcodeR)
 source(paste0(getwd(), "/_RCode/read_census_data.R"))
 source(paste0(getwd(), "/_RCode/make_table_data.R"))
 source(paste0(getwd(), "/_RCode/make_plot_data.R"))
@@ -734,18 +735,55 @@ makeTableData(education) |>
 
 ## Residence
 
-### Residence inside of Black Rock City
-```{r}
-library(ggmap)
-library(RColorBrewer)
+<!-- ### Residence inside of Black Rock City -->
+<!-- ```{r} -->
+<!-- library(ggmap) -->
+<!-- library(RColorBrewer) -->
 
-BRCMap <- get_map(location = "Black Rock City, NV", 
-                  source = "stamen", maptype = "toner-lite", 
-                  crop = TRUE, zoom = 2)
-```
+<!-- BRCMap <- get_map(location = "Black Rock City, NV",  -->
+<!--                   source = "stamen", maptype = "toner-lite",  -->
+<!--                   crop = TRUE, zoom = 2) -->
+<!-- ``` -->
 
 ### Residence outside of Black Rock City
+```{r}
+reside <- makePlotData("Where do you usually reside (when not in Black Rock City)?",
+                       varNameTable = varNameTable,
+                       designs = list(design13, design14, design15,
+                                      design16, design17, design18,
+                                      design19, design22),
+                       years = c(2013:2019, 2022),
+                       levels = c(rep(list(c("California",
+                                             "Canada",
+                                             "Nevada",
+                                             "Other",
+                                             "USA_other")), times = 7),
+                                  list(c("Within California", "In Canada",
+                                         "Within Nevada", "Other",
+                                         "Other location within U.S."))),
+                       labels = c("Within California", "In Canada",
+                                  "Within Nevada", "Other",
+                                  "Other location within U.S."),
+                       labelOrder = c(1, 3, 5, 2, 4))
 
+ggplot(reside, aes(x = year, y = est, color = labels)) +
+  geom_line(linewidth = 1.5, alpha = 0.7) +
+  geom_point(size = 2.25) +
+  theme_bw(13) +
+  theme(panel.grid.minor = element_blank()) +
+  scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
+  scale_y_continuous(labels = percent) +
+  scale_color_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", 
+                     "#A07200", "#FFCF50")) +
+  labs(x = "Year", y = "", color = "Residence (not in BRC)")
+
+makeTableData(reside) |>
+  kbl(col.names = c(2013:2019, 2022), row.names = TRUE) |>
+  kable_paper("striped", full_width = F) |>
+  column_spec(column = 1:9, width_min = "9.5em") |>
+  kable_styling() |>
+  scroll_box(width = "100%")
+```
 
 <!-- ### California and Nevada County Residence -->
 
