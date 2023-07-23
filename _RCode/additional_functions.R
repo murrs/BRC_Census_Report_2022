@@ -196,3 +196,136 @@ customPlotDat <- function(levels, design, incomeVarName, year, label){
              upper = attr(ciout, "ci")[2], level = label, 
              year = year, labels = label)
 }
+
+
+
+weighted.quantile <- function(x, w, p, alpha = 0.95, na.rm = TRUE){
+  if(any(is.na(x)) & na.rm){
+    w <- w[!is.na(x)]
+    x <- x[!is.na(x)]
+  }
+  if (any(is.na(w)))
+    w <- rep(1 / length(x), length(x))
+  
+  indexes <- order(x)
+  x <- x[indexes]
+  w <- w[indexes]
+  
+  outList <- lapply(p, function(p, x, w, alpha){
+    nw <- sum(w)^2 / sum(w^2) # Kish's effective sample size
+    a <- p * (nw + 1)
+    b <- (1 - p) * (nw + 1)
+    
+    cdfs.probs <- cumsum(c(0, w / sum(w)))
+    cdfs <- pbeta(cdfs.probs, a, b)
+    W <- tail(cdfs, -1) - head(cdfs, -1)
+    
+    c1 <- sum(W * x)
+    c2 <- sum(W * x^2)
+    se <- sqrt(c2 - c1^2)
+    estimation <- c1
+    margin <- se * qt(1 - (1 - alpha) / 2, df = nw - 1)
+    
+    out <- data.frame(est = estimation, se = se, lower = estimation - margin, 
+                      upper = estimation + margin)
+    return(out)
+  }, x = x, w = w, alpha = alpha)
+  
+  out <- do.call(rbind, outList)
+  rownames(out) <- paste0(p * 100, "%")
+  return(out)
+}
+
+weighted.sd <- function(x, w, trim = NA, na.rm = TRUE){
+  if(any(is.na(x)) & na.rm){
+    w <- w[!is.na(x)]
+    x <- x[!is.na(x)]
+  }
+  
+  if(!all(is.na(trim))){
+    if(length(trim) == 1){
+      trimQuant <- weighted.quantile(x = x, w = w, p = c(trim, 1 - trim), 
+                                     na.rm = na.rm)$est
+      trimQuant <- trimQuant[order(trimQuant)]
+      w <- w[x > trimQuant[1] & x < trimQuant[2]]
+      x <- x[x > trimQuant[1] & x < trimQuant[2]]
+    }
+    else if(length(trim) == 2){
+      if(is.na(trim[1])){
+        trimQuant <- weighted.quantile(x = x, w = w, p = trim[2], 
+                                       na.rm = na.rm)$est
+        w <- w[x < trimQuant]
+        x <- x[x < trimQuant]
+      }
+      else if(is.na(trim[2])){
+        trimQuant <- weighted.quantile(x = x, w = w, p = trim[1], 
+                                       na.rm = na.rm)$est
+        w <- w[x > trimQuant]
+        x <- x[x > trimQuant]
+      }
+      else{
+        trimQuant <- weighted.quantile(x = x, w = w, p = trim, 
+                                       na.rm = na.rm)$est
+        trimQuant <- trimQuant[order(trimQuant)]
+        w <- w[x > trimQuant[1] & x < trimQuant[2]]
+        x <- x[x > trimQuant[1] & x < trimQuant[2]]
+      }
+    }
+    else{stop("trim must be a numeric vector of length 1 or 2")}
+  }
+  n = length(w)
+  xWbar = sum(x * w) / sum(w)
+  wbar = sum(w) / n
+  out = n / ((n-1) * sum(w)^2) * 
+    (sum((w * x - wbar * xWbar)^2) -
+       2 * xWbar * sum((w - wbar) * (w * x - wbar * xWbar)) + 
+       xWbar^2 * sum((w - wbar)^2))
+  return(out)
+}
+
+weighted.mean2 <- function(x, w, trim = NA, na.rm = TRUE, alpha = 0.05){
+  if(any(is.na(x)) & na.rm){
+    w <- w[!is.na(x)]
+    x <- x[!is.na(x)]
+  }
+  if(!all(is.na(trim))){
+    if(length(trim) == 1){
+      trimQuant <- weighted.quantile(x = x, w = w, p = c(trim, 1 - trim), 
+                                     na.rm = na.rm)$est
+      trimQuant <- trimQuant[order(trimQuant)]
+      w <- w[x > trimQuant[1] & x < trimQuant[2]]
+      x <- x[x > trimQuant[1] & x < trimQuant[2]]
+    }
+    else if(length(trim) == 2){
+      if(is.na(trim[1])){
+        trimQuant <- weighted.quantile(x = x, w = w, p = trim[2], 
+                                       na.rm = na.rm)$est
+        w <- w[x < trimQuant]
+        x <- x[x < trimQuant]
+      }
+      else if(is.na(trim[2])){
+        trimQuant <- weighted.quantile(x = x, w = w, p = trim[1], 
+                                       na.rm = na.rm)$est
+        w <- w[x > trimQuant]
+        x <- x[x > trimQuant]
+      }
+      else{
+        trimQuant <- weighted.quantile(x = x, w = w, p = trim, 
+                                       na.rm = na.rm)$est
+        trimQuant <- trimQuant[order(trimQuant)]
+        w <- w[x > trimQuant[1] & x < trimQuant[2]]
+        x <- x[x > trimQuant[1] & x < trimQuant[2]]
+      }
+    }
+    else{stop("trim must be a numeric vector of length 1 or 2")}
+  }
+  mn <- sum(x * w) / sum(w)
+  se <- weighted.sd(x, w, trim = NA, na.rm = na.rm)
+  lower <- NULL
+  upper <- NULL
+  if(!is.na(alpha)){
+    lower = mn - qnorm(1 - alpha / 2) * se
+    upper = mn + qnorm(1 - alpha / 2) * se
+  }
+  return(c(wmean = mn, se = se, lowerCI = lower, upperCI = upper))
+}

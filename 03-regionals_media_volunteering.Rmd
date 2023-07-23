@@ -50,14 +50,14 @@ ggplot(attendRegional, aes(x = year, y = est, color = labels)) +
   scale_y_continuous(labels = percent) +
   scale_color_manual(values = c("#EA008B", "#FF416f", "#FF7457", "#FFA349", 
                                 "#FFCF50", "#694200")) +
-  labs(x = "Year", y = "", color = "Regional or Burning Man \n event connection")
+  labs(x = "Year", y = "Burning Man participants (%)", color = "Regional or Burning Man \n event connection")
 
 makeTableData(attendRegional) |>
   kbl(col.names = c(2013:2019, 2022),
       row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   kable_styling() |>
-  column_spec(column = 1:9, width_min = "9.5em") |>
+  column_spec(column = 1:9, width_min = "9.8em") |>
   scroll_box(width = "100%")
 
 ```
@@ -135,7 +135,7 @@ regionalInvolve$labels <- factor(regionalInvolve$labels,
 ggplot(regionalInvolve[regionalInvolve$year == 2022,], aes(x = labels, y = est)) +
   geom_bar(stat = "identity", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Involvement with a Burning Man Regional", y = "") +
+  labs(x = "Involvement with a Burning Man Regional", y = "Burning Man participants (%)") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 
@@ -144,7 +144,7 @@ makeTableData(regionalInvolve) |>
       row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   kable_styling() |>
-  column_spec(column = 1:7, width_min = "9.5em") |>
+  column_spec(column = 1:7, width_min = "9.8em") |>
   scroll_box(width = "100%")
 ```
 
@@ -186,7 +186,7 @@ makeTableData(regionalInvolve) |>
 <!--       row.names = TRUE) |> -->
 <!--   kable_paper("striped", full_width = F) |> -->
 <!--   kable_styling() |> -->
-<!--   column_spec(column = 1:7, width_min = "9.5em") |> -->
+<!--   column_spec(column = 1:7, width_min = "9.8em") |> -->
 <!--   scroll_box(width = "100%") -->
 <!-- ``` -->
 
@@ -237,7 +237,7 @@ valuableInfo <- makePlotData("What types of information do you find most valuabl
 ggplot(valuableInfo[valuableInfo$year == 2022,], aes(x = labels, y = est)) +
   geom_bar(stat = "identity", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Involvement with a Burning Man Regional", y = "") +
+  labs(x = "Involvement with a Burning Man Regional", y = "Burning Man participants (%)") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 
@@ -246,7 +246,7 @@ makeTableData(valuableInfo) |>
       row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   kable_styling() |>
-  column_spec(column = 1:8, width_min = "9.5em") |>
+  column_spec(column = 1:8, width_min = "9.8em") |>
   scroll_box(width = "100%")
 ```
 
@@ -271,8 +271,8 @@ bmir <- makePlotData("Have you listened to BMIR (Burning Man Information Radio) 
                                 "Knew about BMIR, but \n did not listen to it"))
 
 ggplot(bmir, aes(x = year, y = est, color = labels)) +
-  geom_line(linewidth = 1.5) +
-  geom_point(size = 2.25, color = "black") +
+  geom_line(linewidth = 1.5, alpha = 0.7) +
+  geom_point(size = 2.25) +
   # geom_errorbar(aes(ymin = lower, ymax = upper), color = "black", width = 0.2,
   #               linewidth = 1) +
   theme_bw(13) +
@@ -281,14 +281,14 @@ ggplot(bmir, aes(x = year, y = est, color = labels)) +
   scale_y_continuous(labels = percent) +
   scale_color_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", 
                                 "#FFCF50", "#554149")) +
-  labs(x = "Year", y = "", color = "Burning Man Information \n Radio (BMIR) Source")
+  labs(x = "Year", y = "Burning Man participants (%)", color = "Burning Man Information \n Radio (BMIR) Source")
 
 makeTableData(valuableInfo) |>
   kbl(col.names = c(2014:2019, 2022),
       row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   kable_styling() |>
-  column_spec(column = 1:8, width_min = "9.5em") |>
+  column_spec(column = 1:8, width_min = "9.8em") |>
   scroll_box(width = "100%")
 ```
 
@@ -323,14 +323,14 @@ volunteer <- makePlotData("Have you volunteered for any of the following in the 
 ggplot(volunteer[volunteer$year == 2022,], aes(x = labels, y = est)) +
   geom_bar(stat = "identity", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Non-profit or charity", y = "") +
+  labs(x = "Non-profit or charity", y = "Burning Man participants (%)") +
   theme_bw() +
   coord_flip()
 
 makeTableData(volunteer)[14:1,] |>
   kbl(col.names = c(2016:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:6, width_min = "9.5em") |>
+  column_spec(column = 1:6, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -395,7 +395,7 @@ rownames(tableDat) <- c("10^th^ percentile", "25^th^ percentile",
                         "99^th^ percentile")
 kbl(tableDat, col.names = c(2018:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:4, width_min = "9.5em") |>
+  column_spec(column = 1:4, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -428,14 +428,14 @@ donation <- makePlotData("Have you made a charitable donation (of goods and/or m
 ggplot(donation, aes(x = labels, y = est, fill = as.factor(year))) +
   geom_bar(stat = "identity", fill = "#EA008B", position = "dodge") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Non-profit or charity", y = "", fill = "Year") +
+  labs(x = "Non-profit or charity", y = "Burning Man participants (%)", fill = "Year") +
   theme_bw() +
   coord_flip()
 
 makeTableData(donation)[14:1,] |>
   kbl(col.names = c(2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:3, width_min = "9.5em") |>
+  column_spec(column = 1:3, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -457,13 +457,13 @@ ggplot(inspiredVolunteer, aes(x = year, y = est, fill = labels)) +
   scale_y_continuous(labels = percent) +
   scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
   scale_fill_manual(values = c("#EA008B", "#BDA5AD", "#FF7457")) +
-  labs(x = "", y = "", fill = "Inspired to volunteer after \n Black Rock City?") +
+  labs(x = "", y = "Burning Man participants (%)", fill = "Inspired to volunteer after \n Black Rock City?") +
   theme_bw()
 
 makeTableData(inspiredVolunteer) |>
   kbl(col.names = c(2016:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:6, width_min = "9.5em") |>
+  column_spec(column = 1:6, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -500,14 +500,14 @@ skillsInspire <- makePlotData("After visiting Black Rock City, were you inspired
 ggplot(skillsInspire[skillsInspire$year == 2022,], aes(x = labels, y = est)) +
   geom_bar(stat = "identity", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Skill learned or practiced", y = "", fill = "Year") +
+  labs(x = "Skill learned or practiced", y = "Burning Man participants (%)", fill = "Year") +
   theme_bw() +
   coord_flip()
 
 makeTableData(skillsInspire)[15:1,] |>
   kbl(col.names = c(2016:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:6, width_min = "9.5em") |>
+  column_spec(column = 1:6, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -541,12 +541,12 @@ ggplot(skillsUseful, aes(x = year, y = est, color = labels)) +
   scale_x_continuous(breaks = c(2016:2019, 2022), labels = c(2016:2019, 2022)) +
   scale_y_continuous(labels = percent) +
   scale_color_manual(values = c("#EA008B", "#FF416f", "#FF7457", "#FFA349")) +
-  labs(x = "Year", y = "", color = "Skills useful in the \n default world")
+  labs(x = "Year", y = "Burning Man participants (%)", color = "Skills useful in the \n default world")
 
 makeTableData(skillsUseful) |>
   kbl(col.names = c(2016:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:6, width_min = "9.5em") |>
+  column_spec(column = 1:6, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -573,14 +573,14 @@ ggplot(skillsOutside, aes(x = factor(year, levels = c("2022", "2019", "2018", "2
                           y = est, fill = labels)) +
   geom_bar(stat = "identity", position = "dodge") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Non-profit or charity", y = "", fill = "Year") +
+  labs(x = "Non-profit or charity", y = "Burning Man participants (%)", fill = "Year") +
   theme_bw() +
   scale_fill_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", "#FFCF50"))
 
 makeTableData(skillsOutside) |>
   kbl(col.names = c(2017:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:5, width_min = "9.5em") |>
+  column_spec(column = 1:5, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -603,14 +603,14 @@ ggplot(skillsImpact, aes(x = factor(year, levels = c("2022", "2019", "2018")),
                           y = est, fill = labels)) +
   geom_bar(stat = "identity", position = "dodge") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Non-profit or charity", y = "", fill = "Impact of these skills") +
+  labs(x = "Non-profit or charity", y = "Burning Man participants (%)", fill = "Impact of these skills") +
   theme_bw() +
   scale_fill_manual(values = c("#EA008B", "#BDA5AD", "#FF7457"))
 
 makeTableData(skillsImpact) |>
   kbl(col.names = c(2018, 2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:4, width_min = "9.5em") |>
+  column_spec(column = 1:4, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```

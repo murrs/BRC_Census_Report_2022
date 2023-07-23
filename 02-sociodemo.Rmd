@@ -47,20 +47,20 @@ virgin <- makePlotData(varName = "Virgin", varNameTable,
 
 ggplot(virgin[virgin$labels == "Virgin",], aes(x = year, y = est)) +
   geom_line(linewidth = 1.5, color = "#EA008B", alpha = 0.7) +
-  geom_point(size = 2.25) +
+  geom_point(size = 2.25, color = "#EA008B") +
   # geom_errorbar(aes(ymin = lower, ymax = upper), color = "black", width = 0.2,
   #               linewidth = 1.25) +
   theme_bw(13) +
   theme(panel.grid.minor = element_blank()) +
   # scale_color_brewer(type = "seq", palette = 11) +
   scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
-  scale_y_continuous(labels = percent) +
-  labs(x = "", y = "Percent of Burners at BRC in 2022")
+  scale_y_continuous(labels = percent, limits = c(0, 1)) +
+  labs(x = "", y = "Burning Man Participants in 2022 (%)")
 
 #An annoying thing happens when subsetting to one row.  The table class turns
 #  into a character vector.  Happy to take suggestions on a better way to do
 #  this.
-virginTable <- makeTableData(virgin, confInt = "plusminus")
+virginTable <- makeTableData(virgin)
 virginTable <- virginTable[2,] |>
   matrix(nrow = 1) |>
   as.table()
@@ -70,7 +70,7 @@ virginTable |>
   kbl() |>
   kable_paper("striped", full_width = F) |>
   kable_styling() |>
-  column_spec(column = 1:9, width_min = "9.5em") |>
+  column_spec(column = 1:9, width_min = "9.8em") |>
   scroll_box(width = "100%")
 ```
 
@@ -100,7 +100,7 @@ medianBurns |>
       row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   kable_styling() |>
-  column_spec(column = 1:9, width_min = "9.5em") |>
+  column_spec(column = 1:9, width_min = "9.8em") |>
   scroll_box(width = "100%")
 ```
 
@@ -133,7 +133,7 @@ medianAge |>
       row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   kable_styling() |>
-  column_spec(column = 1:9, width_min = "9.5em") |>
+  column_spec(column = 1:9, width_min = "9.8em") |>
   scroll_box(width = "100%")
 ```
 
@@ -177,15 +177,10 @@ gender <- makePlotData(varName = "What is your current gender?", varNameTable,
                                          design16, design17, design18, 
                                          design19),
                           years = c(2013:2019), 
-                          levels = list(c("female", "fluid", "male"), 
-                                        c("female", "fluid", "male"), 
-                                        c("female", "fluid", "male"),  
-                                        c("female", "fluid", "male"),
-                                        c("female", "fluid", "male"), 
-                                        c("female", "fluid", "male"), 
-                                        c("female", "fluid", "male")),
+                          levels = rep(list(c("female", "fluid", "male")), times = 7),
                           labels = c("Female", "Other identity", "Male"),
                           labelOrder = c("Male", "Female", "Other identity"))
+gender <- gender[!is.na(gender$est),]
 gender <- rbind(gender, gender22)
 
 ggplot(gender, aes(x = year, y = est, color = labels)) +
@@ -198,7 +193,7 @@ ggplot(gender, aes(x = year, y = est, color = labels)) +
   scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
   scale_y_continuous(labels = percent) +
   scale_color_manual(values = c("#EA008B", "#554149", "#BDA5AD")) +
-  labs(x = "", y = "", 
+  labs(x = "", y = "Burning Man participants (%)", 
        color = "Current gender")
 
 makeTableData(gender) |>
@@ -206,7 +201,7 @@ makeTableData(gender) |>
       row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   kable_styling() |>
-  column_spec(column = 1:9, width_min = "9.5em") |>
+  column_spec(column = 1:9, width_min = "9.8em") |>
   scroll_box(width = "100%")
 
 ```
@@ -225,16 +220,16 @@ sexAtBirth <- makePlotData(varName = "What sex was assigned to you at birth?",
 ggplot(sexAtBirth, aes(x = labels, y = est)) +
   geom_bar(stat = "identity", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Sex at birth", y = "") +
-  theme_bw() +
-  coord_flip()
+  labs(x = "Sex at birth", y = "Burning Man participants (%)") +
+  theme_bw() 
+  # theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 makeTableData(sexAtBirth)[3:1,] |>
   kbl(col.names = c(2022),
       row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   kable_styling() |>
-  column_spec(column = 1:1, width_min = "9.5em") |>
+  column_spec(column = 1:1, width_min = "9.8em") |>
   scroll_box(width = "100%")
 ```
 
@@ -264,16 +259,16 @@ genderID <- makePlotData(varName = "What is your current gender?", varNameTable,
 ggplot(genderID, aes(x = labels, y = est)) +
   geom_bar(stat = "identity", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Gender identity", y = "") +
+  labs(x = "Gender identity", y = "Burning Man participants (%)") +
   theme_bw() +
-  coord_flip()
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 makeTableData(genderID)[10:1,] |>
   kbl(col.names = c(2022),
       row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   kable_styling() |>
-  column_spec(column = 1:1, width_min = "9.5em") |>
+  column_spec(column = 1:1, width_min = "9.8em") |>
   scroll_box(width = "100%")
 ```
 
@@ -295,14 +290,15 @@ pronouns <- makePlotData(varName = "What are your pronouns?", varNameTable,
 ggplot(pronouns, aes(x = labels, y = est)) +
   geom_bar(stat = "identity", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Gender identity", y = "") +
+  labs(x = "Gender identity", y = "Burning Man participants (%)") +
   theme_bw()
+  # theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 makeTableData(pronouns) |>
   kbl(col.names = c(2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   kable_styling() |>
-  column_spec(column = 1:1, width_min = "9.5em") |>
+  column_spec(column = 1:1, width_min = "9.8em") |>
   scroll_box(width = "100%")
 ```
 
@@ -425,17 +421,17 @@ pi.allYears$labels <- factor(pi.allYears$labels,
                                         "$300,000 or more"))
 
 ggplot(pi.allYears, aes(x = year, y = est, color = labels)) +
-  geom_line(linewidth = 1.5) +
-  geom_point(size = 2.25, color = "black") +
-  geom_errorbar(aes(ymin = lower, ymax = upper), color = "black", width = 0.2,
-                linewidth = 1) +
+  geom_line(linewidth = 1.5, alpha = 0.7) +
+  geom_point(size = 2.25) +
+  # geom_errorbar(aes(ymin = lower, ymax = upper), color = "black", width = 0.2,
+  #               linewidth = 1) +
   theme_bw(13) +
   theme(panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
   scale_y_continuous(labels = percent) +
   scale_color_manual(values = c("#EA008B", "#FF416f", "#FF7457", "#FFA349", 
                                 "#FFCF50")) +
-  labs(x = "Year", y = "", color = "Personal income (USD)")
+  labs(x = "Year", y = "Burning Man participants (%)", color = "Personal income (USD)")
 
 personalIncome <- makePlotData(varName = "What was your personal income in 2021 before taxes? Give your best estimate. Please do not include your spouse's income as your own.", 
                          varNameTable,
@@ -494,7 +490,7 @@ makeTableData(personalIncome) |>
   kbl(col.names = c(2015:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   kable_styling() |>
-  column_spec(column = 1:7, width_min = "9.5em") |>
+  column_spec(column = 1:7, width_min = "9.8em") |>
   scroll_box(width = "100%")
 ```
 
@@ -618,17 +614,17 @@ hi.allYears$labels <- factor(hi.allYears$labels,
                                         "$300,000 or more"))
 
 ggplot(hi.allYears, aes(x = year, y = est, color = labels)) +
-  geom_line(linewidth = 1.5) +
-  geom_point(size = 2.25, color = "black") +
-  geom_errorbar(aes(ymin = lower, ymax = upper), color = "black", width = 0.2,
-                linewidth = 1) +
+  geom_line(linewidth = 1.5, alpha = 0.7) +
+  geom_point(size = 2.25) +
+  # geom_errorbar(aes(ymin = lower, ymax = upper), color = "black", width = 0.2,
+  #               linewidth = 1) +
   theme_bw(13) +
   theme(panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
   scale_y_continuous(labels = percent) +
   scale_color_manual(values = c("#EA008B", "#FF416f", "#FF7457", "#FFA349", 
                                 "#FFCF50")) +
-  labs(x = "Year", y = "", color = "Personal income (USD)")
+  labs(x = "Year", y = "Burning Man participants (%)", color = "Personal income (USD)")
 
 householdIncome <- makePlotData(varName = "What was the total income before taxes of all members of your household (including you) in 2021?", 
                          varNameTable,
@@ -687,7 +683,7 @@ makeTableData(householdIncome) |>
   kbl(col.names = c(2015:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   kable_styling() |>
-  column_spec(column = 1:7, width_min = "9.5em") |>
+  column_spec(column = 1:7, width_min = "9.8em") |>
   scroll_box(width = "100%")
 ```
 
@@ -721,7 +717,7 @@ education <- makePlotData(varName = "Which level of education have you completed
 ggplot(education, aes(x = labels, y = est)) +
   geom_bar(stat = "identity", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Level of education competed", y = "") +
+  labs(x = "Level of education competed", y = "Burning Man participants in 2022 (%)") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 
@@ -729,7 +725,7 @@ makeTableData(education) |>
   kbl(col.names = c(2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   kable_styling() |>
-  column_spec(column = 1:1, width_min = "9.5em") |>
+  column_spec(column = 1:1, width_min = "9.8em") |>
   scroll_box(width = "100%")
 ```
 
@@ -775,12 +771,12 @@ ggplot(reside, aes(x = year, y = est, color = labels)) +
   scale_y_continuous(labels = percent) +
   scale_color_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", 
                      "#A07200", "#FFCF50")) +
-  labs(x = "Year", y = "", color = "Residence (not in BRC)")
+  labs(x = "Year", y = "Burning Man participants (%)", color = "Residence (not in BRC)")
 
 makeTableData(reside) |>
   kbl(col.names = c(2013:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:9, width_min = "9.5em") |>
+  column_spec(column = 1:9, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -841,8 +837,8 @@ numberVotes$labels <- factor(numberVotes$labels, levels = c("Did not vote",
                                                             "Not eligible to vote"))
 
 ggplot(numberVotes, aes(x = year, y = est, color = labels)) +
-  geom_line(linewidth = 1.5) +
-  geom_point(size = 2.25, color = "black") +
+  geom_line(linewidth = 1.5, alpha = 0.7) +
+  geom_point(size = 2.25) +
   # geom_errorbar(aes(ymin = lower, ymax = upper), color = "black", width = 0.2,
   #               linewidth = 1) +
   theme_bw(13) +
@@ -851,13 +847,13 @@ ggplot(numberVotes, aes(x = year, y = est, color = labels)) +
   scale_y_continuous(labels = percent) +
   scale_color_manual(values = c("#EA008B", "#FF416f", "#FF7457", "#FFA349", 
                                 "#FFCF50", "#694200")) +
-  labs(x = "Year", y = "", color = "Personal income (USD)")
+  labs(x = "Year", y = "Burning Man participants (%)", color = "Personal income (USD)")
 
 makeTableData(numberVotes) |>
   kbl(col.names = c(2013:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
   kable_styling() |>
-  column_spec(column = 1:9, width_min = "9.5em") |>
+  column_spec(column = 1:9, width_min = "9.8em") |>
   scroll_box(width = "100%")
 ```
 
@@ -975,12 +971,12 @@ ggplot(politicalParty, aes(x = year, y = est, color = labels)) +
   scale_y_continuous(labels = percent) +
   scale_color_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", 
                                 "#FFCF50", "#554149")) +
-  labs(x = "Year", y = "", color = "US politcal party \n affiliation")
+  labs(x = "Year", y = "Burning Man participants (%)", color = "US politcal party \n affiliation")
 
 makeTableData(politicalParty) |>
   kbl(col.names = c(2013:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:9, width_min = "9.5em") |>
+  column_spec(column = 1:9, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -1023,14 +1019,14 @@ ggplot(politicalViews, aes(x = labels, y = est, fill = as.factor(year))) +
   geom_bar(stat = "identity", position = "dodge") +
   scale_y_continuous(labels = percent) +
   scale_fill_manual(values = c("#EA008B", "#BDA5AD")) +
-  labs(x = "Political view", y = "", fill = "Year") +
+  labs(x = "Political view", y = "Burning Man participants (%)", fill = "Year") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 
 makeTableData(politicalViews) |>
   kbl(col.names = c(2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:3, width_min = "9.5em") |>
+  column_spec(column = 1:3, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -1118,7 +1114,7 @@ tableDat |>
   kbl(col.names = c(as.character(2013:2019), "2022^c^"), row.names = TRUE) |>
   kable_paper("striped") |>
   kable_styling(full_width = F, wraptable_width = "100%") |>
-  column_spec(column = 1:9, width_min = "9.5em") |>
+  column_spec(column = 1:9, width_min = "9.8em") |>
   footnote(alphabet = c("Middle eastern was not an option in 2013-2016.",
                         "The \"other or mixed\" option in 2013-2019 changed to \"other\" in 2022.",
                         "In 2022 the format changed to allow users to select multiple options.")) |>
@@ -1141,14 +1137,14 @@ ggplot(personOfColor, aes(x = year, y = est, fill = labels)) +
   geom_area(alpha = 0.65) +
   scale_y_continuous(labels = percent) +
   scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
-  scale_fill_manual(values = c("#EA008B", "#BDA5AD", "#FF7457")) +
-  labs(x = "", y = "", fill = "Do you consider \n yourself a \n person of color?") +
+  scale_fill_manual(values = c("#EA008B", "#BDA5AD", "#FF7457")[3:1]) +
+  labs(x = "", y = "Burning Man participants (%)", fill = "Do you consider \n yourself a \n person of color?") +
   theme_bw()
 
 makeTableData(personOfColor) |>
   kbl(col.names = c(2013:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:9, width_min = "9.5em") |>
+  column_spec(column = 1:9, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -1248,13 +1244,13 @@ ggplot(language2, aes(x = year, y = est, fill = labels)) +
   scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
   scale_y_continuous(labels = percent) +
   scale_fill_manual(values = c("#EA008B", "#BDA5AD")[2:1]) +
-  labs(x = "Year", y = "", fill = "Language")
+  labs(x = "Year", y = "Burning Man participants (%)", fill = "Language")
 
 
 makeTableData(language) |>
   kbl(col.names = c(2013:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:9, width_min = "9.5em") |>
+  column_spec(column = 1:9, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -1281,20 +1277,20 @@ spirituality <- makePlotData("How do you describe your spirituality?",
                              labelOrder = c(6, 2, 1, 5, 3, 4))
 
 ggplot(spirituality, aes(x = year, y = est, color = labels)) +
-  geom_line(linewidth = 1.5) +
-  geom_point(size = 2.25, color = "black") +
+  geom_line(linewidth = 1.5, alpha = 0.7) +
+  geom_point(size = 2.25) +
   theme_bw(13) +
   theme(panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
   scale_y_continuous(labels = percent) +
   scale_color_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", 
                                 "#FFCF50", "#554149", "#F9F871")) +
-  labs(x = "Year", y = "", color = "Language")
+  labs(x = "Year", y = "Burning Man participants (%)", color = "Language")
 
 makeTableData(spirituality) |>
   kbl(col.names = c(2013:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:9, width_min = "9.5em") |>
+  column_spec(column = 1:9, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -1383,14 +1379,14 @@ religion <- makePlotData("Do you belong to a religion or religious denomination?
 ggplot(religion22, aes(x = labels, y = est)) +
   geom_bar(stat = "identity", position = "dodge", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Religion", y = "") +
+  labs(x = "Religion", y = "Burning Man participants in 2022 (%)") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 
 makeTableData(religion) |>
   kbl(col.names = c(2014:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:8, width_min = "9.5em") |>
+  column_spec(column = 1:8, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -1420,7 +1416,7 @@ disability <- makePlotData("What disability statuses (if any) do you identify wi
 ggplot(disability[-9,], aes(x = labels, y = est)) +
   geom_bar(stat = "identity", position = "dodge", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Disability", y = "") +
+  labs(x = "Disability", y = "Burning Man participants in 2022 (%)") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 
@@ -1428,7 +1424,7 @@ ggplot(disability[-9,], aes(x = labels, y = est)) +
 makeTableData(disability[-9,]) |>
   kbl(col.names = c(2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:2, width_min = "9.5em") |>
+  column_spec(column = 1:2, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -1471,7 +1467,7 @@ sexualOrientation2 <- makePlotData("Which of these expressions best describes yo
 ggplot(sexualOrientation, aes(x = labels, y = est)) +
   geom_bar(stat = "identity", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Sexual orientation", y = "") +
+  labs(x = "Sexual orientation", y = "Burning Man participants (%)") +
   theme_bw() +
   coord_flip()
 
@@ -1488,7 +1484,7 @@ sexualOrientationTableData[c(6, 8), 1:7] <- "--"
 sexualOrientationTableData |>
   kbl(col.names = c(2013:2019, "2022^c^"), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:9, width_min = "9.5em") |>
+  column_spec(column = 1:9, width_min = "9.8em") |>
   footnote(alphabet = c("\'Demi-sexual\' and \'Other\' choices were only shown in 2022.")) |>
   kable_styling() |>
   scroll_box(width = "100%")
@@ -1533,14 +1529,14 @@ sexuality$labels <- factor(sexuality$labels, levels = c("Other",
 ggplot(sexuality, aes(x = labels, y = est)) +
   geom_bar(stat = "identity", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Sexuality label", y = "") +
+  labs(x = "Sexuality label", y = "Burning Man participants in 2022 (%)") +
   theme_bw() +
   coord_flip()
 
 makeTableData(sexuality)[8:1,] |>
   kbl(col.names = c(2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:2, width_min = "9.5em") |>
+  column_spec(column = 1:2, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -1565,14 +1561,14 @@ romanticOrientation <- makePlotData("Which of these expressions best describes y
 ggplot(romanticOrientation, aes(x = labels, y = est)) +
   geom_bar(stat = "identity", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Romatic orientation", y = "") +
+  labs(x = "Romatic orientation", y = "Burning Man participants in 2022 (%)") +
   theme_bw() +
   coord_flip()
 
 makeTableData(romanticOrientation)[7:1,] |>
   kbl(col.names = c(2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:2, width_min = "9.5em") |>
+  column_spec(column = 1:2, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -1598,20 +1594,20 @@ partner <- makePlotData("In the default world, do you have a partner or partners
                         labelOrder = c(2, 4, 3, 1))
 
 ggplot(partner, aes(x = year, y = est, color = labels)) +
-  geom_line(linewidth = 1.5) +
-  geom_point(size = 2.25, color = "black") +
+  geom_line(linewidth = 1.5, alpha = 0.7) +
+  geom_point(size = 2.25) +
   theme_bw(13) +
   theme(panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = c(2013:2019, 2022), labels = c(2013:2019, 2022)) +
   scale_y_continuous(labels = percent) +
   scale_color_manual(values = c("#EA008B", "#BDA5AD", "#FF7457", "#A07200", 
                                 "#FFCF50", "#554149", "#F9F871")) +
-  labs(x = "Year", y = "", color = "Do you have a partner?")
+  labs(x = "Year", y = "Burning Man participants (%)", color = "Do you have a partner?")
 
 makeTableData(partner) |>
   kbl(col.names = c(2015:2019, 2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:7, width_min = "9.5em") |>
+  column_spec(column = 1:7, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
@@ -1644,14 +1640,14 @@ relationship <- makePlotData("Some people use specific labels to describe their 
 ggplot(relationship, aes(x = labels, y = est)) +
   geom_bar(stat = "identity", fill = "#EA008B") +
   scale_y_continuous(labels = percent) +
-  labs(x = "Relationship label", y = "") +
+  labs(x = "Relationship label", y = "Burning Man participants in 2022 (%)") +
   theme_bw() +
   coord_flip()
 
 makeTableData(relationship)[15:1,] |>
   kbl(col.names = c(2022), row.names = TRUE) |>
   kable_paper("striped", full_width = F) |>
-  column_spec(column = 1:2, width_min = "9.5em") |>
+  column_spec(column = 1:2, width_min = "9.8em") |>
   kable_styling() |>
   scroll_box(width = "100%")
 ```
