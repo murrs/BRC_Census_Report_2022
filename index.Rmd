@@ -1,12 +1,12 @@
 --- 
-title: "Black Rock City Census Survey Results 2022"
-author: "Aaron \"Murrs\" Shev"
-date: "`r Sys.Date()`"
+title: "Black Rock City Census: 2013-2022 Population Analysis"
+author: ""
+date: ""
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
-# url: your book url like https://bookdown.org/yihui/bookdown
-# cover-image: path to the social sharing image like images/cover.jpg
+url: http://blackrockcitycensus.org
+cover-image: images/Logo.PNG
 description: |
   Annual survey results report for the Black Rock City Census
 link-citations: yes
@@ -15,16 +15,64 @@ output:
   bookdown::gitbook: default
 ---
 
-# Preface {-}
+![BRC Census Logo](images/Logo.PNG)
 
-Some highlights from Murrs
 
-## About the authors {-}
+# Forward {-}
 
+It has been over three years since I last wrote the forward to a Black
+Rock City population report. It is hard to understate my excitement for the
+community to see the results. Not only is the release of the annual report this year a
+celebration of all the hard work of the many absolutely amazing volunteers of the Black Rock City
+Census, but the report this also represents a celebration of the return home
+for our community to the Black Rock Desert. This year also marks an important
+milestone for the Black Rock City Census -- a decade of data (although no data was collected
+in 2020 and 2021). The world has changed since Burning Man 2019, 
+and burners have changed with it. The subsequent document details in what
+ways we have changed and in what ways we persevered as community and remained
+the same.
+
+## Contributions and acknowledgments {-}
+
+**BRC Census General Coordination and Scientific Committee:** Andi "Sonder" Morency, Aaron "Murrs" Shev
+
+**Data Analysis:** Aaron “Murrs” Shev
+
+**Report coordination and visiualization:** Aaron "Murrs" Shev
+
+**Report editing and proofreading:**
+
+**Technical assistance:**
+
+**Special thanks and acknowledgements:**
+
+* The XXX volunteers of the 2022 Census Lab including: research collaborators, 
+volunteer coordinators, camp builders, gate samplers, key punchers, Census Lab hosts,
+graphic designers, and many more!
+
+* Special thanks to Dana "DV8" DeVaul whose work on the 2018 population report was
+the basis for many elements in this report.
+
+* We would also like to thank the Burning Man Communications Department and the Burning Man Tech Team
+
+* Additionally, we would like to extend our sincere thanks to all of the Burning Man participants who have taken the time to provide their data. This project would not exist without our respondents. 
+
+* Finally, our thanks to Burning Man Project for the resources they provide both on playa and off playa and for believing in the project! 
+
+## For more information {-}
+To contact the Census Lab, email census@burningman.org
+
+Census Lab Blog: https://journal.burningman.org/author/census/
+
+Census Lab Data Archive: http://burningman.org/culture/history/brc-history/census-data/
+
+Citation: Shev, A.B., Morency A., and the 2022 Census Lab. (2023). Black Rock City Census: 2013-2022 Population Analysis. Black Rock City Census. 
+
+Copyright © 2020 Shev et al. 
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'survey', 'anesrake', 'ggplot2'
 ), 'packages.bib')
 ```
